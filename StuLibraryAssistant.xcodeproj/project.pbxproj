@@ -12,12 +12,19 @@
 		80847C554CA88100FE1D1902 /* libPods-StuLibraryAssistantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EAA810F8263D50C5402643 /* libPods-StuLibraryAssistantTests.a */; };
 		9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53222296F4C00E11C2B /* AppDelegate.m */; };
 		9A23A53622296F4C00E11C2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53522296F4C00E11C2B /* ViewController.m */; };
-		9A23A53922296F4C00E11C2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53722296F4C00E11C2B /* Main.storyboard */; };
 		9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53A22296F4D00E11C2B /* Assets.xcassets */; };
 		9A23A53E22296F4D00E11C2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53C22296F4D00E11C2B /* LaunchScreen.storyboard */; };
 		9A23A54122296F4D00E11C2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A54022296F4D00E11C2B /* main.m */; };
 		9A23A54B22296F4D00E11C2B /* StuLibraryAssistantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A54A22296F4D00E11C2B /* StuLibraryAssistantTests.m */; };
 		9A23A55622296F4D00E11C2B /* StuLibraryAssistantUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A55522296F4D00E11C2B /* StuLibraryAssistantUITests.m */; };
+		9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C939D223E81B3005B2894 /* SLCacheManager.m */; };
+		9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */; };
+		9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */; };
+		9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3025223813DF00A46CFA /* SLLoginViewController.m */; };
+		9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3028223814A700A46CFA /* SLLoginHeaderView.m */; };
+		9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B302B223815C400A46CFA /* SLLoginInputView.m */; };
+		9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3032223817BD00A46CFA /* SLStyleManager.m */; };
+		9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B30382238199700A46CFA /* UIColor+hexColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +58,6 @@
 		9A23A53222296F4C00E11C2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9A23A53422296F4C00E11C2B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9A23A53522296F4C00E11C2B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9A23A53822296F4C00E11C2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A23A53A22296F4D00E11C2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A23A53D22296F4D00E11C2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A23A53F22296F4D00E11C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +68,23 @@
 		9A23A55122296F4D00E11C2B /* StuLibraryAssistantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StuLibraryAssistantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A55522296F4D00E11C2B /* StuLibraryAssistantUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StuLibraryAssistantUITests.m; sourceTree = "<group>"; };
 		9A23A55722296F4D00E11C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A4922B82238C0B700C0B50A /* StuLA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StuLA-Prefix.pch"; sourceTree = "<group>"; };
+		9A7C939C223E81B3005B2894 /* SLCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCacheManager.h; sourceTree = "<group>"; };
+		9A7C939D223E81B3005B2894 /* SLCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCacheManager.m; sourceTree = "<group>"; };
+		9A7C939F223E8382005B2894 /* SLMemoryCahce.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMemoryCahce.h; sourceTree = "<group>"; };
+		9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMemoryCahce.m; sourceTree = "<group>"; };
+		9A7C93A2223E8D79005B2894 /* SLStyleManager+Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLStyleManager+Theme.h"; sourceTree = "<group>"; };
+		9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SLStyleManager+Theme.m"; sourceTree = "<group>"; };
+		9A8B3024223813DF00A46CFA /* SLLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginViewController.h; sourceTree = "<group>"; };
+		9A8B3025223813DF00A46CFA /* SLLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginViewController.m; sourceTree = "<group>"; };
+		9A8B3027223814A700A46CFA /* SLLoginHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginHeaderView.h; sourceTree = "<group>"; };
+		9A8B3028223814A700A46CFA /* SLLoginHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginHeaderView.m; sourceTree = "<group>"; };
+		9A8B302A223815C400A46CFA /* SLLoginInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginInputView.h; sourceTree = "<group>"; };
+		9A8B302B223815C400A46CFA /* SLLoginInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginInputView.m; sourceTree = "<group>"; };
+		9A8B3031223817BD00A46CFA /* SLStyleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLStyleManager.h; sourceTree = "<group>"; };
+		9A8B3032223817BD00A46CFA /* SLStyleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLStyleManager.m; sourceTree = "<group>"; };
+		9A8B30372238199700A46CFA /* UIColor+hexColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+hexColor.h"; sourceTree = "<group>"; };
+		9A8B30382238199700A46CFA /* UIColor+hexColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexColor.m"; sourceTree = "<group>"; };
 		DB17C95338D80C2D426B0750 /* Pods-StuLibraryAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuLibraryAssistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuLibraryAssistantUITests/Pods-StuLibraryAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,15 +141,14 @@
 		9A23A53022296F4C00E11C2B /* StuLibraryAssistant */ = {
 			isa = PBXGroup;
 			children = (
-				9A23A53122296F4C00E11C2B /* AppDelegate.h */,
-				9A23A53222296F4C00E11C2B /* AppDelegate.m */,
+				9A4922B92238C14100C0B50A /* App */,
+				9A4922B72238C05700C0B50A /* Resources */,
+				9A4922B62238C04C00C0B50A /* Support Files */,
+				9A8B302F2238179500A46CFA /* Tools */,
+				9A8B301F2238062200A46CFA /* Login */,
 				9A23A53422296F4C00E11C2B /* ViewController.h */,
 				9A23A53522296F4C00E11C2B /* ViewController.m */,
-				9A23A53722296F4C00E11C2B /* Main.storyboard */,
-				9A23A53A22296F4D00E11C2B /* Assets.xcassets */,
 				9A23A53C22296F4D00E11C2B /* LaunchScreen.storyboard */,
-				9A23A53F22296F4D00E11C2B /* Info.plist */,
-				9A23A54022296F4D00E11C2B /* main.m */,
 			);
 			path = StuLibraryAssistant;
 			sourceTree = "<group>";
@@ -147,6 +169,127 @@
 				9A23A55722296F4D00E11C2B /* Info.plist */,
 			);
 			path = StuLibraryAssistantUITests;
+			sourceTree = "<group>";
+		};
+		9A4922B62238C04C00C0B50A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A23A53F22296F4D00E11C2B /* Info.plist */,
+				9A4922B82238C0B700C0B50A /* StuLA-Prefix.pch */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		9A4922B72238C05700C0B50A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9A23A53A22296F4D00E11C2B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9A4922B92238C14100C0B50A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9A23A53122296F4C00E11C2B /* AppDelegate.h */,
+				9A23A53222296F4C00E11C2B /* AppDelegate.m */,
+				9A23A54022296F4D00E11C2B /* main.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9A7C939B223E8159005B2894 /* SLStyle */ = {
+			isa = PBXGroup;
+			children = (
+				9A8B30362238193200A46CFA /* Category */,
+				9A8B3031223817BD00A46CFA /* SLStyleManager.h */,
+				9A8B3032223817BD00A46CFA /* SLStyleManager.m */,
+			);
+			path = SLStyle;
+			sourceTree = "<group>";
+		};
+		9A8B301F2238062200A46CFA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9A8B30232238065000A46CFA /* ViewModel */,
+				9A8B30222238064900A46CFA /* Manager */,
+				9A8B30212238064300A46CFA /* View */,
+				9A8B30202238063300A46CFA /* Viewcontroller */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9A8B30202238063300A46CFA /* Viewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				9A8B3024223813DF00A46CFA /* SLLoginViewController.h */,
+				9A8B3025223813DF00A46CFA /* SLLoginViewController.m */,
+			);
+			path = Viewcontroller;
+			sourceTree = "<group>";
+		};
+		9A8B30212238064300A46CFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A8B3027223814A700A46CFA /* SLLoginHeaderView.h */,
+				9A8B3028223814A700A46CFA /* SLLoginHeaderView.m */,
+				9A8B302A223815C400A46CFA /* SLLoginInputView.h */,
+				9A8B302B223815C400A46CFA /* SLLoginInputView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A8B30222238064900A46CFA /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A8B30232238065000A46CFA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A8B302F2238179500A46CFA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				9A8B3030223817A100A46CFA /* SLUIHelper */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		9A8B3030223817A100A46CFA /* SLUIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C939B223E8159005B2894 /* SLStyle */,
+				9A8B30352238191800A46CFA /* SLCache */,
+			);
+			path = SLUIHelper;
+			sourceTree = "<group>";
+		};
+		9A8B30352238191800A46CFA /* SLCache */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C939C223E81B3005B2894 /* SLCacheManager.h */,
+				9A7C939D223E81B3005B2894 /* SLCacheManager.m */,
+				9A7C939F223E8382005B2894 /* SLMemoryCahce.h */,
+				9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */,
+			);
+			path = SLCache;
+			sourceTree = "<group>";
+		};
+		9A8B30362238193200A46CFA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9A8B30372238199700A46CFA /* UIColor+hexColor.h */,
+				9A8B30382238199700A46CFA /* UIColor+hexColor.m */,
+				9A7C93A2223E8D79005B2894 /* SLStyleManager+Theme.h */,
+				9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		BC3D7760C9ABB74AF81E69FC /* Frameworks */ = {
@@ -281,7 +424,6 @@
 			files = (
 				9A23A53E22296F4D00E11C2B /* LaunchScreen.storyboard in Resources */,
 				9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */,
-				9A23A53922296F4C00E11C2B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,8 +539,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */,
+				9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */,
+				9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */,
 				9A23A53622296F4C00E11C2B /* ViewController.m in Sources */,
+				9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */,
+				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
+				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
 				9A23A54122296F4D00E11C2B /* main.m in Sources */,
+				9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */,
+				9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */,
 				9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,14 +585,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9A23A53722296F4C00E11C2B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9A23A53822296F4C00E11C2B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9A23A53C22296F4D00E11C2B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -572,7 +714,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = StuLibraryAssistant/Info.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/StuLibraryAssistant/Support Files/StuLA-Prefix.pch";
+				INFOPLIST_FILE = "StuLibraryAssistant/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -589,7 +733,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = StuLibraryAssistant/Info.plist;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/StuLibraryAssistant/Support Files/StuLA-Prefix.pch";
+				INFOPLIST_FILE = "StuLibraryAssistant/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
