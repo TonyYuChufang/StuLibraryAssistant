@@ -20,6 +20,7 @@
 		9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C939D223E81B3005B2894 /* SLCacheManager.m */; };
 		9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */; };
 		9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */; };
+		9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */; };
 		9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3025223813DF00A46CFA /* SLLoginViewController.m */; };
 		9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3028223814A700A46CFA /* SLLoginHeaderView.m */; };
 		9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B302B223815C400A46CFA /* SLLoginInputView.m */; };
@@ -75,6 +76,8 @@
 		9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMemoryCahce.m; sourceTree = "<group>"; };
 		9A7C93A2223E8D79005B2894 /* SLStyleManager+Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLStyleManager+Theme.h"; sourceTree = "<group>"; };
 		9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SLStyleManager+Theme.m"; sourceTree = "<group>"; };
+		9A7C93A6223F4F03005B2894 /* UIView+SCManualLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SCManualLayout.h"; sourceTree = "<group>"; };
+		9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SCManualLayout.m"; sourceTree = "<group>"; };
 		9A8B3024223813DF00A46CFA /* SLLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginViewController.h; sourceTree = "<group>"; };
 		9A8B3025223813DF00A46CFA /* SLLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginViewController.m; sourceTree = "<group>"; };
 		9A8B3027223814A700A46CFA /* SLLoginHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginHeaderView.h; sourceTree = "<group>"; };
@@ -208,6 +211,15 @@
 			path = SLStyle;
 			sourceTree = "<group>";
 		};
+		9A7C93A5223F4ED8005B2894 /* SCManualLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C93A6223F4F03005B2894 /* UIView+SCManualLayout.h */,
+				9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */,
+			);
+			path = SCManualLayout;
+			sourceTree = "<group>";
+		};
 		9A8B301F2238062200A46CFA /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +276,7 @@
 		9A8B3030223817A100A46CFA /* SLUIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				9A7C93A5223F4ED8005B2894 /* SCManualLayout */,
 				9A7C939B223E8159005B2894 /* SLStyle */,
 				9A8B30352238191800A46CFA /* SLCache */,
 			);
@@ -543,6 +556,7 @@
 				9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */,
 				9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */,
 				9A23A53622296F4C00E11C2B /* ViewController.m in Sources */,
+				9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */,
 				9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */,
 				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
 				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
