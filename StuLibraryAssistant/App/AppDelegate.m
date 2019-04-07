@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
+#import "SLLoginViewController.h"
+#import "SLMainSearchDataController.h"
+#import "SLMainSearchViewController.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 @interface AppDelegate ()
 
 @end
@@ -17,6 +20,9 @@
 #pragma mark - AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setupMainController];
+    [self setupIQKeyBoard];
+    [SLMainSearchDataController sharedObject];
     return YES;
 }
 
@@ -47,5 +53,23 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - private
 
+- (void)setupMainController
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    SLMainSearchViewController *loginView = [[SLMainSearchViewController alloc] init];
+    [self.window makeKeyAndVisible];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginView];
+    self.window.rootViewController = nav;
+}
+
+- (void)setupIQKeyBoard
+{
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.overrideKeyboardAppearance = YES;
+    manager.shouldResignOnTouchOutside = YES;
+}
 @end

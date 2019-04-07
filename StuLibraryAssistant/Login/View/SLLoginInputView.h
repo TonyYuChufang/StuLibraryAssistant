@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSUInteger, SLLoginTipsType)
+{
+    SLLoginTipsTypeUsername = 1,
+    SLLoginTipsTypePassword
+};
 
-@interface SLLoginInputView : UIView
+@protocol SLLoginInputViewDelegate <NSObject>
 
 @end
 
-NS_ASSUME_NONNULL_END
+@interface SLLoginInputView : UIView
+
+@property (nonatomic, weak) id<SLLoginInputViewDelegate> delegate;
+- (void)showTipsWithType:(SLLoginTipsType)tipsType;
+@property (nonatomic, copy) NSString *username;
+@property (nonatomic, copy) NSString *password;
+@end
+

@@ -9,7 +9,9 @@ target 'StuLibraryAssistant' do
   pod 'MJRefresh'
   pod 'YYCache'
   pod 'YYModel'
-
+  pod 'MBProgressHUD'
+  pod 'IQKeyboardManager'
+  
   # Pods for StuLibraryAssistant
 
   target 'StuLibraryAssistantTests' do

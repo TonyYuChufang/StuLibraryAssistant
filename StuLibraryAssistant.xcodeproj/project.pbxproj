@@ -17,15 +17,23 @@
 		9A23A54122296F4D00E11C2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A54022296F4D00E11C2B /* main.m */; };
 		9A23A54B22296F4D00E11C2B /* StuLibraryAssistantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A54A22296F4D00E11C2B /* StuLibraryAssistantTests.m */; };
 		9A23A55622296F4D00E11C2B /* StuLibraryAssistantUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A55522296F4D00E11C2B /* StuLibraryAssistantUITests.m */; };
+		9A36239022422CCC001574A4 /* SLMainSearchBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36238F22422CCC001574A4 /* SLMainSearchBookCell.m */; };
+		9A3623932242459E001574A4 /* SLSearchBookCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3623922242459E001574A4 /* SLSearchBookCellViewModel.m */; };
+		9A362397224261AF001574A4 /* SLBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A362396224261AF001574A4 /* SLBook.m */; };
+		9A36239A22438DBB001574A4 /* SLMainSearchDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36239922438DBB001574A4 /* SLMainSearchDataController.m */; };
+		9A36239E22448F44001574A4 /* SLNetwokrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36239D22448F44001574A4 /* SLNetwokrManager.m */; };
 		9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C939D223E81B3005B2894 /* SLCacheManager.m */; };
 		9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */; };
 		9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */; };
 		9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */; };
+		9A7C93AE223F830C005B2894 /* SLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93AD223F830C005B2894 /* SLProgressHUD.m */; };
+		9A7C93B622411CED005B2894 /* SLMainSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93B522411CED005B2894 /* SLMainSearchViewController.m */; };
 		9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3025223813DF00A46CFA /* SLLoginViewController.m */; };
 		9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3028223814A700A46CFA /* SLLoginHeaderView.m */; };
 		9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B302B223815C400A46CFA /* SLLoginInputView.m */; };
 		9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3032223817BD00A46CFA /* SLStyleManager.m */; };
 		9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B30382238199700A46CFA /* UIColor+hexColor.m */; };
+		9AE91ACF224BD7B90073588C /* SLSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE91ACE224BD7B90073588C /* SLSearchBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +62,7 @@
 		66EAA810F8263D50C5402643 /* libPods-StuLibraryAssistantTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StuLibraryAssistantTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F63D4355977604B07141F3F /* Pods-StuLibraryAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuLibraryAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuLibraryAssistant/Pods-StuLibraryAssistant.debug.xcconfig"; sourceTree = "<group>"; };
 		969030AEA2C9179D5B567B28 /* Pods-StuLibraryAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuLibraryAssistantUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuLibraryAssistantUITests/Pods-StuLibraryAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A15D0F222592F2C0033025B /* SLUIConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLUIConstant.h; sourceTree = "<group>"; };
 		9A23A52E22296F4C00E11C2B /* StuLibraryAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuLibraryAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A53122296F4C00E11C2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A23A53222296F4C00E11C2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +78,16 @@
 		9A23A55122296F4D00E11C2B /* StuLibraryAssistantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StuLibraryAssistantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A55522296F4D00E11C2B /* StuLibraryAssistantUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StuLibraryAssistantUITests.m; sourceTree = "<group>"; };
 		9A23A55722296F4D00E11C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A36238E22422CCC001574A4 /* SLMainSearchBookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainSearchBookCell.h; sourceTree = "<group>"; };
+		9A36238F22422CCC001574A4 /* SLMainSearchBookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainSearchBookCell.m; sourceTree = "<group>"; };
+		9A3623912242459D001574A4 /* SLSearchBookCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSearchBookCellViewModel.h; sourceTree = "<group>"; };
+		9A3623922242459E001574A4 /* SLSearchBookCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSearchBookCellViewModel.m; sourceTree = "<group>"; };
+		9A362395224261AF001574A4 /* SLBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBook.h; sourceTree = "<group>"; };
+		9A362396224261AF001574A4 /* SLBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBook.m; sourceTree = "<group>"; };
+		9A36239822438DBB001574A4 /* SLMainSearchDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainSearchDataController.h; sourceTree = "<group>"; };
+		9A36239922438DBB001574A4 /* SLMainSearchDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainSearchDataController.m; sourceTree = "<group>"; };
+		9A36239C22448F44001574A4 /* SLNetwokrManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLNetwokrManager.h; sourceTree = "<group>"; };
+		9A36239D22448F44001574A4 /* SLNetwokrManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLNetwokrManager.m; sourceTree = "<group>"; };
 		9A4922B82238C0B700C0B50A /* StuLA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StuLA-Prefix.pch"; sourceTree = "<group>"; };
 		9A7C939C223E81B3005B2894 /* SLCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCacheManager.h; sourceTree = "<group>"; };
 		9A7C939D223E81B3005B2894 /* SLCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCacheManager.m; sourceTree = "<group>"; };
@@ -78,6 +97,10 @@
 		9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SLStyleManager+Theme.m"; sourceTree = "<group>"; };
 		9A7C93A6223F4F03005B2894 /* UIView+SCManualLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SCManualLayout.h"; sourceTree = "<group>"; };
 		9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SCManualLayout.m"; sourceTree = "<group>"; };
+		9A7C93AC223F830C005B2894 /* SLProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLProgressHUD.h; sourceTree = "<group>"; };
+		9A7C93AD223F830C005B2894 /* SLProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLProgressHUD.m; sourceTree = "<group>"; };
+		9A7C93B422411CED005B2894 /* SLMainSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainSearchViewController.h; sourceTree = "<group>"; };
+		9A7C93B522411CED005B2894 /* SLMainSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainSearchViewController.m; sourceTree = "<group>"; };
 		9A8B3024223813DF00A46CFA /* SLLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginViewController.h; sourceTree = "<group>"; };
 		9A8B3025223813DF00A46CFA /* SLLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginViewController.m; sourceTree = "<group>"; };
 		9A8B3027223814A700A46CFA /* SLLoginHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginHeaderView.h; sourceTree = "<group>"; };
@@ -88,6 +111,8 @@
 		9A8B3032223817BD00A46CFA /* SLStyleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLStyleManager.m; sourceTree = "<group>"; };
 		9A8B30372238199700A46CFA /* UIColor+hexColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+hexColor.h"; sourceTree = "<group>"; };
 		9A8B30382238199700A46CFA /* UIColor+hexColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexColor.m"; sourceTree = "<group>"; };
+		9AE91ACD224BD7B90073588C /* SLSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSearchBar.h; sourceTree = "<group>"; };
+		9AE91ACE224BD7B90073588C /* SLSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSearchBar.m; sourceTree = "<group>"; };
 		DB17C95338D80C2D426B0750 /* Pods-StuLibraryAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuLibraryAssistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuLibraryAssistantUITests/Pods-StuLibraryAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +169,7 @@
 		9A23A53022296F4C00E11C2B /* StuLibraryAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				9A7C93AF22411CA5005B2894 /* Main */,
 				9A4922B92238C14100C0B50A /* App */,
 				9A4922B72238C05700C0B50A /* Resources */,
 				9A4922B62238C04C00C0B50A /* Support Files */,
@@ -172,6 +198,24 @@
 				9A23A55722296F4D00E11C2B /* Info.plist */,
 			);
 			path = StuLibraryAssistantUITests;
+			sourceTree = "<group>";
+		};
+		9A3623942242619D001574A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A362395224261AF001574A4 /* SLBook.h */,
+				9A362396224261AF001574A4 /* SLBook.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9A36239B22448F2B001574A4 /* SLNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				9A36239C22448F44001574A4 /* SLNetwokrManager.h */,
+				9A36239D22448F44001574A4 /* SLNetwokrManager.m */,
+			);
+			path = SLNetwork;
 			sourceTree = "<group>";
 		};
 		9A4922B62238C04C00C0B50A /* Support Files */ = {
@@ -207,6 +251,7 @@
 				9A8B30362238193200A46CFA /* Category */,
 				9A8B3031223817BD00A46CFA /* SLStyleManager.h */,
 				9A8B3032223817BD00A46CFA /* SLStyleManager.m */,
+				9A15D0F222592F2C0033025B /* SLUIConstant.h */,
 			);
 			path = SLStyle;
 			sourceTree = "<group>";
@@ -218,6 +263,74 @@
 				9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */,
 			);
 			path = SCManualLayout;
+			sourceTree = "<group>";
+		};
+		9A7C93AA223F824C005B2894 /* SLDataHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9A36239B22448F2B001574A4 /* SLNetwork */,
+				9A8B30352238191800A46CFA /* SLCache */,
+			);
+			path = SLDataHelper;
+			sourceTree = "<group>";
+		};
+		9A7C93AB223F825F005B2894 /* SLProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C93AC223F830C005B2894 /* SLProgressHUD.h */,
+				9A7C93AD223F830C005B2894 /* SLProgressHUD.m */,
+			);
+			path = SLProgressHUD;
+			sourceTree = "<group>";
+		};
+		9A7C93AF22411CA5005B2894 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C93B322411CC9005B2894 /* ViewModel */,
+				9A7C93B222411CC3005B2894 /* ViewController */,
+				9A7C93B122411CBD005B2894 /* View */,
+				9A7C93B022411CB5005B2894 /* Manager */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		9A7C93B022411CB5005B2894 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9A3623942242619D001574A4 /* Model */,
+				9A36239822438DBB001574A4 /* SLMainSearchDataController.h */,
+				9A36239922438DBB001574A4 /* SLMainSearchDataController.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A7C93B122411CBD005B2894 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A36238E22422CCC001574A4 /* SLMainSearchBookCell.h */,
+				9A36238F22422CCC001574A4 /* SLMainSearchBookCell.m */,
+				9AE91ACD224BD7B90073588C /* SLSearchBar.h */,
+				9AE91ACE224BD7B90073588C /* SLSearchBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A7C93B222411CC3005B2894 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C93B422411CED005B2894 /* SLMainSearchViewController.h */,
+				9A7C93B522411CED005B2894 /* SLMainSearchViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9A7C93B322411CC9005B2894 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9A3623912242459D001574A4 /* SLSearchBookCellViewModel.h */,
+				9A3623922242459E001574A4 /* SLSearchBookCellViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9A8B301F2238062200A46CFA /* Login */ = {
@@ -268,6 +381,7 @@
 		9A8B302F2238179500A46CFA /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9A7C93AA223F824C005B2894 /* SLDataHelper */,
 				9A8B3030223817A100A46CFA /* SLUIHelper */,
 			);
 			path = Tools;
@@ -276,9 +390,9 @@
 		9A8B3030223817A100A46CFA /* SLUIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				9A7C93AB223F825F005B2894 /* SLProgressHUD */,
 				9A7C93A5223F4ED8005B2894 /* SCManualLayout */,
 				9A7C939B223E8159005B2894 /* SLStyle */,
-				9A8B30352238191800A46CFA /* SLCache */,
 			);
 			path = SLUIHelper;
 			sourceTree = "<group>";
@@ -394,6 +508,7 @@
 		9A23A52622296F4C00E11C2B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = SL;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = yu;
 				TargetAttributes = {
@@ -532,12 +647,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StuLibraryAssistant/Pods-StuLibraryAssistant-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,15 +671,23 @@
 			files = (
 				9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */,
 				9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */,
+				9A7C93B622411CED005B2894 /* SLMainSearchViewController.m in Sources */,
 				9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */,
+				9A362397224261AF001574A4 /* SLBook.m in Sources */,
 				9A23A53622296F4C00E11C2B /* ViewController.m in Sources */,
+				9AE91ACF224BD7B90073588C /* SLSearchBar.m in Sources */,
+				9A7C93AE223F830C005B2894 /* SLProgressHUD.m in Sources */,
+				9A36239022422CCC001574A4 /* SLMainSearchBookCell.m in Sources */,
 				9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */,
+				9A36239A22438DBB001574A4 /* SLMainSearchDataController.m in Sources */,
 				9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */,
 				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
 				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
 				9A23A54122296F4D00E11C2B /* main.m in Sources */,
+				9A36239E22448F44001574A4 /* SLNetwokrManager.m in Sources */,
 				9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */,
 				9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */,
+				9A3623932242459E001574A4 /* SLSearchBookCellViewModel.m in Sources */,
 				9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,9 +853,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CLRX36W73Q;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/StuLibraryAssistant/Support Files/StuLA-Prefix.pch";
 				INFOPLIST_FILE = "StuLibraryAssistant/Support Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -747,9 +874,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CLRX36W73Q;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/StuLibraryAssistant/Support Files/StuLA-Prefix.pch";
 				INFOPLIST_FILE = "StuLibraryAssistant/Support Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -10,5 +10,6 @@
 #define StuLA_Prefix_pch
 
 #import "UIView+SCManualLayout.h"
-
+#import "SLUIConstant.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #endif /* StuLA_Prefix_pch */

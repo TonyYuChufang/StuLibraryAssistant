@@ -29,4 +29,6 @@
 + (UIColor *)RedColor;
 
 + (UIColor *)WhiteColor;
+
++ (UIImage*) GetImageWithColor:(UIColor*)color andHeight:(CGFloat)height;
 @end
