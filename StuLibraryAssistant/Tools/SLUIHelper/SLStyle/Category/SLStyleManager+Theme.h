@@ -31,4 +31,6 @@
 + (UIColor *)WhiteColor;
 
 + (UIImage*) GetImageWithColor:(UIColor*)color andHeight:(CGFloat)height;
+
++ (UIColor *)menuItemDarkColor;
 @end

@@ -23,9 +23,16 @@
 {
     if (self = [super init]) {
         [self setupUI];
+        [self testLogin];
     }
     
     return self;
+}
+
+- (void)testLogin
+{
+    self.username = @"15cfyu";
+    self.password = @"YCfshen520";
 }
 
 - (void)layoutSubviews
@@ -104,9 +111,21 @@
 - (void)onInputFieldChange:(UITextField *)textfield
 {
     if (textfield == self.usernameTextField) {
-        self.username = self.usernameTextField.text;
+        _username = self.usernameTextField.text;
     } else if (textfield == self.passwordTextField) {
-        self.password = self.passwordTextField.text;
+        _password = self.passwordTextField.text;
     }
+}
+
+- (void)setUsername:(NSString *)username
+{
+    _username = username;
+    self.usernameTextField.text = username;
+}
+
+- (void)setPassword:(NSString *)password
+{
+    _password = password;
+    self.passwordTextField.text = password;
 }
 @end

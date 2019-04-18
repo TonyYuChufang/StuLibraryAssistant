@@ -19,5 +19,6 @@
                      rows:(int64_t)rows
           shouldIncrement:(BOOL)shouldIncrement;
 
+- (void)loadMoreBookLists;
 @property (nonatomic, strong) NSMutableArray *bookItemList;
 @end

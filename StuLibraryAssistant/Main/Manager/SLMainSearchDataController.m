@@ -12,13 +12,17 @@
 #import <YYModel/YYModel.h>
 #import "SLNetwokrManager.h"
 #import "SLBook.h"
-
+#import "SLMainSearchNotification.h"
 static NSString * const opac_main_url = @"http://opac.lib.stu.edu.cn/opac.php";
 static NSString * const opac_query_url = @"http://opac.lib.stu.edu.cn/libinterview";
 static NSString * const kOpacCookieKey = @"kOpacCookieKey";
-static NSString * const kOpaceGetCookieNotification = @"kOpaceGetCookieNotification";
 
 @interface SLMainSearchDataController ()
+
+@property (nonatomic, assign) int64_t currentPage;
+@property (nonatomic, assign) int64_t currentPageSize;
+@property (nonatomic, assign) int64_t totalSize;
+@property (nonatomic, copy) NSString *currentSearchText;
 
 
 @end
@@ -41,6 +45,7 @@ static NSString * const kOpaceGetCookieNotification = @"kOpaceGetCookieNotificat
     if (self = [super init]) {
         [self requestOpacSessionID];
         _bookItemList = [[NSMutableArray alloc] init];
+        _currentPage = 0;
     }
     
     return self;
@@ -79,15 +84,21 @@ static NSString * const kOpaceGetCookieNotification = @"kOpaceGetCookieNotificat
                            @"query":@{
                                    @"type":@"b1",
                                    @"condition":@{@"ANY":text},
-                                   @"pagination":@{@"page":@(1),@"pageSize":@(20),@"pageCount":@(10)},@"offset":@(0),@"rows":@(rows)
+                                   @"pagination":@{@"page":@(page),@"pageSize":@(20),@"pageCount":@(10)},@"offset":@(0),@"rows":@(rows)
                                    }
                            };
-    
+    BlockWeakSelf(weakSelf, self);
+    if (page == 1) {
+        self.currentPageSize = 0;
+    }
     [[SLNetwokrManager sharedObject] postWithUrl:opac_query_url param:dict completeBlock:^(id responseObject, NSError *error) {
         if (error) {
             NSLog(@"%@",error);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookListFailNotification object:nil];
         } else {
-            [self.bookItemList removeAllObjects];
+            if (!shouldIncrement) {
+                [self.bookItemList removeAllObjects];
+            }
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
             for (NSDictionary *book in jsonData[@"data"][@"content"]) {
                 SLBookListItem *item = [SLBookListItem yy_modelWithJSON:book];
@@ -96,9 +107,23 @@ static NSString * const kOpaceGetCookieNotification = @"kOpaceGetCookieNotificat
                 [result addObject:item];
             }
             [self.bookItemList addObjectsFromArray:result];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryBookListComplete" object:nil];
+            weakSelf.currentPage = [jsonData[@"data"][@"page"][@"currPage"] integerValue];
+            weakSelf.totalSize = [jsonData[@"data"][@"page"][@"totalSize"] integerValue];
+            weakSelf.currentPageSize = weakSelf.currentPageSize + self.bookItemList.count;
+            weakSelf.currentSearchText = text;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookListCompleteNotification object:nil];
         }
     }];
+}
+
+- (void)loadMoreBookLists
+{
+    _currentPage++;
+    if (_totalSize <= _currentPageSize) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookListNoMoreDataNotification object:nil];
+        return;
+    }
+    [self queryBookWithText:_currentSearchText page:_currentPage rows:20 shouldIncrement:YES];
 }
 
 @end

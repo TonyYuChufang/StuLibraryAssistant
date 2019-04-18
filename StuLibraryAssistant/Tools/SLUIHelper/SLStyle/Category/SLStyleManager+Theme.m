@@ -60,6 +60,10 @@
     return [SLStyleManager colorWithHexString:@"#EEEEEE"];
 }
 
++ (UIColor *)menuItemDarkColor
+{
+    return [SLStyleManager colorWithHexString:@"#2C272D"];
+}
 #pragma mark 实现搜索条背景透明化
 
 + (UIImage*) GetImageWithColor:(UIColor*)color andHeight:(CGFloat)height

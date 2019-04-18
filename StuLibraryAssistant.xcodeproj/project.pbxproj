@@ -10,6 +10,10 @@
 		459D9EE47A5BB3D568105983 /* libPods-StuLibraryAssistantUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30773B486374FBC109AF6A67 /* libPods-StuLibraryAssistantUITests.a */; };
 		5FB918C5DA71C97011A059A6 /* libPods-StuLibraryAssistant.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46CF003A57799E97AEEAB2E5 /* libPods-StuLibraryAssistant.a */; };
 		80847C554CA88100FE1D1902 /* libPods-StuLibraryAssistantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EAA810F8263D50C5402643 /* libPods-StuLibraryAssistantTests.a */; };
+		9A15D0F52259E9390033025B /* book.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9A15D0F42259E9390033025B /* book.gif */; };
+		9A15D0F82259F0CC0033025B /* SLMainSearchNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A15D0F72259F0CC0033025B /* SLMainSearchNotification.m */; };
+		9A15D1012259FCE00033025B /* SLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A15D1002259FCE00033025B /* SLMenuViewController.m */; };
+		9A15D1052259FD010033025B /* SLMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A15D1042259FD010033025B /* SLMenuItemView.m */; };
 		9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53222296F4C00E11C2B /* AppDelegate.m */; };
 		9A23A53622296F4C00E11C2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53522296F4C00E11C2B /* ViewController.m */; };
 		9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53A22296F4D00E11C2B /* Assets.xcassets */; };
@@ -22,12 +26,29 @@
 		9A362397224261AF001574A4 /* SLBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A362396224261AF001574A4 /* SLBook.m */; };
 		9A36239A22438DBB001574A4 /* SLMainSearchDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36239922438DBB001574A4 /* SLMainSearchDataController.m */; };
 		9A36239E22448F44001574A4 /* SLNetwokrManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A36239D22448F44001574A4 /* SLNetwokrManager.m */; };
+		9A474DDA2265AD360080B6E2 /* SLBookDetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DD92265AD360080B6E2 /* SLBookDetailInfoView.m */; };
+		9A474DE02265AFA80080B6E2 /* SLInfoSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DDF2265AFA80080B6E2 /* SLInfoSegmentControl.m */; };
+		9A474DE32265B1A30080B6E2 /* SLStarPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DE22265B1A30080B6E2 /* SLStarPointView.m */; };
+		9A474DE72265BAFE0080B6E2 /* SLBookDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DE62265BAFE0080B6E2 /* SLBookDetailViewModel.m */; };
+		9A474DEF2265C5610080B6E2 /* NSString+SLBookParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DEE2265C5610080B6E2 /* NSString+SLBookParser.m */; };
+		9A474DF2226618670080B6E2 /* SLLibraryCollectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DF1226618670080B6E2 /* SLLibraryCollectedViewController.m */; };
+		9A474DF5226711810080B6E2 /* SLDetailCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DF4226711810080B6E2 /* SLDetailCells.m */; };
+		9A474DF8226725620080B6E2 /* SLLibraryScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DF7226725620080B6E2 /* SLLibraryScoreViewController.m */; };
+		9A474DFB226725850080B6E2 /* SLLibraryDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DFA226725850080B6E2 /* SLLibraryDetailInfoViewController.m */; };
 		9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C939D223E81B3005B2894 /* SLCacheManager.m */; };
 		9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */; };
 		9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */; };
 		9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A7223F4F03005B2894 /* UIView+SCManualLayout.m */; };
 		9A7C93AE223F830C005B2894 /* SLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93AD223F830C005B2894 /* SLProgressHUD.m */; };
 		9A7C93B622411CED005B2894 /* SLMainSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93B522411CED005B2894 /* SLMainSearchViewController.m */; };
+		9A7DFD7E2260895D00D97351 /* UINavigationController+SLPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD7D2260895D00D97351 /* UINavigationController+SLPush.m */; };
+		9A7DFD812260980B00D97351 /* SLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD802260980B00D97351 /* SLNavigationController.m */; };
+		9A7DFD8422621F4200D97351 /* SLProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD8322621F4200D97351 /* SLProfileViewController.m */; };
+		9A7DFD8B2263293100D97351 /* SLSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD8A2263293100D97351 /* SLSearchBarCell.m */; };
+		9A7DFD8E22635E7200D97351 /* SLLoginDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD8D22635E7200D97351 /* SLLoginDataController.m */; };
+		9A7DFD9122646EFC00D97351 /* SLUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD9022646EFC00D97351 /* SLUserModel.m */; };
+		9A7DFD942264C36D00D97351 /* SLProfileToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD932264C36D00D97351 /* SLProfileToolView.m */; };
+		9A7DFD982265628800D97351 /* SLBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DFD972265628800D97351 /* SLBookDetailViewController.m */; };
 		9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3025223813DF00A46CFA /* SLLoginViewController.m */; };
 		9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B3028223814A700A46CFA /* SLLoginHeaderView.m */; };
 		9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B302B223815C400A46CFA /* SLLoginInputView.m */; };
@@ -63,6 +84,13 @@
 		8F63D4355977604B07141F3F /* Pods-StuLibraryAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuLibraryAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuLibraryAssistant/Pods-StuLibraryAssistant.debug.xcconfig"; sourceTree = "<group>"; };
 		969030AEA2C9179D5B567B28 /* Pods-StuLibraryAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuLibraryAssistantUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuLibraryAssistantUITests/Pods-StuLibraryAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9A15D0F222592F2C0033025B /* SLUIConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLUIConstant.h; sourceTree = "<group>"; };
+		9A15D0F42259E9390033025B /* book.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = book.gif; sourceTree = "<group>"; };
+		9A15D0F62259F0CC0033025B /* SLMainSearchNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainSearchNotification.h; sourceTree = "<group>"; };
+		9A15D0F72259F0CC0033025B /* SLMainSearchNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainSearchNotification.m; sourceTree = "<group>"; };
+		9A15D0FF2259FCE00033025B /* SLMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMenuViewController.h; sourceTree = "<group>"; };
+		9A15D1002259FCE00033025B /* SLMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMenuViewController.m; sourceTree = "<group>"; };
+		9A15D1032259FD010033025B /* SLMenuItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMenuItemView.h; sourceTree = "<group>"; };
+		9A15D1042259FD010033025B /* SLMenuItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMenuItemView.m; sourceTree = "<group>"; };
 		9A23A52E22296F4C00E11C2B /* StuLibraryAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuLibraryAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A53122296F4C00E11C2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A23A53222296F4C00E11C2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -88,6 +116,24 @@
 		9A36239922438DBB001574A4 /* SLMainSearchDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainSearchDataController.m; sourceTree = "<group>"; };
 		9A36239C22448F44001574A4 /* SLNetwokrManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLNetwokrManager.h; sourceTree = "<group>"; };
 		9A36239D22448F44001574A4 /* SLNetwokrManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLNetwokrManager.m; sourceTree = "<group>"; };
+		9A474DD82265AD360080B6E2 /* SLBookDetailInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBookDetailInfoView.h; sourceTree = "<group>"; };
+		9A474DD92265AD360080B6E2 /* SLBookDetailInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBookDetailInfoView.m; sourceTree = "<group>"; };
+		9A474DDE2265AFA80080B6E2 /* SLInfoSegmentControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLInfoSegmentControl.h; sourceTree = "<group>"; };
+		9A474DDF2265AFA80080B6E2 /* SLInfoSegmentControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLInfoSegmentControl.m; sourceTree = "<group>"; };
+		9A474DE12265B1A30080B6E2 /* SLStarPointView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLStarPointView.h; sourceTree = "<group>"; };
+		9A474DE22265B1A30080B6E2 /* SLStarPointView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLStarPointView.m; sourceTree = "<group>"; };
+		9A474DE52265BAFE0080B6E2 /* SLBookDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBookDetailViewModel.h; sourceTree = "<group>"; };
+		9A474DE62265BAFE0080B6E2 /* SLBookDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBookDetailViewModel.m; sourceTree = "<group>"; };
+		9A474DED2265C5610080B6E2 /* NSString+SLBookParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SLBookParser.h"; sourceTree = "<group>"; };
+		9A474DEE2265C5610080B6E2 /* NSString+SLBookParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLBookParser.m"; sourceTree = "<group>"; };
+		9A474DF0226618670080B6E2 /* SLLibraryCollectedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLibraryCollectedViewController.h; sourceTree = "<group>"; };
+		9A474DF1226618670080B6E2 /* SLLibraryCollectedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLibraryCollectedViewController.m; sourceTree = "<group>"; };
+		9A474DF3226711810080B6E2 /* SLDetailCells.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDetailCells.h; sourceTree = "<group>"; };
+		9A474DF4226711810080B6E2 /* SLDetailCells.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDetailCells.m; sourceTree = "<group>"; };
+		9A474DF6226725620080B6E2 /* SLLibraryScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLibraryScoreViewController.h; sourceTree = "<group>"; };
+		9A474DF7226725620080B6E2 /* SLLibraryScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLibraryScoreViewController.m; sourceTree = "<group>"; };
+		9A474DF9226725850080B6E2 /* SLLibraryDetailInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLibraryDetailInfoViewController.h; sourceTree = "<group>"; };
+		9A474DFA226725850080B6E2 /* SLLibraryDetailInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLibraryDetailInfoViewController.m; sourceTree = "<group>"; };
 		9A4922B82238C0B700C0B50A /* StuLA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StuLA-Prefix.pch"; sourceTree = "<group>"; };
 		9A7C939C223E81B3005B2894 /* SLCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCacheManager.h; sourceTree = "<group>"; };
 		9A7C939D223E81B3005B2894 /* SLCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCacheManager.m; sourceTree = "<group>"; };
@@ -101,6 +147,22 @@
 		9A7C93AD223F830C005B2894 /* SLProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLProgressHUD.m; sourceTree = "<group>"; };
 		9A7C93B422411CED005B2894 /* SLMainSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainSearchViewController.h; sourceTree = "<group>"; };
 		9A7C93B522411CED005B2894 /* SLMainSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainSearchViewController.m; sourceTree = "<group>"; };
+		9A7DFD7C2260895D00D97351 /* UINavigationController+SLPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+SLPush.h"; sourceTree = "<group>"; };
+		9A7DFD7D2260895D00D97351 /* UINavigationController+SLPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+SLPush.m"; sourceTree = "<group>"; };
+		9A7DFD7F2260980B00D97351 /* SLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLNavigationController.h; sourceTree = "<group>"; };
+		9A7DFD802260980B00D97351 /* SLNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLNavigationController.m; sourceTree = "<group>"; };
+		9A7DFD8222621F4200D97351 /* SLProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLProfileViewController.h; sourceTree = "<group>"; };
+		9A7DFD8322621F4200D97351 /* SLProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLProfileViewController.m; sourceTree = "<group>"; };
+		9A7DFD892263293100D97351 /* SLSearchBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSearchBarCell.h; sourceTree = "<group>"; };
+		9A7DFD8A2263293100D97351 /* SLSearchBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSearchBarCell.m; sourceTree = "<group>"; };
+		9A7DFD8C22635E7200D97351 /* SLLoginDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginDataController.h; sourceTree = "<group>"; };
+		9A7DFD8D22635E7200D97351 /* SLLoginDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginDataController.m; sourceTree = "<group>"; };
+		9A7DFD8F22646EFC00D97351 /* SLUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLUserModel.h; sourceTree = "<group>"; };
+		9A7DFD9022646EFC00D97351 /* SLUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLUserModel.m; sourceTree = "<group>"; };
+		9A7DFD922264C36D00D97351 /* SLProfileToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLProfileToolView.h; sourceTree = "<group>"; };
+		9A7DFD932264C36D00D97351 /* SLProfileToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLProfileToolView.m; sourceTree = "<group>"; };
+		9A7DFD962265628800D97351 /* SLBookDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBookDetailViewController.h; sourceTree = "<group>"; };
+		9A7DFD972265628800D97351 /* SLBookDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBookDetailViewController.m; sourceTree = "<group>"; };
 		9A8B3024223813DF00A46CFA /* SLLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginViewController.h; sourceTree = "<group>"; };
 		9A8B3025223813DF00A46CFA /* SLLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoginViewController.m; sourceTree = "<group>"; };
 		9A8B3027223814A700A46CFA /* SLLoginHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoginHeaderView.h; sourceTree = "<group>"; };
@@ -144,6 +206,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A15D0F32259E92C0033025B /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				9A15D0F42259E9390033025B /* book.gif */,
+			);
+			path = Gif;
+			sourceTree = "<group>";
+		};
+		9A15D0F92259FC680033025B /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				9A15D1022259FCE30033025B /* View */,
+				9A15D0FE2259FCC60033025B /* ViewController */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		9A15D0FA2259FC700033025B /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9A474DE82265BFD20080B6E2 /* Manager */,
+				9A474DE42265BAEA0080B6E2 /* ViewModel */,
+				9A474DD72265ACDA0080B6E2 /* View */,
+				9A7DFD952265626F00D97351 /* ViewController */,
+			);
+			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		9A15D0FB2259FC8B0033025B /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				9A7DFD8822621F6700D97351 /* ViewModel */,
+				9A7DFD8722621F5E00D97351 /* Manager */,
+				9A7DFD8622621F5300D97351 /* View */,
+				9A7DFD8522621F4700D97351 /* ViewController */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		9A15D0FC2259FC9A0033025B /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WalkThrough;
+			sourceTree = "<group>";
+		};
+		9A15D0FD2259FCA70033025B /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		9A15D0FE2259FCC60033025B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A15D0FF2259FCE00033025B /* SLMenuViewController.h */,
+				9A15D1002259FCE00033025B /* SLMenuViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9A15D1022259FCE30033025B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A15D1032259FD010033025B /* SLMenuItemView.h */,
+				9A15D1042259FD010033025B /* SLMenuItemView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9A23A52522296F4C00E11C2B = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +302,11 @@
 		9A23A53022296F4C00E11C2B /* StuLibraryAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				9A15D0FD2259FCA70033025B /* Collection */,
+				9A15D0FC2259FC9A0033025B /* WalkThrough */,
+				9A15D0FB2259FC8B0033025B /* Me */,
+				9A15D0FA2259FC700033025B /* BookDetail */,
+				9A15D0F92259FC680033025B /* Menu */,
 				9A7C93AF22411CA5005B2894 /* Main */,
 				9A4922B92238C14100C0B50A /* App */,
 				9A4922B72238C05700C0B50A /* Resources */,
@@ -218,6 +356,46 @@
 			path = SLNetwork;
 			sourceTree = "<group>";
 		};
+		9A474DD72265ACDA0080B6E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A474DD82265AD360080B6E2 /* SLBookDetailInfoView.h */,
+				9A474DD92265AD360080B6E2 /* SLBookDetailInfoView.m */,
+				9A474DDE2265AFA80080B6E2 /* SLInfoSegmentControl.h */,
+				9A474DDF2265AFA80080B6E2 /* SLInfoSegmentControl.m */,
+				9A474DE12265B1A30080B6E2 /* SLStarPointView.h */,
+				9A474DE22265B1A30080B6E2 /* SLStarPointView.m */,
+				9A474DF3226711810080B6E2 /* SLDetailCells.h */,
+				9A474DF4226711810080B6E2 /* SLDetailCells.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A474DE42265BAEA0080B6E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9A474DE52265BAFE0080B6E2 /* SLBookDetailViewModel.h */,
+				9A474DE62265BAFE0080B6E2 /* SLBookDetailViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A474DE82265BFD20080B6E2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A474DEC2265C4DF0080B6E2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9A474DED2265C5610080B6E2 /* NSString+SLBookParser.h */,
+				9A474DEE2265C5610080B6E2 /* NSString+SLBookParser.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		9A4922B62238C04C00C0B50A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +408,7 @@
 		9A4922B72238C05700C0B50A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9A15D0F32259E92C0033025B /* Gif */,
 				9A23A53A22296F4D00E11C2B /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -252,6 +431,8 @@
 				9A8B3031223817BD00A46CFA /* SLStyleManager.h */,
 				9A8B3032223817BD00A46CFA /* SLStyleManager.m */,
 				9A15D0F222592F2C0033025B /* SLUIConstant.h */,
+				9A7DFD7F2260980B00D97351 /* SLNavigationController.h */,
+				9A7DFD802260980B00D97351 /* SLNavigationController.m */,
 			);
 			path = SLStyle;
 			sourceTree = "<group>";
@@ -268,6 +449,7 @@
 		9A7C93AA223F824C005B2894 /* SLDataHelper */ = {
 			isa = PBXGroup;
 			children = (
+				9A474DEC2265C4DF0080B6E2 /* Category */,
 				9A36239B22448F2B001574A4 /* SLNetwork */,
 				9A8B30352238191800A46CFA /* SLCache */,
 			);
@@ -300,6 +482,8 @@
 				9A3623942242619D001574A4 /* Model */,
 				9A36239822438DBB001574A4 /* SLMainSearchDataController.h */,
 				9A36239922438DBB001574A4 /* SLMainSearchDataController.m */,
+				9A15D0F62259F0CC0033025B /* SLMainSearchNotification.h */,
+				9A15D0F72259F0CC0033025B /* SLMainSearchNotification.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -311,6 +495,8 @@
 				9A36238F22422CCC001574A4 /* SLMainSearchBookCell.m */,
 				9AE91ACD224BD7B90073588C /* SLSearchBar.h */,
 				9AE91ACE224BD7B90073588C /* SLSearchBar.m */,
+				9A7DFD892263293100D97351 /* SLSearchBarCell.h */,
+				9A7DFD8A2263293100D97351 /* SLSearchBarCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +517,53 @@
 				9A3623922242459E001574A4 /* SLSearchBookCellViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A7DFD8522621F4700D97351 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A7DFD8222621F4200D97351 /* SLProfileViewController.h */,
+				9A7DFD8322621F4200D97351 /* SLProfileViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9A7DFD8622621F5300D97351 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A7DFD922264C36D00D97351 /* SLProfileToolView.h */,
+				9A7DFD932264C36D00D97351 /* SLProfileToolView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A7DFD8722621F5E00D97351 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A7DFD8822621F6700D97351 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A7DFD952265626F00D97351 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A7DFD962265628800D97351 /* SLBookDetailViewController.h */,
+				9A7DFD972265628800D97351 /* SLBookDetailViewController.m */,
+				9A474DF0226618670080B6E2 /* SLLibraryCollectedViewController.h */,
+				9A474DF1226618670080B6E2 /* SLLibraryCollectedViewController.m */,
+				9A474DF6226725620080B6E2 /* SLLibraryScoreViewController.h */,
+				9A474DF7226725620080B6E2 /* SLLibraryScoreViewController.m */,
+				9A474DF9226725850080B6E2 /* SLLibraryDetailInfoViewController.h */,
+				9A474DFA226725850080B6E2 /* SLLibraryDetailInfoViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		9A8B301F2238062200A46CFA /* Login */ = {
@@ -367,6 +600,10 @@
 		9A8B30222238064900A46CFA /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				9A7DFD8C22635E7200D97351 /* SLLoginDataController.h */,
+				9A7DFD8D22635E7200D97351 /* SLLoginDataController.m */,
+				9A7DFD8F22646EFC00D97351 /* SLUserModel.h */,
+				9A7DFD9022646EFC00D97351 /* SLUserModel.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -415,6 +652,8 @@
 				9A8B30382238199700A46CFA /* UIColor+hexColor.m */,
 				9A7C93A2223E8D79005B2894 /* SLStyleManager+Theme.h */,
 				9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */,
+				9A7DFD7C2260895D00D97351 /* UINavigationController+SLPush.h */,
+				9A7DFD7D2260895D00D97351 /* UINavigationController+SLPush.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -551,6 +790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A23A53E22296F4D00E11C2B /* LaunchScreen.storyboard in Resources */,
+				9A15D0F52259E9390033025B /* book.gif in Resources */,
 				9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,14 +887,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StuLibraryAssistant/Pods-StuLibraryAssistant-resources.sh",
+				"${PODS_ROOT}/CSSSelectorConverter/CSSSelectorConverter/CSSSelectorGrammar.txt",
+				"${PODS_ROOT}/CSSSelectorConverter/CSSSelectorConverter/CSSSelectorParser.plist",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/KVNProgress/KVNProgress/Resources/KVNProgressView.xib",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CSSSelectorGrammar.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CSSSelectorParser.plist",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/KVNProgressView.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,22 +915,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A474DEF2265C5610080B6E2 /* NSString+SLBookParser.m in Sources */,
+				9A15D0F82259F0CC0033025B /* SLMainSearchNotification.m in Sources */,
+				9A7DFD942264C36D00D97351 /* SLProfileToolView.m in Sources */,
+				9A474DF8226725620080B6E2 /* SLLibraryScoreViewController.m in Sources */,
+				9A7DFD812260980B00D97351 /* SLNavigationController.m in Sources */,
 				9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */,
 				9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */,
 				9A7C93B622411CED005B2894 /* SLMainSearchViewController.m in Sources */,
 				9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */,
+				9A474DE02265AFA80080B6E2 /* SLInfoSegmentControl.m in Sources */,
 				9A362397224261AF001574A4 /* SLBook.m in Sources */,
+				9A7DFD7E2260895D00D97351 /* UINavigationController+SLPush.m in Sources */,
+				9A474DF5226711810080B6E2 /* SLDetailCells.m in Sources */,
 				9A23A53622296F4C00E11C2B /* ViewController.m in Sources */,
 				9AE91ACF224BD7B90073588C /* SLSearchBar.m in Sources */,
 				9A7C93AE223F830C005B2894 /* SLProgressHUD.m in Sources */,
+				9A474DF2226618670080B6E2 /* SLLibraryCollectedViewController.m in Sources */,
+				9A15D1052259FD010033025B /* SLMenuItemView.m in Sources */,
 				9A36239022422CCC001574A4 /* SLMainSearchBookCell.m in Sources */,
+				9A15D1012259FCE00033025B /* SLMenuViewController.m in Sources */,
+				9A474DE72265BAFE0080B6E2 /* SLBookDetailViewModel.m in Sources */,
+				9A474DE32265B1A30080B6E2 /* SLStarPointView.m in Sources */,
 				9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */,
 				9A36239A22438DBB001574A4 /* SLMainSearchDataController.m in Sources */,
+				9A474DFB226725850080B6E2 /* SLLibraryDetailInfoViewController.m in Sources */,
+				9A7DFD982265628800D97351 /* SLBookDetailViewController.m in Sources */,
+				9A7DFD9122646EFC00D97351 /* SLUserModel.m in Sources */,
 				9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */,
+				9A7DFD8B2263293100D97351 /* SLSearchBarCell.m in Sources */,
+				9A474DDA2265AD360080B6E2 /* SLBookDetailInfoView.m in Sources */,
 				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
 				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
+				9A7DFD8E22635E7200D97351 /* SLLoginDataController.m in Sources */,
 				9A23A54122296F4D00E11C2B /* main.m in Sources */,
 				9A36239E22448F44001574A4 /* SLNetwokrManager.m in Sources */,
+				9A7DFD8422621F4200D97351 /* SLProfileViewController.m in Sources */,
 				9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */,
 				9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */,
 				9A3623932242459E001574A4 /* SLSearchBookCellViewModel.m in Sources */,

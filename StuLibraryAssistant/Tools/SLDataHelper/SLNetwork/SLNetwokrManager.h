@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void(^SLNetworkCompleteBlock)(id responseObject, NSError *error);
+typedef void(^SLNetworkCompleteTaskBlock)(id responseObject, NSError *error, NSURLSessionDataTask *task);
 
 @interface SLNetwokrManager : NSObject
 
@@ -20,9 +21,19 @@ typedef void(^SLNetworkCompleteBlock)(id responseObject, NSError *error);
              param:(NSDictionary *)dict
      completeBlock:(SLNetworkCompleteBlock)block;
 
+- (void)postWithUrl:(NSString *)url
+              param:(NSDictionary *)dict
+      completeTaskBlock:(SLNetworkCompleteTaskBlock)block;
+
 - (void)getWithUrl:(NSString *)url
              param:(NSDictionary *)dict
      completeBlock:(SLNetworkCompleteBlock)block;
 
+- (void)getWithUrl:(NSString *)url
+              param:(NSDictionary *)dict
+  completeTaskBlock:(SLNetworkCompleteTaskBlock)block;
+
+- (void)downloadOpacImageWithUrl:(NSString *)imageUrl
+                   completeBlock:(SLNetworkCompleteBlock)block;
 @end
 

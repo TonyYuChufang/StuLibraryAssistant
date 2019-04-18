@@ -8,8 +8,20 @@
 
 #ifndef StuLA_Prefix_pch
 #define StuLA_Prefix_pch
+/**
+ * 通知声明
+ */
+#define N_Dec(notification) extern NSString * const notification
+
+/**
+ * 通知定义
+ */
+#define N_Def(notification) NSString * const notification = @#notification
+#define BlockWeakSelf(weakSelf, self)   __weak typeof(self) weakSelf = self
 
 #import "UIView+SCManualLayout.h"
 #import "SLUIConstant.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <KVNProgress/KVNProgress.h>
+#import "UINavigationController+SLPush.h"
 #endif /* StuLA_Prefix_pch */

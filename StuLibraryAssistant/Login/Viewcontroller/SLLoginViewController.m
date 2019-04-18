@@ -11,6 +11,8 @@
 #import "SLLoginInputView.h"
 #import "SLStyleManager+Theme.h"
 #import "SLProgressHUD.h"
+#import "SLLoginDataController.h"
+#import <KVNProgress/KVNProgress.h>
 
 @interface SLLoginViewController ()
 
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     [self setupUI];
     [self relayoutSubviews];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveLoginSuccess:) name:kLoginSuccessNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews
@@ -35,14 +38,27 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setDefaultNavType];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)setupUI
 {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = YES;
     
-    SLLoginHeaderView *headerView = [[SLLoginHeaderView alloc] init];
-    [self.view addSubview:headerView];
+    SLLoginHeaderView *headerView = [[SLLoginHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+    headerView.viewType = SLHeaderViewTypeNoLogo;
+    headerView.title = @"SIGN IN";
     self.headerView = headerView;
+    [self setupBarItem];
+    [self.headerView updateHeaderView];
+    [self.view addSubview:headerView];
     
     SLLoginInputView *loginInputView = [[SLLoginInputView alloc] init];
     [self.view addSubview:loginInputView];
@@ -71,14 +87,23 @@
     self.laCopyRightLabel = copyright;
 }
 
+- (void)setupBarItem
+{
+    BlockWeakSelf(weakSelf, self);
+    SLHeaderBarItemInfo *backBarItem = [[SLHeaderBarItemInfo alloc] init];
+    backBarItem.itemImageName = @"icon_navigationBar_back";
+    backBarItem.barItemClickedHandler = ^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    [self.headerView.leftBarItems addObject:backBarItem];
+}
+
 - (void)relayoutSubviews
 {
     CGFloat centerX = self.view.sc_centerX;
-    CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
     
-    self.headerView.sc_size = CGSizeMake(self.view.sc_width, 44);
-    self.headerView.sc_top = statusRect.size.height;
-    self.headerView.sc_centerX = centerX;
+    self.headerView.sc_top = kStatusHeight;
+    self.headerView.sc_left = 0;
     
     self.logoImageView.sc_size = CGSizeMake(85, 100);
     self.logoImageView.sc_top = self.headerView.sc_bottom + 33;
@@ -100,13 +125,17 @@
 #pragma mark - Action
 - (void)onLoginBtnClicked:(UIButton *)sender
 {
-    NSLog(@"login成功啦");
-    [SLProgressHUD showHUDWithText:@"登录成功" inView:self.navigationController.view delayTime:3];
-    NSString *originalUrl = @"/G00/27/1b/51/NY95MtAXos99NZATNC4QcGc=AAABwL1ItLA=AAAAAAAAszA=oDaXXq==.jpg";
-    NSMutableCharacterSet *encodeUrlSet = [NSMutableCharacterSet alphanumericCharacterSet];
-    [encodeUrlSet addCharactersInString:@"."];
-    NSString *encodeUrl = [originalUrl stringByAddingPercentEncodingWithAllowedCharacters:encodeUrlSet];
-    NSLog(@"%@", encodeUrl);
+    NSLog(@"logining");
+    
+    [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id  _Nonnull data, NSError * _Nonnull error) {
+        [[SLLoginDataController sharedObject] loginWithUserName:self.loginInputView.username password:self.loginInputView.password];
+    }];
+}
+#pragma mark - Notification
+
+- (void)onReciveLoginSuccess:(NSNotification *)notification
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
 

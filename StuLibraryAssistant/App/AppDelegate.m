@@ -10,6 +10,7 @@
 #import "SLLoginViewController.h"
 #import "SLMainSearchDataController.h"
 #import "SLMainSearchViewController.h"
+#import "SLNavigationController.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
 @interface AppDelegate ()
 
@@ -61,7 +62,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     SLMainSearchViewController *loginView = [[SLMainSearchViewController alloc] init];
     [self.window makeKeyAndVisible];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginView];
+    SLNavigationController *nav = [[SLNavigationController alloc] initWithRootViewController:loginView];
     self.window.rootViewController = nav;
 }
 

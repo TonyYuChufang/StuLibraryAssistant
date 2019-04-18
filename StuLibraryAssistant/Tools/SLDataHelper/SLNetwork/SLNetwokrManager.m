@@ -8,6 +8,7 @@
 
 #import "SLNetwokrManager.h"
 #import <AFNetworking/AFNetworking.h>
+#import "SLCacheManager.h"
 static NSTimeInterval kSLNetworkDefaultTimeoutInterval = 15;
 @interface SLNetwokrManager ()
 
@@ -34,7 +35,7 @@ static NSTimeInterval kSLNetworkDefaultTimeoutInterval = 15;
         _manager = [AFHTTPSessionManager manager];
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        _manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"text/html",@"application/json",@"text/xml",@"application/xml",@"text/json", @"image/jpeg", @"image/png", nil];
+        _manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"text/html",@"application/json",@"text/xml",@"application/xml",@"text/json", @"image/jpeg", @"image/png",@"image/bmp", nil];
         _manager.requestSerializer.timeoutInterval = kSLNetworkDefaultTimeoutInterval;
     }
     
@@ -80,5 +81,64 @@ static NSTimeInterval kSLNetworkDefaultTimeoutInterval = 15;
             block(nil, error);
         }
     }];
+}
+
+- (void)getWithUrl:(NSString *)url param:(NSDictionary *)dict completeTaskBlock:(SLNetworkCompleteTaskBlock)block
+{
+    [self.manager GET:url parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (block) {
+            block(responseObject, nil, task);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) {
+            block(nil, error, task);
+        }
+    }];
+}
+
+- (void)postWithUrl:(NSString *)url param:(NSDictionary *)dict completeTaskBlock:(SLNetworkCompleteTaskBlock)block
+{
+    [self.manager POST:url parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (block) {
+            block(responseObject, nil, task);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) {
+            block(nil, error, task);
+        }
+    }];
+}
+
+- (void)downloadOpacImageWithUrl:(NSString *)imageUrl
+                   completeBlock:(SLNetworkCompleteBlock)block
+{
+    if (imageUrl == nil) {
+        if (block) {
+            block(nil,nil);
+        }
+        NSLog(@"{BookCell} imageUrl is null");
+        return;
+    }
+    UIImage *image = [[SLCacheManager sharedObject] objectForKey:imageUrl];
+    if (image) {
+        if (block) {
+            block(image,nil);
+        }
+    } else {
+        [[SLNetwokrManager sharedObject] getWithUrl:imageUrl param:nil completeBlock:^(id responseObject, NSError *error) {
+            if (error == nil) {
+                UIImage *image = [UIImage imageWithData:responseObject];
+                [[SLCacheManager sharedObject] setObject:image forKey:imageUrl];
+                if (block) {
+                    block(image,nil);
+                }
+            } else {
+                if (block) {
+                    block(nil,nil);
+                }
+                NSLog(@"%@",error);
+            }
+        }];
+    }
 }
 @end

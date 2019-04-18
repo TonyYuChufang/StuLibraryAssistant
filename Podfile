@@ -11,6 +11,10 @@ target 'StuLibraryAssistant' do
   pod 'YYModel'
   pod 'MBProgressHUD'
   pod 'IQKeyboardManager'
+  pod 'UIImageView-PlayGIF', '~> 1.0.1'
+  pod 'KVNProgress'
+  pod 'WYPopoverController'
+  pod 'IGHTMLQuery'
   
   # Pods for StuLibraryAssistant
 

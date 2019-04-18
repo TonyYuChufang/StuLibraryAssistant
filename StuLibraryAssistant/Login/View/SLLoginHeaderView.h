@@ -8,10 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM (NSInteger, SLHeaderViewType) {
+    SLHeaderViewTypeLeftLogo = 0,
+    SLHeaderViewTypeRightLogo,
+    SLHeaderViewTypeMiddleLogo,
+    SLHeaderViewTypeNoLogo
+};
 
-@interface SLLoginHeaderView : UIView
+@interface SLHeaderBarItemInfo : NSObject
+
+@property (nonatomic, copy) void (^barItemClickedHandler)(void);
+@property (nonatomic, copy) NSString *itemImageName;
 
 @end
 
-NS_ASSUME_NONNULL_END
+
+@interface SLHeaderBarItem : UIView
+
+@end
+
+@interface SLLoginHeaderView : UIView
+
+@property (nonatomic, strong) NSMutableArray *rightBarItems;
+@property (nonatomic, strong) NSMutableArray *leftBarItems;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) SLHeaderViewType viewType;
+- (void)updateHeaderView;
+@end
+

@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 
 //System UI
-#define kScreenWidth [[UIScreen mainScreen] bounds].size.width
-#define kScreenHeight [[UIScreen mainScreen] bounds].size.height
-#define kStatusHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+#define IPHONE_X \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+
+#define kScreenWidth ([[UIScreen mainScreen] bounds].size.width)
+#define kScreenHeight ([[UIScreen mainScreen] bounds].size.height)
+#define kStatusHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)
+#define kNavigationBarHeight (kStatusHeight + 44)

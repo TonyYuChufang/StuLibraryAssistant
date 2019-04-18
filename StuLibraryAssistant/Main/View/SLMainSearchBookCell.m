@@ -31,6 +31,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupUI];
     }
     
@@ -137,29 +138,14 @@
 #pragma mark - Private
 - (void)updateCoverImageWithUrlStr:(NSString *)imageUrl
 {
-    if (imageUrl == nil) {
-        self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
-        NSLog(@"{BookCell} imageUrl is null");
-        return;
-    }
-    UIImage *image = [[SLCacheManager sharedObject] objectForKey:imageUrl];
-    if (image) {
-        self.coverImageView.image = image;
-    } else {
-        [[SLNetwokrManager sharedObject] getWithUrl:imageUrl param:nil completeBlock:^(id responseObject, NSError *error) {
-            if (error == nil) {
-                UIImage *image = [UIImage imageWithData:responseObject];
-                [[SLCacheManager sharedObject] setObject:image forKey:imageUrl];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.coverImageView.image = image;
-                });
+    [[SLNetwokrManager sharedObject] downloadOpacImageWithUrl:imageUrl completeBlock:^(id responseObject, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (responseObject) {
+                self.coverImageView.image = responseObject;
             } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                   self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
-                });
-                NSLog(@"%@",error);
+                self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
             }
-        }];
-    }
+        });
+    }];
 }
 @end
