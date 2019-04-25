@@ -108,10 +108,8 @@ static CGFloat kStarHeight = 18.7;
 - (void)starDidSelected:(UITapGestureRecognizer *)recognizer
 {
     CGFloat score = recognizer.view.tag;
-    self.canScore = NO;
-    [self updateStarPoint:score];
-    if ([self.delegate respondsToSelector:@selector(slstarPointViewDidSelectWithScore:)]) {
-        [self.delegate slstarPointViewDidSelectWithScore:score];
+    if ([self.delegate respondsToSelector:@selector(slstarPointView:DidSelectWithScore:)]) {
+        [self.delegate slstarPointView:self DidSelectWithScore:score];
     }
 }
 @end

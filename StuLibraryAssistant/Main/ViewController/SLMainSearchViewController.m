@@ -10,6 +10,7 @@
 #import "SLMenuViewController.h"
 #import "SLBookDetailViewController.h"
 #import "SLMainSearchDataController.h"
+#import "SLBookDetailDataController.h"
 #import "SLLoginDataController.h"
 #import "SLBook.h"
 #import "SLSearchBookCellViewModel.h"
@@ -27,7 +28,7 @@
 static NSString * const kSLMainSearchBookCellID = @"kSLMainSearchBookCellID";
 static CGFloat kSearchBarHeight = 24;
 static int64_t kDefaultSearchRows = 20;
-@interface SLMainSearchViewController () <UITableViewDelegate,UITableViewDataSource,SLSearchBarDelegate>
+@interface SLMainSearchViewController () <UITableViewDelegate,UITableViewDataSource,SLSearchBarDelegate,SLMainSearchBookCellDelegate>
 {
     NSUInteger _currentPage;
 }
@@ -40,6 +41,10 @@ static int64_t kDefaultSearchRows = 20;
 
 @implementation SLMainSearchViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.bookTableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
@@ -48,7 +53,8 @@ static int64_t kDefaultSearchRows = 20;
     [self setupLayout];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveBookList:) name:kQueryBookListCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveNoMoreBooks:) name:kQueryBookListNoMoreDataNotification object:nil];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveQueryFail:) name:kQueryBookListFailNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveQueryFail:) name:kQueryBookListFailNotification object:nil];
+
     [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
         [[SLLoginDataController sharedObject] loginWithUserName:@"15ybli" password:@"Mky5537"];
     }];
@@ -174,8 +180,8 @@ static int64_t kDefaultSearchRows = 20;
     [KVNProgress showErrorWithStatus:@"加载失败，请重试"];
     [self.bookTableView.mj_footer endRefreshing];
     [self removeLoadingAnimation];
-    
 }
+
 #pragma mark - Tableview Delegate & DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -192,6 +198,7 @@ static int64_t kDefaultSearchRows = 20;
         if (cell == nil) {
             cell = [[SLMainSearchBookCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kSLMainSearchBookCellID];
         }
+        cell.delegate = self;
         SLBookListItem *book = [SLMainSearchDataController sharedObject].bookItemList[indexPath.row];
         SLSearchBookCellViewModel *viewModel = [SLSearchBookCellViewModel bookCellViewModelWithBook:book];
         [cell bindBookCellViewModel:viewModel];
@@ -237,7 +244,14 @@ static int64_t kDefaultSearchRows = 20;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section == 0) {
+        return;
+    }
+    SLBookDetailViewController *detailVC = [[SLBookDetailViewController alloc] init];
+    SLBookListItem *book = [SLMainSearchDataController sharedObject].bookItemList[indexPath.row];
+    detailVC.bookInfo = book;
+    [self.navigationController setDefaultNavType];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - SLSearchBarDelegate
 - (void)slSearchBarDidSelectReturnWithText:(NSString *)text
@@ -250,6 +264,42 @@ static int64_t kDefaultSearchRows = 20;
         [self.bookTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     }
     [self.view endEditing:YES];
+}
+#pragma mark - SLMainSearchBookCellDelegate
+- (void)didSelectMarkBtnBookCell:(SLMainSearchBookCell *)cell isCollected:(BOOL)isCollected
+{
+    NSIndexPath *indexPath = [self.bookTableView indexPathForCell:cell];
+    SLBookListItem *book = [SLMainSearchDataController sharedObject].bookItemList[indexPath.row];
+    BlockWeakSelf(weakSelf, self);
+    if (isCollected) {
+        [[SLBookDetailDataController sharedObject] cancelCollectBook:book.CTRLNO complete:^(id data, NSError *error) {
+            if (error == nil) {
+                book.COLLECTED = @"false";
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell updateMarkStatus:NO];
+                    [SLProgressHUD showHUDWithText:@"取消收藏成功" inView:weakSelf.view delayTime:1.5];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   [SLProgressHUD showHUDWithText:@"取消收藏失败，请重试" inView:weakSelf.view delayTime:1.5];
+                });
+            }
+        }];
+    } else {
+        [[SLBookDetailDataController sharedObject] collectBook:book.CTRLNO complete:^(id data, NSError *error) {
+            if (error == nil) {
+                book.COLLECTED = @"true";
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell updateMarkStatus:YES];
+                    [SLProgressHUD showHUDWithText:@"收藏成功" inView:weakSelf.view delayTime:1.5];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SLProgressHUD showHUDWithText:@"收藏失败，请重试" inView:weakSelf.view delayTime:1.5];
+                });
+            }
+        }];
+    }
 }
 
 #pragma mark - Private

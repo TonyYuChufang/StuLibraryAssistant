@@ -12,6 +12,6 @@
 
 + (NSString *)praseBookTitle:(NSString *)title;
 + (NSString *)praseAuthor:(NSString *)author;
-
++ (NSString *)praseBookLocation:(NSString *)location;
 @end
 

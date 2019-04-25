@@ -115,13 +115,16 @@
     self.bookNameLabel.text = viewModel.bookName;
     self.authorLabel.text = viewModel.bookAuthor;
     self.publishInfoLabel.text = viewModel.bookPublishInfo;
+    [self.publishInfoLabel sizeToFit];
+    
     self.score = viewModel.bookPoint;
+    BlockWeakSelf(weakSelf, self);
     [[SLNetwokrManager sharedObject] downloadOpacImageWithUrl:viewModel.bookImageUrl completeBlock:^(id responseObject, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (responseObject) {
-                self.bookImageView.image = responseObject;
+                weakSelf.bookImageView.image = responseObject;
             } else {
-                self.bookImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
+                weakSelf.bookImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
             }
         });
     }];

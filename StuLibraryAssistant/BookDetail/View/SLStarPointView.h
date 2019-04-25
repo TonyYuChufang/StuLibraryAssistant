@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SLStarPointView;
 @protocol SLStarPointViewDelegate <NSObject>
 
-- (void)slstarPointViewDidSelectWithScore:(CGFloat)score;
+- (void)slstarPointView:(SLStarPointView *)starPointView DidSelectWithScore:(CGFloat)score;
 
 @end
 

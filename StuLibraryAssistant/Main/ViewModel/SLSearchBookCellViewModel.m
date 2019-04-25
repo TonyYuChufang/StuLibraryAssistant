@@ -16,6 +16,7 @@
 {
     SLSearchBookCellViewModel *viewModel = [[SLSearchBookCellViewModel alloc] init];
     
+    viewModel.isCollected = [book.COLLECTED boolValue];
     viewModel.bookName = [NSString praseBookTitle:book.TITLE];
     viewModel.authorName = [NSString praseAuthor:book.AUTHOR];
     viewModel.bookCount = [NSString stringWithFormat:@"馆藏 %@ / 可借 %@",book.COLLECTION,book.LENDABLE];

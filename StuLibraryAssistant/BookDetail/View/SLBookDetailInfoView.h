@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SLBookDetailViewModel;
 @interface SLBookDetailInfoView : UIView
 
 @property (nonatomic, assign) CGFloat score;
-
+- (void)updateDetailViewWithViewModel:(SLBookDetailViewModel *)viewModel;
 @end
 

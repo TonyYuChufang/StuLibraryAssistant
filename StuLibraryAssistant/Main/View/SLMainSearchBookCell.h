@@ -12,7 +12,7 @@
 
 @protocol SLMainSearchBookCellDelegate <NSObject>
 
-- (void)didSelectMarkBtnBookCell:(SLMainSearchBookCell *)cell;
+- (void)didSelectMarkBtnBookCell:(SLMainSearchBookCell *)cell isCollected:(BOOL)isCollected;
 
 @end
 
@@ -22,4 +22,5 @@
 
 
 - (void)bindBookCellViewModel:(SLSearchBookCellViewModel *)viewModel;
+- (void)updateMarkStatus:(BOOL)isCollected;
 @end

@@ -9,6 +9,7 @@
 #import "SLDetailCells.h"
 #import "SLStarPointView.h"
 #import "SLStyleManager+Theme.h"
+#import "SLBookDetailViewModel.h"
 @interface SLCollectInfoCell ()
 @property (nonatomic, strong) UILabel *assetIdLabel;
 @property (nonatomic, strong) UILabel *locationLabel;
@@ -108,6 +109,20 @@
     return @"SLCollectInfoCell";
 }
 
+- (void)bindBookLocationViewModel:(SLBookLoactionViewModel *)viewModel
+{
+    self.assetIdLabel.text = viewModel.bookAssetId;
+    self.fetchIdLabel.text = viewModel.bookFetchId;
+    self.statusLabel.text = viewModel.bookStatus;
+    self.loanTypeLabel.text = viewModel.bookLoanType;
+    self.locationLabel.text = viewModel.bookLocation;
+    
+    [self.assetIdLabel sizeToFit];
+    [self.fetchIdLabel sizeToFit];
+    [self.statusLabel sizeToFit];
+    [self.locationLabel sizeToFit];
+    [self.loanTypeLabel sizeToFit];
+}
 @end
 
 @interface SLDetailInfoCell ()
@@ -119,16 +134,72 @@
 
 @implementation SLDetailInfoCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setupSubview];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    return self;
 }
 
+- (void)layoutSubviews
+{
+    self.titleLabel.sc_left = 20;
+    self.titleLabel.sc_top = 10;
+    
+    self.contentLabel.sc_top = self.titleLabel.sc_bottom + 10;
+    self.contentLabel.sc_left = 20;
+    self.contentLabel.sc_width = kScreenWidth - 40;
+}
+
+- (void)setupSubview
+{
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.text = @"摘要";
+    [self.titleLabel sizeToFit];
+    [self.contentView addSubview:self.titleLabel];
+    
+    self.contentLabel = [[UILabel alloc] init];
+    self.contentLabel.font = [UIFont systemFontOfSize:12];
+    self.contentLabel.textColor = [SLStyleManager GrayColor];
+    self.contentLabel.text = @"我觉得这是一本很好的书";
+    self.contentLabel.numberOfLines = 0;
+    self.contentLabel.sc_width = kScreenWidth - 40;
+    CGSize fitSize = CGSizeMake(kScreenWidth - 40, CGFLOAT_MAX);
+    CGSize bestSize = [self.contentLabel sizeThatFits:fitSize];
+    self.contentLabel.sc_height = bestSize.height;
+    [self.contentView addSubview:self.contentLabel];
+}
+
+- (void)updateDetailInfoWith:(NSString *)title content:(NSString *)content
+{
+    self.titleLabel.text = title;
+    self.contentLabel.text = content;
+    
+    [self.titleLabel sizeToFit];
+    [self.contentLabel sizeToFit];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
 }
 
++ (CGFloat)heightForDetailCellWithContent:(NSString *)content
+{
+    CGFloat totalHeight = 46;
+    UILabel *contentLabel = [[UILabel alloc] init];
+    contentLabel.font = [UIFont systemFontOfSize:12];
+    contentLabel.textColor = [SLStyleManager GrayColor];
+    contentLabel.text = content;
+    contentLabel.numberOfLines = 0;
+    CGSize fitSize = CGSizeMake(kScreenWidth - 40, CGFLOAT_MAX);
+    CGSize bestSize = [contentLabel sizeThatFits:fitSize];
+    totalHeight = totalHeight + bestSize.height;
+    return totalHeight;
+}
 + (NSString *)reuseId
 {
     return @"SLDetailInfoCell";
@@ -199,6 +270,18 @@
     return @"SLScoreMyCell";
 }
 
+- (void)bindBookScoreViewModel:(SLBookScoreViewModel *)viewModel
+{
+    if (viewModel == nil) {
+        self.starPointView.canScore = YES;
+        self.starPointView.shouldShowScore = NO;
+        [self.starPointView updateStarPoint:0.0];
+    } else {
+        self.starPointView.canScore = NO;
+        self.starPointView.shouldShowScore = NO;
+        [self.starPointView updateStarPoint:viewModel.score];
+    }
+}
 @end
 
 @interface SLScoreOtherCell ()
@@ -286,4 +369,10 @@
     return @"SLScoreOtherCell";
 }
 
+- (void)bindBookScoreViewModel:(SLBookScoreViewModel *)viewModel
+{
+    self.nickNameLabel.text = viewModel.nickName;
+    self.dateLabel.text = viewModel.createDate;
+    [self.starPointView updateStarPoint:viewModel.score];
+}
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "SLLibraryScoreViewController.h"
+#import "SLBookDetailDataController.h"
+#import "SLBookDetailViewModel.h"
 #import "SLStarPointView.h"
 #import "SLDetailCells.h"
 #import "SLProgressHUD.h"
@@ -18,9 +20,21 @@
 @end
 
 @implementation SLLibraryScoreViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupSubview];
+    [self queryData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReceiveScoreInfos:) name:kQueryBookScoreInfoCompleteNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReceiveMyScoreInfos:) name:kQueryBookMyScoreInfoCompleteNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [SLBookDetailDataController sharedObject].myScore = nil;
+    [[SLBookDetailDataController sharedObject].bookScores removeAllObjects];
 }
 
 - (void)setupSubview
@@ -40,10 +54,27 @@
     self.tablview.frame = CGRectMake(0, 0, kScreenWidth, self.view.sc_height);
 }
 
+- (void)queryData
+{
+    [[SLBookDetailDataController sharedObject] queryBookScoreInfoCtrlNo:self.ctrlNo complete:nil];
+    [[SLBookDetailDataController sharedObject] queryMyScoreInfo:self.ctrlNo complete:nil];
+}
+
+#pragma mark - Notification
+- (void)onReceiveScoreInfos:(NSNotification *)notification
+{
+    [self.tablview reloadData];
+}
+
+- (void)onReceiveMyScoreInfos:(NSNotification *)notification
+{
+    [self.tablview reloadData];
+}
+
 #pragma mark - UITableViewDelegate & DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [SLBookDetailDataController sharedObject].bookScores.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,12 +84,16 @@
         if (cell) {
             cell = [[SLScoreMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[SLScoreMyCell reuseId]];
         }
+        SLBookScoreViewModel *viewModel = [SLBookScoreViewModel bookScoreViewModelWithScore:[SLBookDetailDataController sharedObject].myScore];
+        [cell bindBookScoreViewModel:viewModel];
         cell.starPointView.delegate = self;
         return cell;
     }
     SLScoreOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:[SLScoreOtherCell reuseId]];
     if (cell == nil) {
         cell = [[SLScoreOtherCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[SLScoreOtherCell reuseId]];
+        SLBookScoreViewModel *viewModel = [SLBookScoreViewModel bookScoreViewModelWithScore:[SLBookDetailDataController sharedObject].bookScores[indexPath.row - 1]];
+        [cell bindBookScoreViewModel:viewModel];
     }
     return cell;
 }
@@ -72,8 +107,13 @@
     return 60;
 }
 
-- (void)slstarPointViewDidSelectWithScore:(CGFloat)score
+- (void)slstarPointView:(SLStarPointView *)starPointView DidSelectWithScore:(CGFloat)score
 {
-    [SLProgressHUD showHUDWithText:@"评分成功" inView:self.parentViewController.view delayTime:2];
+    [[SLBookDetailDataController sharedObject] giveTheScore:score Book:self.ctrlNo complete:^(id data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SLProgressHUD showHUDWithText:@"评分成功" inView:self.parentViewController.view delayTime:2];
+        });
+    }];
+    [starPointView updateStarPoint:score];
 }
 @end

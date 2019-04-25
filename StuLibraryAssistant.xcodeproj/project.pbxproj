@@ -35,6 +35,9 @@
 		9A474DF5226711810080B6E2 /* SLDetailCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DF4226711810080B6E2 /* SLDetailCells.m */; };
 		9A474DF8226725620080B6E2 /* SLLibraryScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DF7226725620080B6E2 /* SLLibraryScoreViewController.m */; };
 		9A474DFB226725850080B6E2 /* SLLibraryDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DFA226725850080B6E2 /* SLLibraryDetailInfoViewController.m */; };
+		9A474DFE226824D10080B6E2 /* SLBookDetailDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474DFD226824D10080B6E2 /* SLBookDetailDataController.m */; };
+		9A474E01226826530080B6E2 /* SLBookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A474E00226826530080B6E2 /* SLBookDetailModel.m */; };
+		9A685903226CB0620046EF45 /* SLDetailToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A685902226CB0620046EF45 /* SLDetailToolView.m */; };
 		9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C939D223E81B3005B2894 /* SLCacheManager.m */; };
 		9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */; };
 		9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C93A3223E8D79005B2894 /* SLStyleManager+Theme.m */; };
@@ -134,7 +137,13 @@
 		9A474DF7226725620080B6E2 /* SLLibraryScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLibraryScoreViewController.m; sourceTree = "<group>"; };
 		9A474DF9226725850080B6E2 /* SLLibraryDetailInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLibraryDetailInfoViewController.h; sourceTree = "<group>"; };
 		9A474DFA226725850080B6E2 /* SLLibraryDetailInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLibraryDetailInfoViewController.m; sourceTree = "<group>"; };
+		9A474DFC226824D10080B6E2 /* SLBookDetailDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBookDetailDataController.h; sourceTree = "<group>"; };
+		9A474DFD226824D10080B6E2 /* SLBookDetailDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBookDetailDataController.m; sourceTree = "<group>"; };
+		9A474DFF226826530080B6E2 /* SLBookDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBookDetailModel.h; sourceTree = "<group>"; };
+		9A474E00226826530080B6E2 /* SLBookDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBookDetailModel.m; sourceTree = "<group>"; };
 		9A4922B82238C0B700C0B50A /* StuLA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StuLA-Prefix.pch"; sourceTree = "<group>"; };
+		9A685901226CB0620046EF45 /* SLDetailToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDetailToolView.h; sourceTree = "<group>"; };
+		9A685902226CB0620046EF45 /* SLDetailToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDetailToolView.m; sourceTree = "<group>"; };
 		9A7C939C223E81B3005B2894 /* SLCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCacheManager.h; sourceTree = "<group>"; };
 		9A7C939D223E81B3005B2894 /* SLCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCacheManager.m; sourceTree = "<group>"; };
 		9A7C939F223E8382005B2894 /* SLMemoryCahce.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMemoryCahce.h; sourceTree = "<group>"; };
@@ -367,6 +376,8 @@
 				9A474DE22265B1A30080B6E2 /* SLStarPointView.m */,
 				9A474DF3226711810080B6E2 /* SLDetailCells.h */,
 				9A474DF4226711810080B6E2 /* SLDetailCells.m */,
+				9A685901226CB0620046EF45 /* SLDetailToolView.h */,
+				9A685902226CB0620046EF45 /* SLDetailToolView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -383,6 +394,10 @@
 		9A474DE82265BFD20080B6E2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				9A474DFC226824D10080B6E2 /* SLBookDetailDataController.h */,
+				9A474DFD226824D10080B6E2 /* SLBookDetailDataController.m */,
+				9A474DFF226826530080B6E2 /* SLBookDetailModel.h */,
+				9A474E00226826530080B6E2 /* SLBookDetailModel.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -935,6 +950,7 @@
 				9A15D1052259FD010033025B /* SLMenuItemView.m in Sources */,
 				9A36239022422CCC001574A4 /* SLMainSearchBookCell.m in Sources */,
 				9A15D1012259FCE00033025B /* SLMenuViewController.m in Sources */,
+				9A685903226CB0620046EF45 /* SLDetailToolView.m in Sources */,
 				9A474DE72265BAFE0080B6E2 /* SLBookDetailViewModel.m in Sources */,
 				9A474DE32265B1A30080B6E2 /* SLStarPointView.m in Sources */,
 				9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */,
@@ -945,6 +961,8 @@
 				9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */,
 				9A7DFD8B2263293100D97351 /* SLSearchBarCell.m in Sources */,
 				9A474DDA2265AD360080B6E2 /* SLBookDetailInfoView.m in Sources */,
+				9A474E01226826530080B6E2 /* SLBookDetailModel.m in Sources */,
+				9A474DFE226824D10080B6E2 /* SLBookDetailDataController.m in Sources */,
 				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
 				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
 				9A7DFD8E22635E7200D97351 /* SLLoginDataController.m in Sources */,

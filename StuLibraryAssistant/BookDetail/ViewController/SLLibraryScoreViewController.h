@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLLibraryScoreViewController : UIViewController
 
+@property (nonatomic, copy) NSString *ctrlNo;
+
 @end
 
 NS_ASSUME_NONNULL_END

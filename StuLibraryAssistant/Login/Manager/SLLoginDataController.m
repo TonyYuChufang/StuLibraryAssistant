@@ -17,6 +17,7 @@ static NSString *kOpacTarget = @"aHR0cDovL29wYWMubGliLnN0dS5lZHUuY24vc3NvTG9naW4
 static NSString *kOpacService = @"aHR0cDovL29wYWMubGliLnN0dS5lZHUuY24vc3NvUmVkaXJlY3QucGhwP3VybD1vcGFjLnBocA==";
 static NSString *kOpacTokenKey = @"kOpacTokenKey";
 static NSString *kUserInfoKey = @"kUserInfoKey";
+static NSString * const kOpacCookieKey = @"kOpacCookieKey";
 N_Def(kLoginSuccessNotification);
 N_Def(kQueryUserInfoSuccessNotification);
 
@@ -97,6 +98,7 @@ N_Def(kQueryUserInfoSuccessNotification);
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         NSDictionary *allHeaders = response.allHeaderFields;
         self.sessionId = [allHeaders objectForKey:@"Set-Cookie"];
+        [[SLCacheManager sharedObject] setObject:self.sessionId forKey:kOpacCookieKey];
         if (self.sessionId == nil) {
             return ;
         }

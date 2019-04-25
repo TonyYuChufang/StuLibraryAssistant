@@ -10,4 +10,6 @@
 
 @interface SLLibraryCollectedViewController : UIViewController
 
+@property (nonatomic, copy) NSString *ctrlNo;
+
 @end

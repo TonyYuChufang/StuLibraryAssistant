@@ -24,4 +24,5 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <KVNProgress/KVNProgress.h>
 #import "UINavigationController+SLPush.h"
+#import "SLProgressHUD.h"
 #endif /* StuLA_Prefix_pch */

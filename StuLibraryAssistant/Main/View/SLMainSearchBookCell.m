@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UILabel *bookCountLabel;
 @property (nonatomic, strong) UIButton *markBtn;
 @property (nonatomic, strong) UIView *sperateLine;
+@property (nonatomic, assign) BOOL isCollected;
 
 @end
 
@@ -113,8 +114,8 @@
 #pragma mark - Action
 - (void)onMarkBtnClicked:(UIButton *)sender
 {
-    if ([self.delegate respondsToSelector:@selector(didSelectMarkBtnBookCell:)]) {
-        [self.delegate didSelectMarkBtnBookCell:self];
+    if ([self.delegate respondsToSelector:@selector(didSelectMarkBtnBookCell:isCollected:)]) {
+        [self.delegate didSelectMarkBtnBookCell:self isCollected:self.isCollected];
     }
 }
 
@@ -125,8 +126,14 @@
     self.bookNameLabel.text = viewModel.bookName;
     self.authorLabel.text = viewModel.authorName;
     self.bookCountLabel.text = viewModel.bookCount;
+    self.isCollected = viewModel.isCollected;
 //    其他控件装配
 //    。。。。
+    if (viewModel.isCollected) {
+        [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark_highlighted"] forState:normal];
+    } else {
+        [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark"] forState:UIControlStateNormal];
+    }
     self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
     [self updateCoverImageWithUrlStr:viewModel.coverImageUrl];
     [self.bookNameLabel sizeToFit];
@@ -135,6 +142,15 @@
     [self layoutIfNeeded];
 }
 
+- (void)updateMarkStatus:(BOOL)isCollected
+{
+    self.isCollected = isCollected;
+    if (isCollected) {
+        [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark_highlighted"] forState:normal];
+    } else {
+        [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark"] forState:UIControlStateNormal];
+    }
+}
 #pragma mark - Private
 - (void)updateCoverImageWithUrlStr:(NSString *)imageUrl
 {

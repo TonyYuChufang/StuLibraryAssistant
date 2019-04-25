@@ -102,8 +102,6 @@ static NSString * const kOpacCookieKey = @"kOpacCookieKey";
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
             for (NSDictionary *book in jsonData[@"data"][@"content"]) {
                 SLBookListItem *item = [SLBookListItem yy_modelWithJSON:book];
-                
-                NSLog(@"%@",item.TITLE);
                 [result addObject:item];
             }
             [self.bookItemList addObjectsFromArray:result];

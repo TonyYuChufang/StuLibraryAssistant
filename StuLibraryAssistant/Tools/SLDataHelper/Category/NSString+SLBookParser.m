@@ -54,4 +54,17 @@
     return authorStr;
 }
 
++ (NSString *)praseBookLocation:(NSString *)location
+{
+    NSString *locationStr = location;
+    NSRange orRange = [locationStr rangeOfString:@"|"];
+    
+    if (orRange.location + 1 < locationStr.length) {
+        locationStr = [locationStr substringFromIndex:orRange.location + 1];
+    } else {
+        return nil;
+    }
+    
+    return locationStr;
+}
 @end
