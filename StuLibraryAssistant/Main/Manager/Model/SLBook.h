@@ -7,15 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class SLLoanBook;
+@class SLCollectedBook;
 @interface SLBookListItem : NSObject
+
++ (SLBookListItem *)bookListItemWithLoanBook:(SLLoanBook *)loanBook;
++ (SLBookListItem *)bookListItemWithCollectBook:(SLCollectedBook *)collectBook;
 
 @property (nonatomic, copy) NSString *AUTHOR;
 @property (nonatomic, copy) NSString *CALLNOS;
 @property (nonatomic, copy) NSString *COVER;
 @property (nonatomic, copy) NSString *CLICKCOUNT;
 @property (nonatomic, copy) NSString *CLICKSORT;
-@property (nonatomic, copy) NSString *COLLECTED;
+@property (nonatomic, assign) BOOL COLLECTED;
 @property (nonatomic, copy) NSString *COLLECTEDECOUNT;
 @property (nonatomic, copy) NSString *COLLECTEDSORT;
 @property (nonatomic, copy) NSString *COLLECTION;
@@ -31,8 +35,8 @@
 @property (nonatomic, copy) NSString *ORDERED;
 @property (nonatomic, copy) NSString *PUBDATE;
 @property (nonatomic, copy) NSString *PUBLISHER;
-@property (nonatomic, copy) NSString *SCORE;
-@property (nonatomic, copy) NSString *SCOREPERSONCOUNT;
+@property (nonatomic, assign) float SCORE;
+@property (nonatomic, assign) int64_t SCOREPERSONCOUNT;
 @property (nonatomic, copy) NSString *TITLE;
 @property (nonatomic, copy) NSString *TYPE;
 @property (nonatomic, copy) NSString *UNLENDABLE;

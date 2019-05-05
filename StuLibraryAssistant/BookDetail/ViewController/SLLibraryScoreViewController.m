@@ -12,6 +12,7 @@
 #import "SLStarPointView.h"
 #import "SLDetailCells.h"
 #import "SLProgressHUD.h"
+#import "UIScrollView+EmptyView.h"
 
 @interface SLLibraryScoreViewController ()<UITableViewDelegate,UITableViewDataSource,SLStarPointViewDelegate>
 

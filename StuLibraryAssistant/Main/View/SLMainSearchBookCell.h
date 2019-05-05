@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SLSearchBookCellViewModel;
 @class SLMainSearchBookCell;
 
 @protocol SLMainSearchBookCellDelegate <NSObject>
@@ -21,6 +20,6 @@
 @property (nonatomic, weak) id<SLMainSearchBookCellDelegate> delegate;
 
 
-- (void)bindBookCellViewModel:(SLSearchBookCellViewModel *)viewModel;
+- (void)bindBookCellViewModel:(id)viewModel;
 - (void)updateMarkStatus:(BOOL)isCollected;
 @end

@@ -9,6 +9,8 @@
 #import "SLMainSearchBookCell.h"
 #import "SLStyleManager+Theme.h"
 #import "SLSearchBookCellViewModel.h"
+#import "SLLoanBookCellViewModel.h"
+#import "SLCollectBookCellViewModel.h"
 #import "SLNetwokrManager.h"
 #import "SLCacheManager.h"
 @interface SLMainSearchBookCell ()
@@ -19,6 +21,8 @@
 @property (nonatomic, strong) UILabel *bookCountLabel;
 @property (nonatomic, strong) UIButton *markBtn;
 @property (nonatomic, strong) UIView *sperateLine;
+@property (nonatomic, strong) UILabel *loanStatusLabel;
+@property (nonatomic, strong) UIImageView *loanStatusImageView;
 @property (nonatomic, assign) BOOL isCollected;
 
 @end
@@ -47,6 +51,20 @@
     cover.image = [UIImage imageNamed:@"main_search_empty_holder"];
     [self.contentView addSubview:cover];
     self.coverImageView = cover;
+    
+    UIImageView *loanStatus = [[UIImageView alloc] init];
+    loanStatus.image = [UIImage imageNamed:@"icon_loanbook_status_normal"];
+    [self.contentView addSubview:loanStatus];
+    loanStatus.hidden = YES;
+    self.loanStatusImageView = loanStatus;
+    
+    UILabel *loanStatusLabel = [[UILabel alloc] init];
+    loanStatusLabel.font = [UIFont systemFontOfSize:14];
+    [loanStatusLabel setTextColor:[SLStyleManager LightGrayColor]];
+    loanStatusLabel.text = @"借阅状态：";
+    [loanStatusLabel sizeToFit];
+    [self.contentView addSubview:loanStatusLabel];
+    self.loanStatusLabel = loanStatusLabel;
     
     UIButton *markBtn = [[UIButton alloc] init];
     [markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark"] forState:UIControlStateNormal];
@@ -87,6 +105,7 @@
     self.coverImageView.sc_left = 32;
     self.coverImageView.sc_centerY = self.contentView.sc_centerY;
     
+    self.loanStatusLabel.sc_left = \
     self.authorLabel.sc_left = \
     self.bookCountLabel.sc_left = \
     self.bookNameLabel.sc_left = self.coverImageView.sc_right + 16;
@@ -97,14 +116,21 @@
     self.authorLabel.sc_top = self.bookNameLabel.sc_bottom + 6;
     self.authorLabel.sc_width = self.contentView.sc_width - self.coverImageView.sc_width - 64 - 28;
     self.authorLabel.sc_height = 16;
-    
-    
+
+    self.loanStatusLabel.sc_top = self.authorLabel.sc_bottom + 6;
+    self.loanStatusImageView.sc_centerY = self.loanStatusLabel.sc_centerY;
+    self.loanStatusImageView.sc_left = self.loanStatusLabel.sc_right;
+
     self.bookCountLabel.sc_bottom = self.coverImageView.sc_bottom;
     self.bookCountLabel.sc_width = self.contentView.sc_width - self.coverImageView.sc_width - 64 - 28;
     self.bookCountLabel.sc_height = 16;
     
+    if (!self.loanStatusImageView.hidden) {
+        self.bookCountLabel.sc_top = self.loanStatusLabel.sc_bottom + 6;
+    }
+    
     self.markBtn.sc_centerY = self.bookCountLabel.sc_centerY;
-    self.markBtn.sc_size = CGSizeMake(8, 13);
+    self.markBtn.sc_size = CGSizeMake(30, 35);
     self.markBtn.sc_right = self.contentView.sc_right - 32;
     
     self.sperateLine.sc_size = CGSizeMake(self.sc_width-30, 1);
@@ -120,15 +146,35 @@
 }
 
 #pragma mark - Public
--(void)bindBookCellViewModel:(SLSearchBookCellViewModel *)viewModel
+-(void)bindBookCellViewModel:(id)viewModel
 {
     [self layoutIfNeeded];
+    if ([viewModel isKindOfClass:[SLSearchBookCellViewModel class]]) {
+        [self updateCellWithSearchBookCellViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:[SLLoanBookCellViewModel class]]) {
+        [self updateCellWithLoanBookViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:[SLCollectBookCellViewModel class]]) {
+        [self updateCellWithCollectBookViewModel:viewModel];
+    }
+   
+    [self.bookNameLabel sizeToFit];
+    [self.authorLabel sizeToFit];
+    [self.bookCountLabel sizeToFit];
+    [self layoutIfNeeded];
+}
+
+#pragma mark - Private
+- (void)updateCellWithSearchBookCellViewModel:(SLSearchBookCellViewModel *)viewModel
+{
     self.bookNameLabel.text = viewModel.bookName;
     self.authorLabel.text = viewModel.authorName;
     self.bookCountLabel.text = viewModel.bookCount;
+    self.markBtn.hidden = NO;
+    self.loanStatusImageView.hidden = YES;
+    self.loanStatusLabel.hidden = YES;
     self.isCollected = viewModel.isCollected;
-//    其他控件装配
-//    。。。。
+    //    其他控件装配
+    //    。。。。
     if (viewModel.isCollected) {
         [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark_highlighted"] forState:normal];
     } else {
@@ -136,10 +182,33 @@
     }
     self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
     [self updateCoverImageWithUrlStr:viewModel.coverImageUrl];
-    [self.bookNameLabel sizeToFit];
-    [self.authorLabel sizeToFit];
-    [self.bookCountLabel sizeToFit];
-    [self layoutIfNeeded];
+}
+
+- (void)updateCellWithLoanBookViewModel:(SLLoanBookCellViewModel *)viewModel
+{
+    self.loanStatusImageView.hidden = NO;
+    self.loanStatusLabel.hidden = NO;
+    self.markBtn.hidden = YES;
+    self.bookNameLabel.text = viewModel.bookName;
+    self.authorLabel.text = viewModel.authorName;
+    self.bookCountLabel.text = viewModel.loanDate;
+    self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
+    self.loanStatusImageView.image = [UIImage imageNamed:viewModel.loanStatus];
+    self.loanStatusImageView.sc_size = viewModel.loanStatusSize;
+    [self updateCoverImageWithUrlStr:viewModel.coverImageUrl];
+}
+
+- (void)updateCellWithCollectBookViewModel:(SLCollectBookCellViewModel *)viewModel
+{
+    self.loanStatusLabel.hidden = YES;
+    self.loanStatusImageView.hidden = YES;
+    self.bookNameLabel.text = viewModel.bookName;
+    self.bookCountLabel.text = viewModel.bookCount;
+    self.authorLabel.text = viewModel.bookAuthor;
+    self.coverImageView.image = [UIImage imageNamed:@"main_search_empty_holder"];
+    self.isCollected = YES;
+    [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark_highlighted"] forState:normal];
+    [self updateCoverImageWithUrlStr:viewModel.coverImageUrl];
 }
 
 - (void)updateMarkStatus:(BOOL)isCollected
@@ -151,7 +220,7 @@
         [self.markBtn setImage:[UIImage imageNamed:@"main_search_cell_mark"] forState:UIControlStateNormal];
     }
 }
-#pragma mark - Private
+
 - (void)updateCoverImageWithUrlStr:(NSString *)imageUrl
 {
     [[SLNetwokrManager sharedObject] downloadOpacImageWithUrl:imageUrl completeBlock:^(id responseObject, NSError *error) {

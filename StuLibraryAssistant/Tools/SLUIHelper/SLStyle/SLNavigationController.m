@@ -8,7 +8,7 @@
 
 #import "SLNavigationController.h"
 
-@interface SLNavigationController ()
+@interface SLNavigationController ()<UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic)UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong, nonatomic)UIImageView *backView;
@@ -59,6 +59,7 @@
     
     //设置手势
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerAction:)];
+    self.panGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.panGestureRecognizer];
 }
 

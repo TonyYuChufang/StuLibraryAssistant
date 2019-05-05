@@ -14,6 +14,16 @@
 		9A15D0F82259F0CC0033025B /* SLMainSearchNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A15D0F72259F0CC0033025B /* SLMainSearchNotification.m */; };
 		9A15D1012259FCE00033025B /* SLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A15D1002259FCE00033025B /* SLMenuViewController.m */; };
 		9A15D1052259FD010033025B /* SLMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A15D1042259FD010033025B /* SLMenuItemView.m */; };
+		9A1634A1227C690100195FD4 /* UIScrollView+EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634A0227C690100195FD4 /* UIScrollView+EmptyView.m */; };
+		9A1634A8227DC15700195FD4 /* SLLoanBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634A7227DC15700195FD4 /* SLLoanBookViewController.m */; };
+		9A1634AB227DD73F00195FD4 /* SLLoanBookDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634AA227DD73F00195FD4 /* SLLoanBookDataController.m */; };
+		9A1634B1227DD97F00195FD4 /* SLLoanBookCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634B0227DD97E00195FD4 /* SLLoanBookCellViewModel.m */; };
+		9A1634B5227DDA1600195FD4 /* SLLoanBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634B4227DDA1600195FD4 /* SLLoanBook.m */; };
+		9A1634B8227DE8F200195FD4 /* SLHistoryLoanBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634B7227DE8F200195FD4 /* SLHistoryLoanBookViewController.m */; };
+		9A1634C0227E1B9900195FD4 /* SLCollectedBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634BF227E1B9900195FD4 /* SLCollectedBook.m */; };
+		9A1634C3227E1CB100195FD4 /* SLCollectBookDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634C2227E1CB100195FD4 /* SLCollectBookDataController.m */; };
+		9A1634C6227EA7F700195FD4 /* SLCollectedBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634C5227EA7F700195FD4 /* SLCollectedBookViewController.m */; };
+		9A1634C9227EA9FB00195FD4 /* SLCollectBookCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634C8227EA9FB00195FD4 /* SLCollectBookCellViewModel.m */; };
 		9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53222296F4C00E11C2B /* AppDelegate.m */; };
 		9A23A53622296F4C00E11C2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53522296F4C00E11C2B /* ViewController.m */; };
 		9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53A22296F4D00E11C2B /* Assets.xcassets */; };
@@ -94,6 +104,26 @@
 		9A15D1002259FCE00033025B /* SLMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMenuViewController.m; sourceTree = "<group>"; };
 		9A15D1032259FD010033025B /* SLMenuItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMenuItemView.h; sourceTree = "<group>"; };
 		9A15D1042259FD010033025B /* SLMenuItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMenuItemView.m; sourceTree = "<group>"; };
+		9A16349F227C690100195FD4 /* UIScrollView+EmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyView.h"; sourceTree = "<group>"; };
+		9A1634A0227C690100195FD4 /* UIScrollView+EmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyView.m"; sourceTree = "<group>"; };
+		9A1634A6227DC15700195FD4 /* SLLoanBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoanBookViewController.h; sourceTree = "<group>"; };
+		9A1634A7227DC15700195FD4 /* SLLoanBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoanBookViewController.m; sourceTree = "<group>"; };
+		9A1634A9227DD73F00195FD4 /* SLLoanBookDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoanBookDataController.h; sourceTree = "<group>"; };
+		9A1634AA227DD73F00195FD4 /* SLLoanBookDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoanBookDataController.m; sourceTree = "<group>"; };
+		9A1634AF227DD97E00195FD4 /* SLLoanBookCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoanBookCellViewModel.h; sourceTree = "<group>"; };
+		9A1634B0227DD97E00195FD4 /* SLLoanBookCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoanBookCellViewModel.m; sourceTree = "<group>"; };
+		9A1634B3227DDA1600195FD4 /* SLLoanBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLoanBook.h; sourceTree = "<group>"; };
+		9A1634B4227DDA1600195FD4 /* SLLoanBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLoanBook.m; sourceTree = "<group>"; };
+		9A1634B6227DE8F200195FD4 /* SLHistoryLoanBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLHistoryLoanBookViewController.h; sourceTree = "<group>"; };
+		9A1634B7227DE8F200195FD4 /* SLHistoryLoanBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLHistoryLoanBookViewController.m; sourceTree = "<group>"; };
+		9A1634BE227E1B9900195FD4 /* SLCollectedBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCollectedBook.h; sourceTree = "<group>"; };
+		9A1634BF227E1B9900195FD4 /* SLCollectedBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCollectedBook.m; sourceTree = "<group>"; };
+		9A1634C1227E1CB100195FD4 /* SLCollectBookDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCollectBookDataController.h; sourceTree = "<group>"; };
+		9A1634C2227E1CB100195FD4 /* SLCollectBookDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCollectBookDataController.m; sourceTree = "<group>"; };
+		9A1634C4227EA7F700195FD4 /* SLCollectedBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCollectedBookViewController.h; sourceTree = "<group>"; };
+		9A1634C5227EA7F700195FD4 /* SLCollectedBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCollectedBookViewController.m; sourceTree = "<group>"; };
+		9A1634C7227EA9FB00195FD4 /* SLCollectBookCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCollectBookCellViewModel.h; sourceTree = "<group>"; };
+		9A1634C8227EA9FB00195FD4 /* SLCollectBookCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCollectBookCellViewModel.m; sourceTree = "<group>"; };
 		9A23A52E22296F4C00E11C2B /* StuLibraryAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuLibraryAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A53122296F4C00E11C2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A23A53222296F4C00E11C2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -254,16 +284,20 @@
 			path = Me;
 			sourceTree = "<group>";
 		};
-		9A15D0FC2259FC9A0033025B /* WalkThrough */ = {
+		9A15D0FC2259FC9A0033025B /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = WalkThrough;
+			path = Discovery;
 			sourceTree = "<group>";
 		};
 		9A15D0FD2259FCA70033025B /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				9A1634BC227E1B6A00195FD4 /* ViewModel */,
+				9A1634BB227E1B6500195FD4 /* Manager */,
+				9A1634BA227E1B6000195FD4 /* View */,
+				9A1634B9227E1B5500195FD4 /* ViewController */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -284,6 +318,116 @@
 				9A15D1042259FD010033025B /* SLMenuItemView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9A16349D2276DB2300195FD4 /* BookLoan */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634A5227DC14200195FD4 /* ViewModel */,
+				9A1634A4227DC13A00195FD4 /* Manager */,
+				9A1634A3227DC13500195FD4 /* View */,
+				9A1634A2227DC12E00195FD4 /* ViewController */,
+			);
+			path = BookLoan;
+			sourceTree = "<group>";
+		};
+		9A16349E227C68D100195FD4 /* SLScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				9A16349F227C690100195FD4 /* UIScrollView+EmptyView.h */,
+				9A1634A0227C690100195FD4 /* UIScrollView+EmptyView.m */,
+			);
+			path = SLScrollView;
+			sourceTree = "<group>";
+		};
+		9A1634A2227DC12E00195FD4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634A6227DC15700195FD4 /* SLLoanBookViewController.h */,
+				9A1634A7227DC15700195FD4 /* SLLoanBookViewController.m */,
+				9A1634B6227DE8F200195FD4 /* SLHistoryLoanBookViewController.h */,
+				9A1634B7227DE8F200195FD4 /* SLHistoryLoanBookViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9A1634A3227DC13500195FD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A1634A4227DC13A00195FD4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634B2227DDA0800195FD4 /* Model */,
+				9A1634A9227DD73F00195FD4 /* SLLoanBookDataController.h */,
+				9A1634AA227DD73F00195FD4 /* SLLoanBookDataController.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A1634A5227DC14200195FD4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634AF227DD97E00195FD4 /* SLLoanBookCellViewModel.h */,
+				9A1634B0227DD97E00195FD4 /* SLLoanBookCellViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A1634B2227DDA0800195FD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634B3227DDA1600195FD4 /* SLLoanBook.h */,
+				9A1634B4227DDA1600195FD4 /* SLLoanBook.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9A1634B9227E1B5500195FD4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634C4227EA7F700195FD4 /* SLCollectedBookViewController.h */,
+				9A1634C5227EA7F700195FD4 /* SLCollectedBookViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9A1634BA227E1B6000195FD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A1634BB227E1B6500195FD4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634BD227E1B8300195FD4 /* Model */,
+				9A1634C1227E1CB100195FD4 /* SLCollectBookDataController.h */,
+				9A1634C2227E1CB100195FD4 /* SLCollectBookDataController.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A1634BC227E1B6A00195FD4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634C7227EA9FB00195FD4 /* SLCollectBookCellViewModel.h */,
+				9A1634C8227EA9FB00195FD4 /* SLCollectBookCellViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9A1634BD227E1B8300195FD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634BE227E1B9900195FD4 /* SLCollectedBook.h */,
+				9A1634BF227E1B9900195FD4 /* SLCollectedBook.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9A23A52522296F4C00E11C2B = {
@@ -311,8 +455,9 @@
 		9A23A53022296F4C00E11C2B /* StuLibraryAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				9A16349D2276DB2300195FD4 /* BookLoan */,
 				9A15D0FD2259FCA70033025B /* Collection */,
-				9A15D0FC2259FC9A0033025B /* WalkThrough */,
+				9A15D0FC2259FC9A0033025B /* Discovery */,
 				9A15D0FB2259FC8B0033025B /* Me */,
 				9A15D0FA2259FC700033025B /* BookDetail */,
 				9A15D0F92259FC680033025B /* Menu */,
@@ -642,6 +787,7 @@
 		9A8B3030223817A100A46CFA /* SLUIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				9A16349E227C68D100195FD4 /* SLScrollView */,
 				9A7C93AB223F825F005B2894 /* SLProgressHUD */,
 				9A7C93A5223F4ED8005B2894 /* SCManualLayout */,
 				9A7C939B223E8159005B2894 /* SLStyle */,
@@ -932,9 +1078,13 @@
 			files = (
 				9A474DEF2265C5610080B6E2 /* NSString+SLBookParser.m in Sources */,
 				9A15D0F82259F0CC0033025B /* SLMainSearchNotification.m in Sources */,
+				9A1634C6227EA7F700195FD4 /* SLCollectedBookViewController.m in Sources */,
 				9A7DFD942264C36D00D97351 /* SLProfileToolView.m in Sources */,
 				9A474DF8226725620080B6E2 /* SLLibraryScoreViewController.m in Sources */,
 				9A7DFD812260980B00D97351 /* SLNavigationController.m in Sources */,
+				9A1634C9227EA9FB00195FD4 /* SLCollectBookCellViewModel.m in Sources */,
+				9A1634C0227E1B9900195FD4 /* SLCollectedBook.m in Sources */,
+				9A1634B1227DD97F00195FD4 /* SLLoanBookCellViewModel.m in Sources */,
 				9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */,
 				9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */,
 				9A7C93B622411CED005B2894 /* SLMainSearchViewController.m in Sources */,
@@ -952,6 +1102,7 @@
 				9A15D1012259FCE00033025B /* SLMenuViewController.m in Sources */,
 				9A685903226CB0620046EF45 /* SLDetailToolView.m in Sources */,
 				9A474DE72265BAFE0080B6E2 /* SLBookDetailViewModel.m in Sources */,
+				9A1634A8227DC15700195FD4 /* SLLoanBookViewController.m in Sources */,
 				9A474DE32265B1A30080B6E2 /* SLStarPointView.m in Sources */,
 				9A7C93A9223F50E7005B2894 /* UIView+SCManualLayout.m in Sources */,
 				9A36239A22438DBB001574A4 /* SLMainSearchDataController.m in Sources */,
@@ -960,19 +1111,24 @@
 				9A7DFD9122646EFC00D97351 /* SLUserModel.m in Sources */,
 				9A8B3026223813DF00A46CFA /* SLLoginViewController.m in Sources */,
 				9A7DFD8B2263293100D97351 /* SLSearchBarCell.m in Sources */,
+				9A1634B8227DE8F200195FD4 /* SLHistoryLoanBookViewController.m in Sources */,
 				9A474DDA2265AD360080B6E2 /* SLBookDetailInfoView.m in Sources */,
 				9A474E01226826530080B6E2 /* SLBookDetailModel.m in Sources */,
 				9A474DFE226824D10080B6E2 /* SLBookDetailDataController.m in Sources */,
 				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
 				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
+				9A1634C3227E1CB100195FD4 /* SLCollectBookDataController.m in Sources */,
 				9A7DFD8E22635E7200D97351 /* SLLoginDataController.m in Sources */,
 				9A23A54122296F4D00E11C2B /* main.m in Sources */,
 				9A36239E22448F44001574A4 /* SLNetwokrManager.m in Sources */,
 				9A7DFD8422621F4200D97351 /* SLProfileViewController.m in Sources */,
 				9A8B3029223814A700A46CFA /* SLLoginHeaderView.m in Sources */,
+				9A1634A1227C690100195FD4 /* UIScrollView+EmptyView.m in Sources */,
+				9A1634B5227DDA1600195FD4 /* SLLoanBook.m in Sources */,
 				9A7C93A1223E8382005B2894 /* SLMemoryCahce.m in Sources */,
 				9A3623932242459E001574A4 /* SLSearchBookCellViewModel.m in Sources */,
 				9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */,
+				9A1634AB227DD73F00195FD4 /* SLLoanBookDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -278,11 +278,10 @@ N_Def(kCancelCollectBookCompleteNotification);
         if (error == nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
             if ([json[@"success"] boolValue]) {
-                if (block) {
-                    block(json,nil);
-                }
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:kCollectBookCompleteNotification object:nil userInfo:nil];
+            }
+            if (block) {
+                block(json[@"success"],nil);
             }
         } else {
             NSLog(@"%@",error);
@@ -307,11 +306,10 @@ N_Def(kCancelCollectBookCompleteNotification);
         if (error == nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
             if ([json[@"success"] boolValue]) {
-                if (block) {
-                    block(json,nil);
-                }
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:kCancelCollectBookCompleteNotification object:nil userInfo:nil];
+            }
+            if (block) {
+                block(json[@"success"],nil);
             }
         } else {
             NSLog(@"%@",error);

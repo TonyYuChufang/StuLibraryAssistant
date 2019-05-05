@@ -45,11 +45,13 @@
 {
     NSString *authorStr = author;
     NSRange orRange = [authorStr rangeOfString:@"||"];
-    authorStr = [authorStr substringFromIndex:orRange.location];
-    authorStr = [authorStr stringByReplacingOccurrencesOfString:@"||" withString:@""];
-    if ([authorStr isEqualToString:@""]) {
-        authorStr = [author stringByReplacingOccurrencesOfString:@"||" withString:@""];
-        authorStr = [self praseBookTitle:authorStr];
+    if (orRange.length) {
+        authorStr = [authorStr substringFromIndex:orRange.location];
+        authorStr = [authorStr stringByReplacingOccurrencesOfString:@"||" withString:@""];
+        if ([authorStr isEqualToString:@""]) {
+            authorStr = [author stringByReplacingOccurrencesOfString:@"||" withString:@""];
+            authorStr = [self praseBookTitle:authorStr];
+        }
     }
     return authorStr;
 }

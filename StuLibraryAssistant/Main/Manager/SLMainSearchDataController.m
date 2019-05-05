@@ -110,6 +110,9 @@ static NSString * const kOpacCookieKey = @"kOpacCookieKey";
             weakSelf.currentPageSize = weakSelf.currentPageSize + self.bookItemList.count;
             weakSelf.currentSearchText = text;
             [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookListCompleteNotification object:nil];
+            if (weakSelf.totalSize <= weakSelf.currentPageSize) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookListNoMoreDataNotification object:nil];
+            }
         }
     }];
 }

@@ -172,7 +172,7 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     collectedItem.isSelected = YES;
     collectedItem.title = @"收藏";
     collectedItem.menuItemSelectedHandler = ^{
-        if ([weakSelf.bookInfo.COLLECTED boolValue]) {
+        if (weakSelf.bookInfo.COLLECTED) {
             [[SLBookDetailDataController sharedObject] cancelCollectBook:weakSelf.bookInfo.CTRLNO complete:^(id data, NSError *error) {
                 if (error == nil) {
                     weakSelf.bookInfo.COLLECTED = @"false";

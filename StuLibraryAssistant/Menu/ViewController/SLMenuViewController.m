@@ -11,6 +11,8 @@
 #import "SLLoginHeaderView.h"
 #import "SLStyleManager+Theme.h"
 #import "SLProfileViewController.h"
+#import "SLLoanBookViewController.h"
+#import "SLCollectedBookViewController.h"
 #import "SLLoginViewController.h"
 #import "SLLoginDataController.h"
 #import "SLNetwokrManager.h"
@@ -71,11 +73,12 @@ static CGFloat kMenuItemWidth = 130;
 
 - (void)setupItemInfos
 {
+    BlockWeakSelf(weakSelf, self);
     SLMenuItemInfo *profileItem = [[SLMenuItemInfo alloc] init];
     profileItem.title = @"个人信息";
     profileItem.imageName = @"menu_icon_profile";
     profileItem.menuItemSelectedHandler = ^{
-        [self showProfileViewControllerIfNeed];
+        [weakSelf showProfileViewControllerIfNeed];
     };
     [self.itemInfoArray addObject:profileItem];
     
@@ -83,7 +86,7 @@ static CGFloat kMenuItemWidth = 130;
     collectionItem.title = @"我的收藏";
     collectionItem.imageName = @"menu_icon_collection";
     collectionItem.menuItemSelectedHandler = ^{
-        
+        [weakSelf showCollectedBookViewControllerIfNeed];
     };
     [self.itemInfoArray addObject:collectionItem];
     
@@ -91,7 +94,7 @@ static CGFloat kMenuItemWidth = 130;
     bookloanItem.title = @"我的借阅";
     bookloanItem.imageName = @"menu_icon_bookloan";
     bookloanItem.menuItemSelectedHandler = ^{
-        
+        [weakSelf showLoanBookViewControllerIfNeed];
     };
     [self.itemInfoArray addObject:bookloanItem];
     
@@ -99,7 +102,7 @@ static CGFloat kMenuItemWidth = 130;
     searchItem.title = @"书目检索";
     searchItem.imageName = @"menu_icon_bookSearch";
     searchItem.menuItemSelectedHandler = ^{
-        [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     [self.itemInfoArray addObject:searchItem];
     
@@ -238,6 +241,7 @@ static CGFloat kMenuItemWidth = 130;
 {
     [self showProfileViewControllerIfNeed];
 }
+
 - (void)showProfileViewControllerIfNeed
 {
     [self.navigationController setDefaultNavType];
@@ -251,6 +255,31 @@ static CGFloat kMenuItemWidth = 130;
     }
 }
 
+- (void)showLoanBookViewControllerIfNeed
+{
+    [self.navigationController setDefaultNavType];
+    if ([[SLLoginDataController sharedObject] isLogined]) {
+        SLLoanBookViewController *loanBookVC = [[SLLoanBookViewController alloc] init];
+        [self.navigationController pushViewController:loanBookVC animated:YES];
+        
+    } else {
+        SLLoginViewController *loginVC = [[SLLoginViewController alloc] init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+}
+
+- (void)showCollectedBookViewControllerIfNeed
+{
+    [self.navigationController setDefaultNavType];
+    if ([[SLLoginDataController sharedObject] isLogined]) {
+        SLCollectedBookViewController *collectedBookVC = [[SLCollectedBookViewController alloc] init];
+        [self.navigationController pushViewController:collectedBookVC animated:YES];
+        
+    } else {
+        SLLoginViewController *loginVC = [[SLLoginViewController alloc] init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+}
 #pragma mark - Query Data
 
 - (void)setAvatarImageWith:(NSString *)fileStr

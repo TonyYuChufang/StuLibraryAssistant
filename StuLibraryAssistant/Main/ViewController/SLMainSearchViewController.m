@@ -18,6 +18,7 @@
 #import "SLSearchBarCell.h"
 #import "SLSearchBar.h"
 #import "SLStyleManager+Theme.h"
+#import "UIScrollView+EmptyView.h"
 #import "SLLoginHeaderView.h"
 
 #import <MJRefresh/MJRefresh.h>
@@ -56,7 +57,9 @@ static int64_t kDefaultSearchRows = 20;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveQueryFail:) name:kQueryBookListFailNotification object:nil];
 
     [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
-        [[SLLoginDataController sharedObject] loginWithUserName:@"15ybli" password:@"Mky5537"];
+//        [[SLLoginDataController sharedObject] loginWithUserName:@"17cyxiao" password:@"134xcYu386767"];
+//        [[SLLoginDataController sharedObject] loginWithUserName:@"15jlhuang3" password:@"Gundam00"];
+        [[SLLoginDataController sharedObject] loginWithUserName:@"15cfyu" password:@"YCfshen520"];
     }];
 }
 
@@ -77,6 +80,7 @@ static int64_t kDefaultSearchRows = 20;
     tableview.mj_footer = footer;
     self.bookTableView = tableview;
     [self.view addSubview:self.bookTableView];
+    [self.bookTableView sl_showEmptyViewWithType:SLEmptyViewTypeInitialBookList];
 }
 
 - (void)setupSubview
@@ -165,6 +169,9 @@ static int64_t kDefaultSearchRows = 20;
     [_bookTableView reloadData];
     if ([SLMainSearchDataController sharedObject].bookItemList.count) {
         self.bookTableView.mj_footer.hidden = NO;
+    } else {
+        self.bookTableView.mj_footer.hidden = YES;
+        [self.bookTableView sl_showEmptyViewWithType:SLEmptyViewTypeEmptyBookList];
     }
     [self.bookTableView.mj_footer endRefreshing];
     [self removeLoadingAnimation];
@@ -259,6 +266,7 @@ static int64_t kDefaultSearchRows = 20;
     NSLog(@"Did Select Return");
     [[SLMainSearchDataController sharedObject] queryBookWithText:text page:1 rows:kDefaultSearchRows shouldIncrement:NO];
     self.searchBar.text = nil;
+    [self.bookTableView sl_removeEmptyView];
     [self setupLoadingAnimation];
     if ([SLMainSearchDataController sharedObject].bookItemList.count) {
         [self.bookTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
@@ -274,6 +282,12 @@ static int64_t kDefaultSearchRows = 20;
     if (isCollected) {
         [[SLBookDetailDataController sharedObject] cancelCollectBook:book.CTRLNO complete:^(id data, NSError *error) {
             if (error == nil) {
+                if (![data boolValue]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [SLProgressHUD showHUDWithText:@"取消收藏失败，请重试" inView:weakSelf.view delayTime:1.5];
+                    });
+                    return ;
+                }
                 book.COLLECTED = @"false";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell updateMarkStatus:NO];
@@ -288,6 +302,12 @@ static int64_t kDefaultSearchRows = 20;
     } else {
         [[SLBookDetailDataController sharedObject] collectBook:book.CTRLNO complete:^(id data, NSError *error) {
             if (error == nil) {
+                if (![data boolValue]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [SLProgressHUD showHUDWithText:@"取消收藏失败，请重试" inView:weakSelf.view delayTime:1.5];
+                    });
+                    return ;
+                }
                 book.COLLECTED = @"true";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell updateMarkStatus:YES];

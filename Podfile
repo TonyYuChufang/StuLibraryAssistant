@@ -6,6 +6,7 @@ target 'StuLibraryAssistant' do
   # use_frameworks!
   pod 'AFNetworking'
   pod 'SDWebImage'
+  pod 'FMDB'
   pod 'MJRefresh'
   pod 'YYCache'
   pod 'YYModel'
