@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef void(^SLDataQueryCompleteBlock)(id data , NSError *error);
 @interface SLMainSearchDataController : NSObject
 
 + (instancetype)sharedObject;
 
-- (void)requestOpacSessionID;
+- (void)requestOpacSessionIDWithBlock:(SLDataQueryCompleteBlock)block;
 
 - (void)queryBookWithText:(NSString *)text
                      page:(int64_t)page

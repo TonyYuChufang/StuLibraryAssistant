@@ -9,6 +9,7 @@
 #import "SLMainSearchViewController.h"
 #import "SLMenuViewController.h"
 #import "SLBookDetailViewController.h"
+#import "SLLoginViewController.h"
 #import "SLMainSearchDataController.h"
 #import "SLBookDetailDataController.h"
 #import "SLLoginDataController.h"
@@ -44,6 +45,7 @@ static int64_t kDefaultSearchRows = 20;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.bookTableView reloadData];
 }
 - (void)viewDidLoad {
@@ -55,12 +57,6 @@ static int64_t kDefaultSearchRows = 20;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveBookList:) name:kQueryBookListCompleteNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveNoMoreBooks:) name:kQueryBookListNoMoreDataNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveQueryFail:) name:kQueryBookListFailNotification object:nil];
-
-    [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
-//        [[SLLoginDataController sharedObject] loginWithUserName:@"17cyxiao" password:@"134xcYu386767"];
-//        [[SLLoginDataController sharedObject] loginWithUserName:@"15jlhuang3" password:@"Gundam00"];
-        [[SLLoginDataController sharedObject] loginWithUserName:@"15cfyu" password:@"YCfshen520"];
-    }];
 }
 
 - (void)setupTableView
@@ -114,9 +110,7 @@ static int64_t kDefaultSearchRows = 20;
     SLHeaderBarItemInfo *searchTypeItem = [[SLHeaderBarItemInfo alloc] init];
     searchTypeItem.itemImageName = @"icon_navigationBar_searchType";
     searchTypeItem.barItemClickedHandler = ^{
-        SLBookDetailViewController *detailVC = [[SLBookDetailViewController alloc] init];
-        weakSelf.navigationController.pushType = SLPushTypeFromRight;
-        [weakSelf.navigationController pushViewController:detailVC animated:YES];
+        [SLProgressHUD showHUDWithText:@"即将开放" inView:weakSelf.view delayTime:2];
     };
     [self.headerView.rightBarItems addObject:searchTypeItem];
 }
@@ -276,6 +270,9 @@ static int64_t kDefaultSearchRows = 20;
 #pragma mark - SLMainSearchBookCellDelegate
 - (void)didSelectMarkBtnBookCell:(SLMainSearchBookCell *)cell isCollected:(BOOL)isCollected
 {
+    if ([self shouldShowLoginVC]) {
+        return;
+    }
     NSIndexPath *indexPath = [self.bookTableView indexPathForCell:cell];
     SLBookListItem *book = [SLMainSearchDataController sharedObject].bookItemList[indexPath.row];
     BlockWeakSelf(weakSelf, self);
@@ -288,7 +285,7 @@ static int64_t kDefaultSearchRows = 20;
                     });
                     return ;
                 }
-                book.COLLECTED = @"false";
+                book.COLLECTED = NO;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell updateMarkStatus:NO];
                     [SLProgressHUD showHUDWithText:@"取消收藏成功" inView:weakSelf.view delayTime:1.5];
@@ -304,11 +301,11 @@ static int64_t kDefaultSearchRows = 20;
             if (error == nil) {
                 if (![data boolValue]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [SLProgressHUD showHUDWithText:@"取消收藏失败，请重试" inView:weakSelf.view delayTime:1.5];
+                        [SLProgressHUD showHUDWithText:@"收藏失败，请重试" inView:weakSelf.view delayTime:1.5];
                     });
                     return ;
                 }
-                book.COLLECTED = @"true";
+                book.COLLECTED = YES;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell updateMarkStatus:YES];
                     [SLProgressHUD showHUDWithText:@"收藏成功" inView:weakSelf.view delayTime:1.5];
@@ -322,6 +319,17 @@ static int64_t kDefaultSearchRows = 20;
     }
 }
 
+- (BOOL)shouldShowLoginVC
+{
+    [self.navigationController setDefaultNavType];
+    if ([[SLLoginDataController sharedObject] isLogined]) {
+        return NO;
+    } else {
+        SLLoginViewController *loginVC = [[SLLoginViewController alloc] init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+    return YES;
+}
 #pragma mark - Private
 - (void)loadMoreBooks
 {

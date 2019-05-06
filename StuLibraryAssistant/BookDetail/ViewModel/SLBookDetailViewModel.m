@@ -18,7 +18,7 @@
     viewModel.bookImageUrl = [NSString stringWithFormat:@"http://opac.lib.stu.edu.cn/jthq?fid=%@",book.COVER];
     viewModel.bookPublishInfo = [NSString stringWithFormat:@"%@ %@",book.PUBLISHER,book.PUBDATE];
     viewModel.bookScoreTitle = [NSString stringWithFormat:@"评分(%lld)",book.SCOREPERSONCOUNT];
-    viewModel.bookCollectedTitle = [NSString stringWithFormat:@"藏书情况(%@/%@)",book.LENDABLE,book.COLLECTION];
+    viewModel.bookCollectedTitle = [NSString stringWithFormat:@"藏书情况(%lld/%lld)",book.LENDABLE,book.COLLECTION];
     return viewModel;
 }
 

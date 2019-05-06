@@ -11,6 +11,7 @@
 #import "SLBookDetailModel.h"
 #import <YYModel/YYModel.h>
 #import "SLNetwokrManager.h"
+#import "SLUserDefault.h"
 N_Def(kQueryBookDetailCompleteNotification);
 N_Def(kQueryBookCollectedInfoCompleteNotification);
 N_Def(kQueryBookScoreInfoCompleteNotification);
@@ -175,7 +176,7 @@ N_Def(kCancelCollectBookCompleteNotification);
                             @"page":@(1),
                             @"pageSize":@(30)
                             };
-    [self.bookContents removeAllObjects];
+    [self.bookScores removeAllObjects];
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
         if (error == nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
@@ -210,7 +211,7 @@ N_Def(kCancelCollectBookCompleteNotification);
                             @"readerNo":[SLLoginDataController sharedObject].userInfo.memberNo,
                             @"pageSize":@(1)
                             };
-    [self.bookContents removeAllObjects];
+    self.myScore = nil;
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
         if (error == nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
@@ -236,28 +237,41 @@ N_Def(kCancelCollectBookCompleteNotification);
         return;
     }
  
-    NSDictionary *param = @{
-                            @"SERVICE_ID":@[@(13),@(20),@(1900)],
-                            @"ctrlNo":ctrlNo,
-                            @"function":@"opac",
-                            @"score":[NSString stringWithFormat:@"%ld",(long)score],
-                            @"infoTitle":self.detailInfo.infoTitle
-                            };
-    
-    [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
         if (error == nil) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            if ([json[@"success"] boolValue]) {
-                if (block) {
-                    block(json,nil);
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(20),@(1900)],
+                                    @"ctrlNo":ctrlNo,
+                                    @"function":@"opac",
+                                    @"score":[NSString stringWithFormat:@"%ld",(long)score],
+                                    @"infoTitle":self.detailInfo.infoTitle
+                                    };
+            
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    if ([json[@"success"] boolValue]) {
+                        if (block) {
+                            block(json,nil);
+                        }
+                        NSDictionary *scoreInfo = json[@"data"];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kGiveBookScoreCompleteNotification object:nil userInfo:scoreInfo];
+                    }
+                } else {
+                    if (block) {
+                        block(@(NO),error);
+                    }
+                    NSLog(@"%@",error);
                 }
-                NSDictionary *scoreInfo = json[@"data"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kGiveBookScoreCompleteNotification object:nil userInfo:scoreInfo];
-            }
+            }];
         } else {
-            NSLog(@"%@",error);
+            if (block) {
+                block(@(NO),error);
+            }
+             NSLog(@"%@",error);
         }
     }];
+    
     
 }
 
@@ -267,26 +281,37 @@ N_Def(kCancelCollectBookCompleteNotification);
     if (ctrlNo == nil) {
         return;
     }
-    
-    NSDictionary *param = @{
-                            @"SERVICE_ID":@[@(13),@(20),@(1000)],
-                            @"ctrlNo":ctrlNo,
-                            @"function":@"opac",
-                            };
-    
-    [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
         if (error == nil) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            if ([json[@"success"] boolValue]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:kCollectBookCompleteNotification object:nil userInfo:nil];
-            }
-            if (block) {
-                block(json[@"success"],nil);
-            }
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(20),@(1000)],
+                                    @"ctrlNo":ctrlNo,
+                                    @"function":@"opac",
+                                    };
+            
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    if ([json[@"success"] boolValue]) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kCollectBookCompleteNotification object:nil userInfo:nil];
+                    }
+                    if (block) {
+                        block(json[@"success"],nil);
+                    }
+                } else {
+                    if (block) {
+                        block(@(NO),error);
+                    }
+                    NSLog(@"%@",error);
+                }
+            }];
         } else {
-            NSLog(@"%@",error);
+            if (block) {
+                block(@(NO),error);
+            }
         }
     }];
+    
 }
 
 - (void)cancelCollectBook:(NSString *)ctrlNo
@@ -295,26 +320,61 @@ N_Def(kCancelCollectBookCompleteNotification);
     if (ctrlNo == nil) {
         return;
     }
-    
-    NSDictionary *param = @{
-                            @"SERVICE_ID":@[@(13),@(20),@(1020)],
-                            @"ctrlNo":ctrlNo,
-                            @"function":@"opac",
-                            };
-    
-    [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
         if (error == nil) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            if ([json[@"success"] boolValue]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:kCancelCollectBookCompleteNotification object:nil userInfo:nil];
-            }
-            if (block) {
-                block(json[@"success"],nil);
-            }
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(20),@(1020)],
+                                    @"ctrlNo":ctrlNo,
+                                    @"function":@"opac",
+                                    };
+            
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    if ([json[@"success"] boolValue]) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kCancelCollectBookCompleteNotification object:nil userInfo:nil];
+                    }
+                    if (block) {
+                        block(json[@"success"],nil);
+                    }
+                } else {
+                    if (block) {
+                        block(@(NO),error);
+                    }
+                    NSLog(@"%@",error);
+                }
+            }];
         } else {
-            NSLog(@"%@",error);
+            if (block) {
+                block(@(NO),error);
+            }
         }
     }];
     
+}
+
+- (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok
+{
+    [[SLLoginDataController sharedObject] checkLoginStatusWithBlock:^(id data, NSError *error) {
+        if ([data boolValue]) {
+            if (blcok) {
+                blcok(data,error);
+            }
+        } else {
+            [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
+                if (error == nil) {
+                    [[SLLoginDataController sharedObject] loginWithUserName:[[SLUserDefault sharedObject] objectForKey:kUsernameKey] password:[[SLUserDefault sharedObject] objectForKey:kPasswordKey] completed:^(id data, NSError *error) {
+                        if (blcok) {
+                            blcok(data,error);
+                        }
+                    }];
+                } else {
+                    if (blcok) {
+                        blcok(data,error);
+                    }
+                }
+            }];
+        }
+    }];
 }
 @end

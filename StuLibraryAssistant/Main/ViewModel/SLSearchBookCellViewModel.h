@@ -16,10 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *bookCount;
 @property (nonatomic, copy) NSString *authorName;
 @property (nonatomic, copy) NSString *coverImageUrl;
+@property (nonatomic, copy) NSString *publishDate;
 @property (nonatomic, assign) BOOL isCollected;
 
 + (SLSearchBookCellViewModel *)bookCellViewModelWithBook:(SLBookListItem *)book;
-
++ (NSArray *)viewModelsWithBooks:(NSArray *)books;
 @end
 
 NS_ASSUME_NONNULL_END

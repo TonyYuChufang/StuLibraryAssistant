@@ -12,6 +12,7 @@
 #import "SLStyleManager+Theme.h"
 #import "SLProgressHUD.h"
 #import "SLLoginDataController.h"
+#import "SLUserDefault.h"
 #import <KVNProgress/KVNProgress.h>
 
 @interface SLLoginViewController ()
@@ -30,7 +31,6 @@
     [super viewDidLoad];
     [self setupUI];
     [self relayoutSubviews];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveLoginSuccess:) name:kLoginSuccessNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews
@@ -40,6 +40,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setDefaultNavType];
 }
 
@@ -125,17 +126,27 @@
 #pragma mark - Action
 - (void)onLoginBtnClicked:(UIButton *)sender
 {
-    NSLog(@"logining");
-    
+    [KVNProgress showWithStatus:@"正在登录..."];
     [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id  _Nonnull data, NSError * _Nonnull error) {
-        [[SLLoginDataController sharedObject] loginWithUserName:self.loginInputView.username password:self.loginInputView.password];
-    }];
-}
-#pragma mark - Notification
+        if (error == nil) {
+            [[SLLoginDataController sharedObject] loginWithUserName:self.loginInputView.username password:self.loginInputView.password completed:^(id data, NSError *error) {
+                if (error == nil) {
+                    [KVNProgress showSuccessWithStatus:@"登录成功" completion:^{
+                        [[SLUserDefault sharedObject] setObject:self.loginInputView.username forKey:kUsernameKey];
+                        [[SLUserDefault sharedObject] setObject:self.loginInputView.password forKey:kPasswordKey];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                } else {
+                    if (error.code == 401) {
+                        [KVNProgress showErrorWithStatus:data];
+                    }
+                }
+            }];
+        } else {
+            [KVNProgress showErrorWithStatus:data];
+        }
 
-- (void)onReciveLoginSuccess:(NSNotification *)notification
-{
-    [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 @end
 

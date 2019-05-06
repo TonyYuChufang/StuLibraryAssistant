@@ -7,6 +7,8 @@
 //
 
 #import "SLLibraryScoreViewController.h"
+#import "SLLoginViewController.h"
+#import "SLLoginDataController.h"
 #import "SLBookDetailDataController.h"
 #import "SLBookDetailViewModel.h"
 #import "SLStarPointView.h"
@@ -82,7 +84,7 @@
 {
     if (indexPath.row == 0) {
         SLScoreMyCell *cell = [tableView dequeueReusableCellWithIdentifier:[SLScoreMyCell reuseId]];
-        if (cell) {
+        if (cell == nil) {
             cell = [[SLScoreMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[SLScoreMyCell reuseId]];
         }
         SLBookScoreViewModel *viewModel = [SLBookScoreViewModel bookScoreViewModelWithScore:[SLBookDetailDataController sharedObject].myScore];
@@ -110,11 +112,26 @@
 
 - (void)slstarPointView:(SLStarPointView *)starPointView DidSelectWithScore:(CGFloat)score
 {
+    if ([self shouldShowLoginVC]) {
+        return;
+    }
     [[SLBookDetailDataController sharedObject] giveTheScore:score Book:self.ctrlNo complete:^(id data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [SLProgressHUD showHUDWithText:@"评分成功" inView:self.parentViewController.view delayTime:2];
         });
     }];
     [starPointView updateStarPoint:score];
+}
+
+- (BOOL)shouldShowLoginVC
+{
+    [self.navigationController setDefaultNavType];
+    if ([[SLLoginDataController sharedObject] isLogined]) {
+        return NO;
+    } else {
+        SLLoginViewController *loginVC = [[SLLoginViewController alloc] init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+    return YES;
 }
 @end

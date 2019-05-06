@@ -180,6 +180,7 @@ static NSString * kLoanBookCellID = @"kLoanBookCellID";
         if ([data boolValue]) {
             [[SLCollectBookDataController sharedObject].collectedBooks removeObjectAtIndex:indexPath.row];
             dispatch_async(dispatch_get_main_queue(), ^{
+                [SLProgressHUD showHUDWithText:@"取消收藏成功" inView:self.view delayTime:2];
                 [weakSelf.bookTableView reloadData];
             });
         } else {

@@ -13,6 +13,8 @@
 #import "SLProfileViewController.h"
 #import "SLLoanBookViewController.h"
 #import "SLCollectedBookViewController.h"
+#import "SLDiscoveryViewController.h"
+#import "SLSettingViewController.h"
 #import "SLLoginViewController.h"
 #import "SLLoginDataController.h"
 #import "SLNetwokrManager.h"
@@ -45,6 +47,7 @@ static CGFloat kMenuItemWidth = 130;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubview];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveProfileInfo:) name:kQueryUserInfoSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReciveLogoutComplete:) name:kLogoutCompleteNotification object:nil];
 }
 - (void)dealloc
 {
@@ -52,6 +55,7 @@ static CGFloat kMenuItemWidth = 130;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.popType = SLPushTypeFromRight;
 }
 
@@ -110,7 +114,7 @@ static CGFloat kMenuItemWidth = 130;
     discoveryItem.title = @"发现广场";
     discoveryItem.imageName = @"menu_icon_discovery";
     discoveryItem.menuItemSelectedHandler = ^{
-        
+        [weakSelf showDiscoveryViewController];
     };
     [self.itemInfoArray addObject:discoveryItem];
     
@@ -118,7 +122,7 @@ static CGFloat kMenuItemWidth = 130;
     settingItem.title = @"设置";
     settingItem.imageName = @"menu_icon_setting";
     settingItem.menuItemSelectedHandler = ^{
-        
+        [weakSelf showSettingViewController];
     };
     [self.itemInfoArray addObject:settingItem];
 }
@@ -280,6 +284,20 @@ static CGFloat kMenuItemWidth = 130;
         [self.navigationController pushViewController:loginVC animated:YES];
     }
 }
+
+- (void)showDiscoveryViewController
+{
+    [self.navigationController setDefaultNavType];
+    SLDiscoveryViewController *discoveryVC = [[SLDiscoveryViewController alloc] init];
+    [self.navigationController pushViewController:discoveryVC animated:YES];
+}
+
+- (void)showSettingViewController
+{
+    [self.navigationController setDefaultNavType];
+    SLSettingViewController *settingVC = [[SLSettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
+}
 #pragma mark - Query Data
 
 - (void)setAvatarImageWith:(NSString *)fileStr
@@ -304,5 +322,13 @@ static CGFloat kMenuItemWidth = 130;
     self.occupationLabel.text = role;
     [self.nickNameLabel sizeToFit];
     [self.occupationLabel sizeToFit];
+}
+
+- (void)onReciveLogoutComplete:(NSNotification *)notification
+{
+    self.nickNameLabel.text = @"未登录，点击头像登录";
+    self.avaterView.image = [UIImage imageNamed:@"icon_avatar_defalut"];
+    self.occupationLabel.text = @"";
+    [self.nickNameLabel sizeToFit];
 }
 @end

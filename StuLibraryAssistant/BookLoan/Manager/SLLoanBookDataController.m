@@ -7,6 +7,7 @@
 //
 
 #import "SLLoanBookDataController.h"
+#import "SLLoginDataController.h"
 #import "SLLoanBook.h"
 #import <YYModel/YYModel.h>
 #import "SLNetwokrManager.h"
@@ -44,32 +45,41 @@
 
 - (void)queryCurrentLoanBooks:(SLDataQueryCompleteBlock)block
 {
-    NSDictionary *param = @{
-                            @"SERVICE_ID":@[@(13),@(10),@(1000)],
-                            @"function":@"readercenter",
-                            @"loanStatus":@[@"lent"],
-                            @"orderSort":@"ASC",
-                            @"orderType":@"due_time",
-                            @"offset":@(0),
-                            @"rows":@(655342)
-                            };
-    BlockWeakSelf(weakSelf, self);
-    [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
         if (error == nil) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            for (NSDictionary *dict in json[@"data"][@"list"]) {
-                SLLoanBook *loanBook = [SLLoanBook yy_modelWithJSON:dict];
-                [weakSelf.currentLoanBooks addObject:loanBook];
-            }
-            if (block) {
-                block(weakSelf.currentLoanBooks,nil);
-            }
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(10),@(1000)],
+                                    @"function":@"readercenter",
+                                    @"loanStatus":@[@"lent"],
+                                    @"orderSort":@"ASC",
+                                    @"orderType":@"due_time",
+                                    @"offset":@(0),
+                                    @"rows":@(655342)
+                                    };
+            BlockWeakSelf(weakSelf, self);
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    for (NSDictionary *dict in json[@"data"][@"list"]) {
+                        SLLoanBook *loanBook = [SLLoanBook yy_modelWithJSON:dict];
+                        [weakSelf.currentLoanBooks addObject:loanBook];
+                    }
+                    if (block) {
+                        block(weakSelf.currentLoanBooks,nil);
+                    }
+                } else {
+                    if (block) {
+                        block(nil,error);
+                    }
+                }
+            }];
         } else {
             if (block) {
                 block(nil,error);
             }
         }
     }];
+   
 }
 
 - (void)queryHistoryLoanBooksWithIncrement:(BOOL)shouldIncrement
@@ -83,32 +93,66 @@
 
 - (void)queryHistoryLoanBooks:(SLDataQueryCompleteBlock)block
 {
-    NSDictionary *param = @{
-                            @"SERVICE_ID":@[@(13),@(10),@(1000)],
-                            @"function":@"readercenter",
-                            @"loanStatus":@[@"normal_retu",@"expire_retu",@"damage_retu",@"exp_dam_retu",@"lost_retu"],
-                            @"orderSort":@"desc",
-                            @"orderType":@"due_time",
-                            @"offset":@(0),
-                            @"rows":@(655342)
-                            };
-    BlockWeakSelf(weakSelf, self);
-    [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
         if (error == nil) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            for (NSDictionary *dict in json[@"data"][@"list"]) {
-                SLLoanBook *loanBook = [SLLoanBook yy_modelWithJSON:dict];
-                [weakSelf.historyLoanBooks addObject:loanBook];
-            }
-            if (block) {
-                block(weakSelf.historyLoanBooks,nil);
-            }
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(10),@(1000)],
+                                    @"function":@"readercenter",
+                                    @"loanStatus":@[@"normal_retu",@"expire_retu",@"damage_retu",@"exp_dam_retu",@"lost_retu"],
+                                    @"orderSort":@"desc",
+                                    @"orderType":@"due_time",
+                                    @"offset":@(0),
+                                    @"rows":@(655342)
+                                    };
+            BlockWeakSelf(weakSelf, self);
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    for (NSDictionary *dict in json[@"data"][@"list"]) {
+                        SLLoanBook *loanBook = [SLLoanBook yy_modelWithJSON:dict];
+                        [weakSelf.historyLoanBooks addObject:loanBook];
+                    }
+                    if (block) {
+                        block(weakSelf.historyLoanBooks,nil);
+                    }
+                } else {
+                    if (block) {
+                        block(nil,error);
+                    }
+                }
+            }];
         } else {
             if (block) {
                 block(nil,error);
             }
         }
     }];
+   
 
+}
+
+- (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok
+{
+    [[SLLoginDataController sharedObject] checkLoginStatusWithBlock:^(id data, NSError *error) {
+        if ([data boolValue]) {
+            if (blcok) {
+                blcok(data,error);
+            }
+        } else {
+            [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
+                if (error == nil) {
+                    [[SLLoginDataController sharedObject] loginWithLocalUserComplete:^(id data, NSError *error) {
+                        if (blcok) {
+                            blcok(data,error);
+                        }
+                    }];
+                } else {
+                    if (blcok) {
+                        blcok(data,error);
+                    }
+                }
+            }];
+        }
+    }];
 }
 @end

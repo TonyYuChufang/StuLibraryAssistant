@@ -24,6 +24,20 @@
 		9A1634C3227E1CB100195FD4 /* SLCollectBookDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634C2227E1CB100195FD4 /* SLCollectBookDataController.m */; };
 		9A1634C6227EA7F700195FD4 /* SLCollectedBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634C5227EA7F700195FD4 /* SLCollectedBookViewController.m */; };
 		9A1634C9227EA9FB00195FD4 /* SLCollectBookCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634C8227EA9FB00195FD4 /* SLCollectBookCellViewModel.m */; };
+		9A1634D0227EE7F200195FD4 /* SLDiscoveryDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634CF227EE7F200195FD4 /* SLDiscoveryDataController.m */; };
+		9A1634D8227EF16D00195FD4 /* SLDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634D7227EF16D00195FD4 /* SLDiscoveryViewController.m */; };
+		9A1634DF227EF28700195FD4 /* CardPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634D9227EF28700195FD4 /* CardPage.m */; };
+		9A1634E0227EF28700195FD4 /* SLNewBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634DA227EF28700195FD4 /* SLNewBookCell.m */; };
+		9A1634E1227EF28700195FD4 /* CollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634DD227EF28700195FD4 /* CollectionFlowLayout.m */; };
+		9A1634E4227F386800195FD4 /* SLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634E3227F386800195FD4 /* SLSettingViewController.m */; };
+		9A1634E8227F3EE600195FD4 /* SLSettingCellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634E7227F3EE600195FD4 /* SLSettingCellInfo.m */; };
+		9A1634F0227F43B300195FD4 /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634EB227F43B300195FD4 /* SIAlertView.m */; };
+		9A1634F1227F43B300195FD4 /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9A1634EC227F43B300195FD4 /* SIAlertView.bundle */; };
+		9A1634F2227F43B300195FD4 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 9A1634EE227F43B300195FD4 /* LICENSE.md */; };
+		9A1634F3227F43B300195FD4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9A1634EF227F43B300195FD4 /* README.md */; };
+		9A1634F6227F4D1900195FD4 /* SLUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634F5227F4D1900195FD4 /* SLUserDefault.m */; };
+		9A1634F922801C2800195FD4 /* SLCacheKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634F822801C2800195FD4 /* SLCacheKey.m */; };
+		9A1634FC228048A700195FD4 /* SLAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634FB228048A700195FD4 /* SLAboutUsViewController.m */; };
 		9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53222296F4C00E11C2B /* AppDelegate.m */; };
 		9A23A53622296F4C00E11C2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53522296F4C00E11C2B /* ViewController.m */; };
 		9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53A22296F4D00E11C2B /* Assets.xcassets */; };
@@ -124,6 +138,31 @@
 		9A1634C5227EA7F700195FD4 /* SLCollectedBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCollectedBookViewController.m; sourceTree = "<group>"; };
 		9A1634C7227EA9FB00195FD4 /* SLCollectBookCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCollectBookCellViewModel.h; sourceTree = "<group>"; };
 		9A1634C8227EA9FB00195FD4 /* SLCollectBookCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCollectBookCellViewModel.m; sourceTree = "<group>"; };
+		9A1634CE227EE7F200195FD4 /* SLDiscoveryDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDiscoveryDataController.h; sourceTree = "<group>"; };
+		9A1634CF227EE7F200195FD4 /* SLDiscoveryDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDiscoveryDataController.m; sourceTree = "<group>"; };
+		9A1634D6227EF16D00195FD4 /* SLDiscoveryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDiscoveryViewController.h; sourceTree = "<group>"; };
+		9A1634D7227EF16D00195FD4 /* SLDiscoveryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDiscoveryViewController.m; sourceTree = "<group>"; };
+		9A1634D9227EF28700195FD4 /* CardPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardPage.m; sourceTree = "<group>"; };
+		9A1634DA227EF28700195FD4 /* SLNewBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLNewBookCell.m; sourceTree = "<group>"; };
+		9A1634DB227EF28700195FD4 /* CardPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardPage.h; sourceTree = "<group>"; };
+		9A1634DC227EF28700195FD4 /* CollectionFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionFlowLayout.h; sourceTree = "<group>"; };
+		9A1634DD227EF28700195FD4 /* CollectionFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionFlowLayout.m; sourceTree = "<group>"; };
+		9A1634DE227EF28700195FD4 /* SLNewBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLNewBookCell.h; sourceTree = "<group>"; };
+		9A1634E2227F386800195FD4 /* SLSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSettingViewController.h; sourceTree = "<group>"; };
+		9A1634E3227F386800195FD4 /* SLSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSettingViewController.m; sourceTree = "<group>"; };
+		9A1634E6227F3EE600195FD4 /* SLSettingCellInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSettingCellInfo.h; sourceTree = "<group>"; };
+		9A1634E7227F3EE600195FD4 /* SLSettingCellInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSettingCellInfo.m; sourceTree = "<group>"; };
+		9A1634EB227F43B300195FD4 /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAlertView.m; sourceTree = "<group>"; };
+		9A1634EC227F43B300195FD4 /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SIAlertView.bundle; sourceTree = "<group>"; };
+		9A1634ED227F43B300195FD4 /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAlertView.h; sourceTree = "<group>"; };
+		9A1634EE227F43B300195FD4 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		9A1634EF227F43B300195FD4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9A1634F4227F4D1900195FD4 /* SLUserDefault.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLUserDefault.h; sourceTree = "<group>"; };
+		9A1634F5227F4D1900195FD4 /* SLUserDefault.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLUserDefault.m; sourceTree = "<group>"; };
+		9A1634F722801C2800195FD4 /* SLCacheKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCacheKey.h; sourceTree = "<group>"; };
+		9A1634F822801C2800195FD4 /* SLCacheKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCacheKey.m; sourceTree = "<group>"; };
+		9A1634FA228048A700195FD4 /* SLAboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAboutUsViewController.h; sourceTree = "<group>"; };
+		9A1634FB228048A700195FD4 /* SLAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAboutUsViewController.m; sourceTree = "<group>"; };
 		9A23A52E22296F4C00E11C2B /* StuLibraryAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuLibraryAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A53122296F4C00E11C2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A23A53222296F4C00E11C2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -287,6 +326,9 @@
 		9A15D0FC2259FC9A0033025B /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
+				9A1634CC227EE38D00195FD4 /* Manager */,
+				9A1634CB227EE38700195FD4 /* ViewController */,
+				9A1634CA227EE38000195FD4 /* View */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -428,6 +470,66 @@
 				9A1634BF227E1B9900195FD4 /* SLCollectedBook.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9A1634CA227EE38000195FD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634DB227EF28700195FD4 /* CardPage.h */,
+				9A1634D9227EF28700195FD4 /* CardPage.m */,
+				9A1634DC227EF28700195FD4 /* CollectionFlowLayout.h */,
+				9A1634DD227EF28700195FD4 /* CollectionFlowLayout.m */,
+				9A1634DE227EF28700195FD4 /* SLNewBookCell.h */,
+				9A1634DA227EF28700195FD4 /* SLNewBookCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A1634CB227EE38700195FD4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634D6227EF16D00195FD4 /* SLDiscoveryViewController.h */,
+				9A1634D7227EF16D00195FD4 /* SLDiscoveryViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9A1634CC227EE38D00195FD4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634CE227EE7F200195FD4 /* SLDiscoveryDataController.h */,
+				9A1634CF227EE7F200195FD4 /* SLDiscoveryDataController.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9A1634E5227F3ECF00195FD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634E6227F3EE600195FD4 /* SLSettingCellInfo.h */,
+				9A1634E7227F3EE600195FD4 /* SLSettingCellInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9A1634E9227F43B300195FD4 /* SIAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634EA227F43B300195FD4 /* SIAlertView */,
+				9A1634EE227F43B300195FD4 /* LICENSE.md */,
+				9A1634EF227F43B300195FD4 /* README.md */,
+			);
+			path = SIAlertView;
+			sourceTree = "<group>";
+		};
+		9A1634EA227F43B300195FD4 /* SIAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				9A1634EB227F43B300195FD4 /* SIAlertView.m */,
+				9A1634EC227F43B300195FD4 /* SIAlertView.bundle */,
+				9A1634ED227F43B300195FD4 /* SIAlertView.h */,
+			);
+			path = SIAlertView;
 			sourceTree = "<group>";
 		};
 		9A23A52522296F4C00E11C2B = {
@@ -684,6 +786,10 @@
 			children = (
 				9A7DFD8222621F4200D97351 /* SLProfileViewController.h */,
 				9A7DFD8322621F4200D97351 /* SLProfileViewController.m */,
+				9A1634E2227F386800195FD4 /* SLSettingViewController.h */,
+				9A1634E3227F386800195FD4 /* SLSettingViewController.m */,
+				9A1634FA228048A700195FD4 /* SLAboutUsViewController.h */,
+				9A1634FB228048A700195FD4 /* SLAboutUsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -700,6 +806,7 @@
 		9A7DFD8722621F5E00D97351 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				9A1634E5227F3ECF00195FD4 /* Model */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -787,6 +894,7 @@
 		9A8B3030223817A100A46CFA /* SLUIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				9A1634E9227F43B300195FD4 /* SIAlertView */,
 				9A16349E227C68D100195FD4 /* SLScrollView */,
 				9A7C93AB223F825F005B2894 /* SLProgressHUD */,
 				9A7C93A5223F4ED8005B2894 /* SCManualLayout */,
@@ -802,6 +910,10 @@
 				9A7C939D223E81B3005B2894 /* SLCacheManager.m */,
 				9A7C939F223E8382005B2894 /* SLMemoryCahce.h */,
 				9A7C93A0223E8382005B2894 /* SLMemoryCahce.m */,
+				9A1634F4227F4D1900195FD4 /* SLUserDefault.h */,
+				9A1634F5227F4D1900195FD4 /* SLUserDefault.m */,
+				9A1634F722801C2800195FD4 /* SLCacheKey.h */,
+				9A1634F822801C2800195FD4 /* SLCacheKey.m */,
 			);
 			path = SLCache;
 			sourceTree = "<group>";
@@ -950,7 +1062,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1634F3227F43B300195FD4 /* README.md in Resources */,
+				9A1634F2227F43B300195FD4 /* LICENSE.md in Resources */,
 				9A23A53E22296F4D00E11C2B /* LaunchScreen.storyboard in Resources */,
+				9A1634F1227F43B300195FD4 /* SIAlertView.bundle in Resources */,
 				9A15D0F52259E9390033025B /* book.gif in Resources */,
 				9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */,
 			);
@@ -1077,19 +1192,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A474DEF2265C5610080B6E2 /* NSString+SLBookParser.m in Sources */,
+				9A1634D0227EE7F200195FD4 /* SLDiscoveryDataController.m in Sources */,
 				9A15D0F82259F0CC0033025B /* SLMainSearchNotification.m in Sources */,
 				9A1634C6227EA7F700195FD4 /* SLCollectedBookViewController.m in Sources */,
+				9A1634DF227EF28700195FD4 /* CardPage.m in Sources */,
 				9A7DFD942264C36D00D97351 /* SLProfileToolView.m in Sources */,
+				9A1634E4227F386800195FD4 /* SLSettingViewController.m in Sources */,
+				9A1634E0227EF28700195FD4 /* SLNewBookCell.m in Sources */,
 				9A474DF8226725620080B6E2 /* SLLibraryScoreViewController.m in Sources */,
 				9A7DFD812260980B00D97351 /* SLNavigationController.m in Sources */,
 				9A1634C9227EA9FB00195FD4 /* SLCollectBookCellViewModel.m in Sources */,
 				9A1634C0227E1B9900195FD4 /* SLCollectedBook.m in Sources */,
 				9A1634B1227DD97F00195FD4 /* SLLoanBookCellViewModel.m in Sources */,
+				9A1634E8227F3EE600195FD4 /* SLSettingCellInfo.m in Sources */,
+				9A1634D8227EF16D00195FD4 /* SLDiscoveryViewController.m in Sources */,
+				9A1634F0227F43B300195FD4 /* SIAlertView.m in Sources */,
 				9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */,
 				9A8B30392238199700A46CFA /* UIColor+hexColor.m in Sources */,
 				9A7C93B622411CED005B2894 /* SLMainSearchViewController.m in Sources */,
 				9A7C93A4223E8D79005B2894 /* SLStyleManager+Theme.m in Sources */,
 				9A474DE02265AFA80080B6E2 /* SLInfoSegmentControl.m in Sources */,
+				9A1634FC228048A700195FD4 /* SLAboutUsViewController.m in Sources */,
 				9A362397224261AF001574A4 /* SLBook.m in Sources */,
 				9A7DFD7E2260895D00D97351 /* UINavigationController+SLPush.m in Sources */,
 				9A474DF5226711810080B6E2 /* SLDetailCells.m in Sources */,
@@ -1114,9 +1237,11 @@
 				9A1634B8227DE8F200195FD4 /* SLHistoryLoanBookViewController.m in Sources */,
 				9A474DDA2265AD360080B6E2 /* SLBookDetailInfoView.m in Sources */,
 				9A474E01226826530080B6E2 /* SLBookDetailModel.m in Sources */,
+				9A1634F922801C2800195FD4 /* SLCacheKey.m in Sources */,
 				9A474DFE226824D10080B6E2 /* SLBookDetailDataController.m in Sources */,
 				9A7C939E223E81B3005B2894 /* SLCacheManager.m in Sources */,
 				9A8B302C223815C400A46CFA /* SLLoginInputView.m in Sources */,
+				9A1634E1227EF28700195FD4 /* CollectionFlowLayout.m in Sources */,
 				9A1634C3227E1CB100195FD4 /* SLCollectBookDataController.m in Sources */,
 				9A7DFD8E22635E7200D97351 /* SLLoginDataController.m in Sources */,
 				9A23A54122296F4D00E11C2B /* main.m in Sources */,
@@ -1129,6 +1254,7 @@
 				9A3623932242459E001574A4 /* SLSearchBookCellViewModel.m in Sources */,
 				9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */,
 				9A1634AB227DD73F00195FD4 /* SLLoanBookDataController.m in Sources */,
+				9A1634F6227F4D1900195FD4 /* SLUserDefault.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

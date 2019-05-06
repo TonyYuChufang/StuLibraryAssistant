@@ -7,18 +7,18 @@
 //
 
 #import "SLLoginDataController.h"
+#import "SLMainSearchDataController.h"
 #import "SLNetwokrManager.h"
 #import <IGHTMLQuery/IGHTMLQuery.h>
 #import <AFNetworking/AFNetworking.h>
 #import <YYModel/YYModel.h>
 #import "SLCacheManager.h"
+#import "SLUserDefault.h"
 
 static NSString *kOpacTarget = @"aHR0cDovL29wYWMubGliLnN0dS5lZHUuY24vc3NvTG9naW4ucGhw";
 static NSString *kOpacService = @"aHR0cDovL29wYWMubGliLnN0dS5lZHUuY24vc3NvUmVkaXJlY3QucGhwP3VybD1vcGFjLnBocA==";
-static NSString *kOpacTokenKey = @"kOpacTokenKey";
-static NSString *kUserInfoKey = @"kUserInfoKey";
-static NSString * const kOpacCookieKey = @"kOpacCookieKey";
-N_Def(kLoginSuccessNotification);
+N_Def(kLoginCompleteNotification);
+N_Def(kLogoutCompleteNotification);
 N_Def(kQueryUserInfoSuccessNotification);
 
 @interface SLLoginDataController ()
@@ -49,7 +49,7 @@ N_Def(kQueryUserInfoSuccessNotification);
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.userInfo = [[SLCacheManager sharedObject] objectForKey:kUserInfoKey];
+        self.userInfo = [SLUserModel yy_modelWithJSON:[[SLUserDefault sharedObject] objectForKey:kUserInfoKey]];
     }
     
     return self;
@@ -86,6 +86,7 @@ N_Def(kQueryUserInfoSuccessNotification);
 
 - (void)loginWithUserName:(NSString *)username
                  password:(NSString *)password
+                completed:(SLDataQueryCompleteBlock)block
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -95,16 +96,28 @@ N_Def(kQueryUserInfoSuccessNotification);
     [param setObject:username forKey:@"username"];
     [param setObject:password forKey:@"password"];
     [manager POST:@"https://sso.stu.edu.cn/login?service=http%3a%2f%2fopac.lib.stu.edu.cn%2fssoRedirect.php%3furl%3dopac.php" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        if ([result containsString:@"The credentials you provided cannot be determined to be authentic"]) {
+            if (block) {
+                NSError *error = [NSError errorWithDomain:@"用户名或密码错误" code:401 userInfo:nil];
+                block(@"用户名或密码错误",error);
+            }
+        }
+        
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         NSDictionary *allHeaders = response.allHeaderFields;
         self.sessionId = [allHeaders objectForKey:@"Set-Cookie"];
-        [[SLCacheManager sharedObject] setObject:self.sessionId forKey:kOpacCookieKey];
+        
         if (self.sessionId == nil) {
             return ;
         }
-        [self queryOpacKey];
+        [[SLUserDefault sharedObject] setObject:self.sessionId forKey:kOpacCookieKey];
+        [self queryOpacKeyWithBlock:block];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
+        if (block) {
+            block(@"请求失败",error);
+        }
     }];
     
     [manager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest * _Nullable(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, NSURLResponse * _Nonnull response, NSURLRequest * _Nonnull request) {
@@ -119,7 +132,6 @@ N_Def(kQueryUserInfoSuccessNotification);
 
 - (void)queryProfieInfo
 {
-//    NSString *sessionID = [self.sessionId stringByReplacingOccurrencesOfString:@"path=/," withString:@"path=/;"];
     [[SLNetwokrManager sharedObject] setRequestHeaderWithDict:@{@"Cookie":self.sessionId}];
     
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:@{@"SERVICE_ID":@[@(0),@(1),@(0)],@"tid":@"0"} completeBlock:^(id responseObject, NSError *error) {
@@ -129,7 +141,7 @@ N_Def(kQueryUserInfoSuccessNotification);
                 return ;
             }
             self.userInfo = [SLUserModel yy_modelWithJSON:jsonData[@"data"]];
-            [[SLCacheManager sharedObject] setObject:self.userInfo forKey:kUserInfoKey];
+            [[SLUserDefault sharedObject] setObject:jsonData[@"data"] forKey:kUserInfoKey];
             [[NSNotificationCenter defaultCenter] postNotificationName:kQueryUserInfoSuccessNotification object:nil];
         } else {
             NSLog(@"%@",error);
@@ -137,25 +149,34 @@ N_Def(kQueryUserInfoSuccessNotification);
     }];
 }
 
-- (void)queryOpacKey
+- (void)queryOpacKeyWithBlock:(SLDataQueryCompleteBlock)block
 {
     [[SLNetwokrManager sharedObject] setRequestHeaderWithDict:@{@"Cookie":self.sessionId}];
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:@{@"SERVICE_ID":@[@(0),@(0),@(10)],@"tid":@"0"} completeBlock:^(id responseObject, NSError *error) {
         if (error == nil) {
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            if (!jsonData[@"success"]) {
-                return ;
-            }
             NSLog(@"%@",jsonData);
-            self.opacKey = jsonData[@"data"];
-            [self queryOpacToken];
+            if (!jsonData[@"success"]) {
+                error = [NSError errorWithDomain:@"服务器出了点问题" code:500 userInfo:nil];
+            } else {
+                self.opacKey = jsonData[@"data"];
+                [self queryOpacTokenWithBlock:block];
+            }
+            if (block) {
+                if (error) {
+                    block(error.domain,error);
+                }
+            }
         } else {
+            if (block) {
+                block(@"请求失败",error);
+            }
             NSLog(@"%@",error);
         }
     }];
 }
 
-- (void)queryOpacToken
+- (void)queryOpacTokenWithBlock:(SLDataQueryCompleteBlock)block
 {
     [[SLNetwokrManager sharedObject] setRequestHeaderWithDict:@{@"Cookie":self.sessionId}];
     NSRange range = [self.ticketUrl rangeOfString:@"ticket="];
@@ -168,15 +189,17 @@ N_Def(kQueryUserInfoSuccessNotification);
             NSRange urlrange = [token rangeOfString:@"&url="];
             token = [token substringToIndex:urlrange.location];
             self.opacToken = [token stringByRemovingPercentEncoding];
-            [self queryMemberCode];
-            NSLog(@"%@",token);
+            [self queryMemberCodeWithBlock:block];
         } else {
+            if (block) {
+                block(@"请求失败",error);
+            }
             NSLog(@"%@",error);
         }
     }];
 }
 
-- (void)queryMemberCode
+- (void)queryMemberCodeWithBlock:(SLDataQueryCompleteBlock)block
 {
     [[SLNetwokrManager sharedObject] setRequestHeaderWithDict:@{@"Cookie":self.sessionId}];
     NSDictionary *param = @{
@@ -187,10 +210,18 @@ N_Def(kQueryUserInfoSuccessNotification);
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeTaskBlock:^(id responseObject, NSError *error, NSURLSessionDataTask *task) {
         if (error == nil) {
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            NSLog(@"%@",jsonData);
-            [self queryProfieInfo];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessNotification object:nil];
+            if (!jsonData[@"success"]) {
+                error = [NSError errorWithDomain:@"服务器出了点问题" code:500 userInfo:nil];
+            } else {
+                [self queryProfieInfo];
+            }
+            if (block) {
+                block(error.domain,error);
+            }
         } else {
+            if (block) {
+                block(@"请求失败",error);
+            }
             NSLog(@"%@",error);
         }
     }];
@@ -234,28 +265,107 @@ N_Def(kQueryUserInfoSuccessNotification);
 
 - (void)queryLoanBookInfoWithCompleteBlock:(SLDataQueryCompleteBlock)block
 {
-    NSDictionary *param = @{
-                            @"SERVICE_ID":@[@(13),@(10),@(1000)],
-                            @"function":@"readercenter",
-                            @"loanStatus":@[@"lent"],
-                            @"offset":@(0),
-                            @"rows":@(20)
-                            };
-    [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+    [self checkIfNeedLogin:^(id data, NSError *error) {
         if (error == nil) {
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            NSLog(@"%@",jsonData);
-            self.userInfo.bookList = jsonData[@"data"][@"list"];
-            self.userInfo.totalBookCount = [jsonData[@"data"][@"totalCount"] integerValue];
-            [[SLCacheManager sharedObject] setObject:self.userInfo forKey:kUserInfoKey];
-            if (block) {
-                block(self.userInfo,nil);
-            }
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(10),@(1000)],
+                                    @"function":@"readercenter",
+                                    @"loanStatus":@[@"lent"],
+                                    @"offset":@(0),
+                                    @"rows":@(20)
+                                    };
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    NSLog(@"%@",jsonData);
+                    self.userInfo.bookList = jsonData[@"data"][@"list"];
+                    self.userInfo.totalBookCount = [jsonData[@"data"][@"totalCount"] integerValue];
+                    [[SLUserDefault sharedObject] setObject:[self.userInfo yy_modelToJSONObject] forKey:kUserInfoKey];
+                    if (block) {
+                        block(self.userInfo,nil);
+                    }
+                } else {
+                    NSLog(@"%@",error);
+                    if (block) {
+                        block(nil,error);
+                    }
+                }
+            }];
         } else {
-            NSLog(@"%@",error);
             if (block) {
                 block(nil,error);
             }
+            NSLog(@"%@",error);
+        }
+    }];
+   
+}
+
+- (void)logoutWithBlock:(SLDataQueryCompleteBlock)block
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"text/html",@"application/json",@"text/xml",@"application/xml", nil];
+
+    [manager GET:@"https://sso.stu.edu.cn/login?service=http%3a%2f%2fopac.lib.stu.edu.cn%2fssoRedirect.php%3furl%3dopac.php" parameters:@{@"service":@"http://opac.lib.stu.edu.cn/opac.php"} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:@{@"SERVICE_ID":@[@0,@0,@(-1)],@"function":@"common",@"org_group_id":@"STULIB"} completeBlock:^(id responseObject, NSError *error) {
+            [[SLUserDefault sharedObject] removeObejctForKey:kUsernameKey];
+            [[SLUserDefault sharedObject] removeObejctForKey:kPasswordKey];
+            [[SLUserDefault sharedObject] removeObejctForKey:kUserInfoKey];
+            [[SLUserDefault sharedObject] removeObejctForKey:kOpacCookieKey];
+            self.userInfo = nil;
+            [[SLMainSearchDataController sharedObject] requestOpacSessionIDWithBlock:^(id data, NSError *error) {
+                if (block) {
+                    block(data,error);
+                }
+            }];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutCompleteNotification object:nil];
+        }];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+    }];
+    
+    [manager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest * _Nullable(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, NSURLResponse * _Nonnull response, NSURLRequest * _Nonnull request) {
+        NSDictionary *dict = [(NSHTTPURLResponse *)response allHeaderFields];
+        NSMutableURLRequest *newReq = [[NSMutableURLRequest alloc] initWithURL:request.URL];
+        [newReq setValue:dict[@"Set-Cookie"] forHTTPHeaderField:@"Cookie"];
+        return newReq;
+    }];
+
+}
+
+- (void)loginWithLocalUserComplete:(SLDataQueryCompleteBlock)block
+{
+    NSString *username = [[SLUserDefault sharedObject] objectForKey:kUsernameKey];
+    NSString *password = [[SLUserDefault sharedObject] objectForKey:kPasswordKey];
+    if (username && password) {
+        [self loginWithUserName:username password:password completed:block];
+    }
+}
+
+- (void)checkIfNeedLogin:(SLDataQueryCompleteBlock)blcok
+{
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
+        if ([data boolValue]) {
+            if (blcok) {
+                blcok(data,error);
+            }
+        } else {
+            [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
+                if (error == nil) {
+                    [[SLLoginDataController sharedObject] loginWithLocalUserComplete:^(id data, NSError *error) {
+                        if (blcok) {
+                            blcok(data,error);
+                        }
+                    }];
+                } else {
+                    if (blcok) {
+                        blcok(data,error);
+                    }
+                }
+            }];
         }
     }];
 }

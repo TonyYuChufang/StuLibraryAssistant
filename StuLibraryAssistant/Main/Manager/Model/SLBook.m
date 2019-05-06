@@ -19,8 +19,8 @@
     book.AUTHOR = loanBook.infoAuthor;
     book.SCOREPERSONCOUNT = loanBook.scorePersonCount;
     book.SCORE = loanBook.averageScore;
-    book.LENDABLE = @"1";
-    book.COLLECTION = @"1";
+    book.LENDABLE = 1;
+    book.COLLECTION = 1;
     book.COVER = loanBook.infoCover;
     book.PUBLISHER = loanBook.infoPublisher;
     book.PUBDATE = loanBook.infoPubDate;
@@ -36,8 +36,8 @@
     book.AUTHOR = collectBook.infoAuthor;
     book.SCOREPERSONCOUNT = collectBook.scorePersonCount;
     book.SCORE = collectBook.averageScore;
-    book.LENDABLE = [NSString stringWithFormat:@"%lld",collectBook.canLoan];
-    book.COLLECTION = [NSString stringWithFormat:@"%lld",collectBook.collectionCnt];
+    book.LENDABLE = collectBook.canLoan;
+    book.COLLECTION = collectBook.collectionCnt;
     book.COVER = collectBook.infoCover;
     book.PUBLISHER = collectBook.infoPublisher;
     book.PUBDATE = collectBook.infoPubdate;

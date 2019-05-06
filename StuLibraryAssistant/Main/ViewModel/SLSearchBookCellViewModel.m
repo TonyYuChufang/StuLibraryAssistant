@@ -19,10 +19,22 @@
     viewModel.isCollected = book.COLLECTED ;
     viewModel.bookName = [NSString praseBookTitle:book.TITLE];
     viewModel.authorName = [NSString praseAuthor:book.AUTHOR];
-    viewModel.bookCount = [NSString stringWithFormat:@"馆藏 %@ / 可借 %@",book.COLLECTION,book.LENDABLE];
+    viewModel.publishDate = book.PUBDATE;
+    viewModel.bookCount = [NSString stringWithFormat:@"馆藏 %lld / 可借 %lld",book.COLLECTION,book.LENDABLE];
     if (book.COVER) {
         viewModel.coverImageUrl = [NSString stringWithFormat:@"http://opac.lib.stu.edu.cn/jthq?fid=%@",book.COVER];
     }
     return viewModel;
+}
+
++ (NSArray *)viewModelsWithBooks:(NSArray *)books
+{
+    NSMutableArray *viewModels = [[NSMutableArray alloc] initWithCapacity:2];
+    for (SLBookListItem *book in books) {
+        SLSearchBookCellViewModel *viewModel = [SLSearchBookCellViewModel bookCellViewModelWithBook:book];
+        [viewModels addObject:viewModel];
+    }
+    
+    return viewModels;
 }
 @end

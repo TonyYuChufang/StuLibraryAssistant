@@ -8,6 +8,7 @@
 
 #import "SLMainSearchDataController.h"
 #import "SLCacheManager.h"
+#import "SLUserDefault.h"
 #import <AFNetworking/AFNetworking.h>
 #import <YYModel/YYModel.h>
 #import "SLNetwokrManager.h"
@@ -15,7 +16,6 @@
 #import "SLMainSearchNotification.h"
 static NSString * const opac_main_url = @"http://opac.lib.stu.edu.cn/opac.php";
 static NSString * const opac_query_url = @"http://opac.lib.stu.edu.cn/libinterview";
-static NSString * const kOpacCookieKey = @"kOpacCookieKey";
 
 @interface SLMainSearchDataController ()
 
@@ -43,7 +43,7 @@ static NSString * const kOpacCookieKey = @"kOpacCookieKey";
 - (instancetype)init
 {
     if (self = [super init]) {
-        [self requestOpacSessionID];
+        [self requestOpacSessionIDWithBlock:nil];
         _bookItemList = [[NSMutableArray alloc] init];
         _currentPage = 0;
     }
@@ -51,7 +51,7 @@ static NSString * const kOpacCookieKey = @"kOpacCookieKey";
     return self;
 }
 
-- (void)requestOpacSessionID
+- (void)requestOpacSessionIDWithBlock:(SLDataQueryCompleteBlock)block
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -61,10 +61,17 @@ static NSString * const kOpacCookieKey = @"kOpacCookieKey";
     [manager GET:opac_main_url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         NSDictionary *allHeaders = response.allHeaderFields;
-        [[SLCacheManager sharedObject] setObject:allHeaders[@"Set-Cookie"] forKey:kOpacCookieKey];
+        NSString *cookie = allHeaders[@"Set-Cookie"];
+        [[SLUserDefault sharedObject] setObject:cookie forKey:kOpacCookieKey];
         NSLog(@"%@",allHeaders[@"Set-Cookie"]);
         [[NSNotificationCenter defaultCenter] postNotificationName:kOpaceGetCookieNotification object:nil];
+        if (block) {
+            block(allHeaders[@"Set-Cookie"],nil);
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (block) {
+            block(nil,error);
+        }
         NSLog(@"%@",error);
     }];
 }
@@ -75,7 +82,7 @@ static NSString * const kOpacCookieKey = @"kOpacCookieKey";
                shouldIncrement:(BOOL)shouldIncrement
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    NSString *cookies = [NSString stringWithFormat:@"%@; org_group_id=STULIB",[[SLCacheManager sharedObject] objectForKey:kOpacCookieKey]];
+    NSString *cookies = [NSString stringWithFormat:@"%@; org_group_id=STULIB",[[SLUserDefault sharedObject] objectForKey:kOpacCookieKey]];
     [[SLNetwokrManager sharedObject] setRequestHeaderWithDict:@{@"Cookie":cookies}];
     
     NSDictionary *dict = @{

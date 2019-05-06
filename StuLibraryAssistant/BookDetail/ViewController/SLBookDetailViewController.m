@@ -10,6 +10,7 @@
 #import "SLLibraryCollectedViewController.h"
 #import "SLLibraryScoreViewController.h"
 #import "SLLibraryDetailInfoViewController.h"
+#import "SLLoginViewController.h"
 #import "SLBookDetailDataController.h"
 #import "SLLoginHeaderView.h"
 #import "SLBookDetailInfoView.h"
@@ -19,6 +20,7 @@
 #import "SLStyleManager+Theme.h"
 #import "SLBookDetailViewModel.h"
 #import "SLBookDetailDataController.h"
+#import "SLLoginDataController.h"
 
 typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     SLDetailSegmentControlSelectIndexCollected = 0,
@@ -170,12 +172,15 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     
     SLMenuItemInfo *collectedItem = [[SLMenuItemInfo alloc] init];
     collectedItem.isSelected = YES;
-    collectedItem.title = @"收藏";
+    collectedItem.title = weakSelf.bookInfo.COLLECTED ? @"取消收藏" : @"收藏";
     collectedItem.menuItemSelectedHandler = ^{
+        if ([weakSelf shouldShowLoginVC]) {
+            return;
+        }
         if (weakSelf.bookInfo.COLLECTED) {
             [[SLBookDetailDataController sharedObject] cancelCollectBook:weakSelf.bookInfo.CTRLNO complete:^(id data, NSError *error) {
                 if (error == nil) {
-                    weakSelf.bookInfo.COLLECTED = @"false";
+                    weakSelf.bookInfo.COLLECTED = NO;
                     SLMenuItemInfo *toolCollectItem = [weakSelf.toolItemInfos objectAtIndex:0];
                     toolCollectItem.title = @"收藏";
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -191,7 +196,7 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
         } else {
             [[SLBookDetailDataController sharedObject] collectBook:weakSelf.bookInfo.CTRLNO complete:^(id data, NSError *error) {
                 if (error == nil) {
-                    weakSelf.bookInfo.COLLECTED = @"true";
+                    weakSelf.bookInfo.COLLECTED = YES;
                     SLMenuItemInfo *toolCollectItem = [weakSelf.toolItemInfos objectAtIndex:0];
                     toolCollectItem.title = @"取消收藏";
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -212,7 +217,7 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     bookingItem.isSelected = YES;
     bookingItem.title = @"预约";
     bookingItem.menuItemSelectedHandler = ^{
-        
+        [SLProgressHUD showHUDWithText:@"暂时无法预约" inView:weakSelf.view delayTime:2];
     };
     [self.toolItemInfos addObject:bookingItem];
     self.toolView.controlItems = self.toolItemInfos;
@@ -283,6 +288,17 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     [self.pageScrollView addSubview:self.detailInfoVC.view];
 }
 
+- (BOOL)shouldShowLoginVC
+{
+    [self.navigationController setDefaultNavType];
+    if ([[SLLoginDataController sharedObject] isLogined]) {
+        return NO;
+    } else {
+        SLLoginViewController *loginVC = [[SLLoginViewController alloc] init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+    return YES;
+}
 #pragma mark - Notification
 - (void)onReceiveScoreInfo:(NSNotification *)notification
 {
@@ -302,6 +318,7 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     collectItem.title = detailVM.bookCollectedTitle;
     scoreItem.title = detailVM.bookScoreTitle;
     toolCollectItem.title = detailVM.isCollected ? @"取消收藏" : @"收藏";
+    self.bookInfo.COLLECTED = detailVM.isCollected;
     [self.segmentControl updateSegmentControl];
     [self.toolView updateToolView];
 }
