@@ -341,6 +341,9 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
 #pragma mark - Action
 - (void)booking
 {
+    if ([self shouldShowLoginVC]) {
+        return;
+    }
     BlockWeakSelf(weakSelf, self);
     [KVNProgress showWithStatus:@"正在加载..." onView:self.view];
     [[SLBookDetailDataController sharedObject] bookingBook:self.bookInfo.CTRLNO completed:^(id data, NSError *error) {
@@ -356,6 +359,9 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
 
 - (void)cancelBooking
 {
+    if ([self shouldShowLoginVC]) {
+        return;
+    }
     BlockWeakSelf(weakSelf, self);
     [KVNProgress showWithStatus:@"正在加载..." onView:self.view];
     [[SLBookDetailDataController sharedObject] cancelBooking:[SLBookDetailDataController sharedObject].bookingInfo.resvNo completed:^(id data, NSError *error) {
