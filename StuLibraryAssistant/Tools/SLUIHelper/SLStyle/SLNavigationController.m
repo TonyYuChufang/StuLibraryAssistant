@@ -7,7 +7,7 @@
 //
 
 #import "SLNavigationController.h"
-
+#import <WebKit/WebKit.h>
 @interface SLNavigationController ()<UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic)UIPanGestureRecognizer *panGestureRecognizer;
@@ -62,7 +62,13 @@
     self.panGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.panGestureRecognizer];
 }
-
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if ([otherGestureRecognizer.view isKindOfClass:NSClassFromString(@"WKContentView")]) {
+        return YES;
+    }
+    return NO;
+}
 #pragma mark- public method
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     //截图
