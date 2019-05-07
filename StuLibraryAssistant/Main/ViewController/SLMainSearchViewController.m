@@ -9,6 +9,7 @@
 #import "SLMainSearchViewController.h"
 #import "SLMenuViewController.h"
 #import "SLBookDetailViewController.h"
+#import "SLVirtualLibraryViewController.h"
 #import "SLLoginViewController.h"
 #import "SLMainSearchDataController.h"
 #import "SLBookDetailDataController.h"
@@ -110,7 +111,10 @@ static int64_t kDefaultSearchRows = 20;
     SLHeaderBarItemInfo *searchTypeItem = [[SLHeaderBarItemInfo alloc] init];
     searchTypeItem.itemImageName = @"icon_navigationBar_searchType";
     searchTypeItem.barItemClickedHandler = ^{
-        [SLProgressHUD showHUDWithText:@"即将开放" inView:weakSelf.view delayTime:2];
+//        [SLProgressHUD showHUDWithText:@"即将开放" inView:weakSelf.view delayTime:2];
+        SLVirtualLibraryViewController *virtualVC = [[SLVirtualLibraryViewController alloc] init];
+        [weakSelf.navigationController setDefaultNavType];
+        [weakSelf.navigationController pushViewController:virtualVC animated:YES];
     };
     [self.headerView.rightBarItems addObject:searchTypeItem];
 }

@@ -12,6 +12,8 @@
 #import <YYModel/YYModel.h>
 #import "SLNetwokrManager.h"
 #import "SLUserDefault.h"
+#import "SLBookingInfo.h"
+
 N_Def(kQueryBookDetailCompleteNotification);
 N_Def(kQueryBookCollectedInfoCompleteNotification);
 N_Def(kQueryBookScoreInfoCompleteNotification);
@@ -348,9 +350,150 @@ N_Def(kCancelCollectBookCompleteNotification);
             if (block) {
                 block(@(NO),error);
             }
+            NSLog(@"%@",error);
         }
     }];
     
+}
+
+- (void)bookingBook:(NSString *)ctrlNo
+          completed:(SLDataQueryCompleteBlock)block
+{
+    if (ctrlNo == nil) {
+        return;
+    }
+    BlockWeakSelf(weakSelf, self);
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
+        if (error == nil) {
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(10),@(1020)],
+                                    @"ctrlNo":ctrlNo,
+                                    @"libIds":@[weakSelf.bookingInfo.libIds],
+                                    @"bookType":weakSelf.bookingInfo.bookType,
+                                    @"volume":weakSelf.bookingInfo.infoVolume,
+                                    @"function":@"opac",
+                                    };
+            
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    if ([json[@"success"] boolValue]) {
+                        if (block) {
+                            block(json[@"data"],nil);
+                        }
+                    } else {
+                        error = [NSError errorWithDomain:@"服务器出了点问题" code:500 userInfo:nil];
+                        if (block) {
+                            block(@(NO),error);
+                        }
+                    }
+                } else {
+                    if (block) {
+                        block(@(NO),error);
+                    }
+                    NSLog(@"%@",error);
+                }
+            }];
+        } else {
+            if (block) {
+                block(@(NO),error);
+            }
+            NSLog(@"%@",error);
+        }
+    }];
+}
+
+- (void)cancelBooking:(NSString *)reserveNo
+            completed:(SLDataQueryCompleteBlock)block
+{
+    if (reserveNo == nil) {
+        return;
+    }
+    BlockWeakSelf(weakSelf, self);
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
+        if (error == nil) {
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(10),@(1030)],
+                                    @"resvNo":reserveNo,
+                                    @"libIds":@[weakSelf.bookingInfo.libIds],
+                                    @"function":@"opac"
+                                    };
+            
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    if ([json[@"success"] boolValue]) {
+                        if (block) {
+                            block(json[@"data"],nil);
+                        }
+                    } else {
+                        error = [NSError errorWithDomain:@"服务器出了点问题" code:500 userInfo:nil];
+                        if (block) {
+                            block(@(NO),error);
+                        }
+                    }
+                } else {
+                    if (block) {
+                        block(@(NO),error);
+                    }
+                    NSLog(@"%@",error);
+                }
+            }];
+        } else {
+            if (block) {
+                block(@(NO),error);
+            }
+            NSLog(@"%@",error);
+        }
+    }];
+}
+
+- (void)queryBookingInfo:(NSString *)ctrlNo
+               completed:(SLDataQueryCompleteBlock)block
+{
+    if (ctrlNo == nil) {
+        return;
+    }
+    BlockWeakSelf(weakSelf, self);
+    [self checkLoginStatusWithBlock:^(id data, NSError *error) {
+        if (error == nil) {
+            NSDictionary *param = @{
+                                    @"SERVICE_ID":@[@(13),@(10),@(1200)],
+                                    @"ctrlNo":ctrlNo,
+                                    @"function":@"opac",
+                                    @"offset":@0,
+                                    @"rows":@20
+                                    };
+            
+            [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
+                if (error == nil) {
+                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                    if ([json[@"success"] boolValue]) {
+                        SLBookingInfo *bookingInfo = [SLBookingInfo yy_modelWithJSON:json[@"data"][0]];
+                        [bookingInfo updateLibIdWithDict:json[@"data"][0][@"libMap"]];
+                        weakSelf.bookingInfo = bookingInfo;
+                        if (block) {
+                            block(bookingInfo,nil);
+                        }
+                    } else {
+                        error = [NSError errorWithDomain:@"服务器出了点问题" code:500 userInfo:nil];
+                        if (block) {
+                            block(@(NO),error);
+                        }
+                    }
+                } else {
+                    if (block) {
+                        block(@(NO),error);
+                    }
+                    NSLog(@"%@",error);
+                }
+            }];
+        } else {
+            if (block) {
+                block(@(NO),error);
+            }
+        }
+    }];
 }
 
 - (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok

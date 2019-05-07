@@ -23,16 +23,9 @@
 {
     if (self = [super init]) {
         [self setupUI];
-        [self testLogin];
     }
     
     return self;
-}
-
-- (void)testLogin
-{
-    self.username = @"15cfyu";
-    self.password = @"YCfshen520";
 }
 
 - (void)layoutSubviews

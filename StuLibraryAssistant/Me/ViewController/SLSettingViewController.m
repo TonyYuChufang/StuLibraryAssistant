@@ -7,6 +7,7 @@
 //
 
 #import "SLSettingViewController.h"
+#import "SLAboutUsViewController.h"
 #import "SLSettingCellInfo.h"
 #import "SLCacheManager.h"
 #import "SLStyleManager+Theme.h"
@@ -85,7 +86,7 @@
     aboutUsSetting.cellType = SLSettingCellTypeAboutUs;
     aboutUsSetting.title = @"关于我们";
     aboutUsSetting.settingCellDidClickedHandler = ^{
-        
+        [weakSelf showAboutUsVC];
     };
     [normalSettings addObject:aboutUsSetting];
     
@@ -210,5 +211,12 @@
         }];
     }];
     [alertView show];
+}
+
+- (void)showAboutUsVC
+{
+    [self.navigationController setDefaultNavType];
+    SLAboutUsViewController *aboutVC = [[SLAboutUsViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
 }
 @end

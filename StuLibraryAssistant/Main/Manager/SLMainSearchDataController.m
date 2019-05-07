@@ -134,4 +134,29 @@ static NSString * const opac_query_url = @"http://opac.lib.stu.edu.cn/libintervi
     [self queryBookWithText:_currentSearchText page:_currentPage rows:20 shouldIncrement:YES];
 }
 
+- (void)queryVirtualLibraryInfo:(SLDataQueryCompleteBlock)block
+{
+    NSDictionary *dict = @{
+                           @"SERVICE_ID":@[@(13),@(11),@(1100)],
+                           @"function":@"virtuallib",
+                           @"query":@{
+                                   @"lib":@"stumaps",
+                                   @"floor":@(1)
+                                   },
+                           @"type":@"floor"
+                           };
+    BlockWeakSelf(weakSelf, self);
+
+    [[SLNetwokrManager sharedObject] postWithUrl:opac_query_url param:dict completeBlock:^(id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+            
+        } else {
+           NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+           if ([jsonData[@"success"] boolValue]) {
+               block(jsonData[@"data"][@"svg"],nil);
+           }
+        }
+    }];
+}
 @end

@@ -19,6 +19,18 @@
 #define N_Def(notification) NSString * const notification = @#notification
 #define BlockWeakSelf(weakSelf, self)   __weak typeof(self) weakSelf = self
 
+/** 获取APP名称 */
+
+#define APP_NAME ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"])
+
+/** 程序版本号 */
+
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+/** 获取APP build版本 */
+
+#define APP_BUILD ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"])
+
 #import "UIView+SCManualLayout.h"
 #import "SLUIConstant.h"
 #import <SDWebImage/UIImageView+WebCache.h>

@@ -20,6 +20,7 @@ typedef void(^SLDataQueryCompleteBlock)(id data , NSError *error);
 @class SLBookDetailInfoModel;
 @class SLBookScoreModel;
 @class SLBookDetailModel;
+@class SLBookingInfo;
 @interface SLBookDetailDataController : NSObject
 
 @property (nonatomic, strong) NSMutableArray *bookLocations;
@@ -27,6 +28,7 @@ typedef void(^SLDataQueryCompleteBlock)(id data , NSError *error);
 @property (nonatomic, strong) NSMutableArray *bookScores;
 @property (nonatomic, strong) SLBookScoreModel *myScore;
 @property (nonatomic, strong) SLBookDetailModel *detailInfo;
+@property (nonatomic, strong) SLBookingInfo *bookingInfo;
 
 + (instancetype)sharedObject;
 - (void)queryBookDetailWithCtrlNo:(NSString *)ctrlNo
@@ -45,5 +47,11 @@ typedef void(^SLDataQueryCompleteBlock)(id data , NSError *error);
            complete:(SLDataQueryCompleteBlock)block;
 - (void)cancelCollectBook:(NSString *)ctrlNo
                  complete:(SLDataQueryCompleteBlock)block;
+- (void)queryBookingInfo:(NSString *)ctrlNo
+               completed:(SLDataQueryCompleteBlock)block;
+- (void)bookingBook:(NSString *)ctrlNo
+          completed:(SLDataQueryCompleteBlock)block;
+- (void)cancelBooking:(NSString *)reserveNo
+            completed:(SLDataQueryCompleteBlock)block;
 @end
 

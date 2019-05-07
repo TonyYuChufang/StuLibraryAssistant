@@ -38,6 +38,8 @@
 		9A1634F6227F4D1900195FD4 /* SLUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634F5227F4D1900195FD4 /* SLUserDefault.m */; };
 		9A1634F922801C2800195FD4 /* SLCacheKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634F822801C2800195FD4 /* SLCacheKey.m */; };
 		9A1634FC228048A700195FD4 /* SLAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634FB228048A700195FD4 /* SLAboutUsViewController.m */; };
+		9A1634FF2281BB1B00195FD4 /* SLVirtualLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1634FE2281BB1B00195FD4 /* SLVirtualLibraryViewController.m */; };
+		9A1635062281EEB700195FD4 /* SLBookingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1635052281EEB700195FD4 /* SLBookingInfo.m */; };
 		9A23A53322296F4C00E11C2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53222296F4C00E11C2B /* AppDelegate.m */; };
 		9A23A53622296F4C00E11C2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A53522296F4C00E11C2B /* ViewController.m */; };
 		9A23A53B22296F4D00E11C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A23A53A22296F4D00E11C2B /* Assets.xcassets */; };
@@ -163,6 +165,10 @@
 		9A1634F822801C2800195FD4 /* SLCacheKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCacheKey.m; sourceTree = "<group>"; };
 		9A1634FA228048A700195FD4 /* SLAboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAboutUsViewController.h; sourceTree = "<group>"; };
 		9A1634FB228048A700195FD4 /* SLAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAboutUsViewController.m; sourceTree = "<group>"; };
+		9A1634FD2281BB1B00195FD4 /* SLVirtualLibraryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLVirtualLibraryViewController.h; sourceTree = "<group>"; };
+		9A1634FE2281BB1B00195FD4 /* SLVirtualLibraryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLVirtualLibraryViewController.m; sourceTree = "<group>"; };
+		9A1635042281EEB700195FD4 /* SLBookingInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBookingInfo.h; sourceTree = "<group>"; };
+		9A1635052281EEB700195FD4 /* SLBookingInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBookingInfo.m; sourceTree = "<group>"; };
 		9A23A52E22296F4C00E11C2B /* StuLibraryAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuLibraryAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A23A53122296F4C00E11C2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A23A53222296F4C00E11C2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -532,6 +538,15 @@
 			path = SIAlertView;
 			sourceTree = "<group>";
 		};
+		9A1635032281EEA400195FD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A1635042281EEB700195FD4 /* SLBookingInfo.h */,
+				9A1635052281EEB700195FD4 /* SLBookingInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9A23A52522296F4C00E11C2B = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +656,7 @@
 		9A474DE82265BFD20080B6E2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				9A1635032281EEA400195FD4 /* Model */,
 				9A474DFC226824D10080B6E2 /* SLBookDetailDataController.h */,
 				9A474DFD226824D10080B6E2 /* SLBookDetailDataController.m */,
 				9A474DFF226826530080B6E2 /* SLBookDetailModel.h */,
@@ -768,6 +784,8 @@
 			children = (
 				9A7C93B422411CED005B2894 /* SLMainSearchViewController.h */,
 				9A7C93B522411CED005B2894 /* SLMainSearchViewController.m */,
+				9A1634FD2281BB1B00195FD4 /* SLVirtualLibraryViewController.h */,
+				9A1634FE2281BB1B00195FD4 /* SLVirtualLibraryViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1205,6 +1223,7 @@
 				9A1634C0227E1B9900195FD4 /* SLCollectedBook.m in Sources */,
 				9A1634B1227DD97F00195FD4 /* SLLoanBookCellViewModel.m in Sources */,
 				9A1634E8227F3EE600195FD4 /* SLSettingCellInfo.m in Sources */,
+				9A1635062281EEB700195FD4 /* SLBookingInfo.m in Sources */,
 				9A1634D8227EF16D00195FD4 /* SLDiscoveryViewController.m in Sources */,
 				9A1634F0227F43B300195FD4 /* SIAlertView.m in Sources */,
 				9A8B3033223817BD00A46CFA /* SLStyleManager.m in Sources */,
@@ -1244,6 +1263,7 @@
 				9A1634E1227EF28700195FD4 /* CollectionFlowLayout.m in Sources */,
 				9A1634C3227E1CB100195FD4 /* SLCollectBookDataController.m in Sources */,
 				9A7DFD8E22635E7200D97351 /* SLLoginDataController.m in Sources */,
+				9A1634FF2281BB1B00195FD4 /* SLVirtualLibraryViewController.m in Sources */,
 				9A23A54122296F4D00E11C2B /* main.m in Sources */,
 				9A36239E22448F44001574A4 /* SLNetwokrManager.m in Sources */,
 				9A7DFD8422621F4200D97351 /* SLProfileViewController.m in Sources */,
@@ -1430,7 +1450,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.stuclass.StuLibraryAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1451,7 +1471,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.stuclass.StuLibraryAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -21,6 +21,7 @@
 #import "SLBookDetailViewModel.h"
 #import "SLBookDetailDataController.h"
 #import "SLLoginDataController.h"
+#import "SLBookingInfo.h"
 
 typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     SLDetailSegmentControlSelectIndexCollected = 0,
@@ -217,7 +218,7 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     bookingItem.isSelected = YES;
     bookingItem.title = @"预约";
     bookingItem.menuItemSelectedHandler = ^{
-        [SLProgressHUD showHUDWithText:@"暂时无法预约" inView:weakSelf.view delayTime:2];
+        [SLProgressHUD showHUDWithText:@"无需预约，可直接借阅" inView:weakSelf.view delayTime:2];
     };
     [self.toolItemInfos addObject:bookingItem];
     self.toolView.controlItems = self.toolItemInfos;
@@ -252,10 +253,47 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
 - (void)queryData
 {
     [KVNProgress showWithStatus:@"正在加载..."];
+    BlockWeakSelf(weakSelf, self);
     [[SLBookDetailDataController sharedObject] queryBookDetailWithCtrlNo:self.bookInfo.CTRLNO complete:^(id data, NSError *error) {
+        [weakSelf queryBookingInfo];
+    }];
+}
+
+- (void)queryBookingInfo
+{
+    BlockWeakSelf(weakSelf, self);
+    [[SLBookDetailDataController sharedObject] queryBookingInfo:self.bookInfo.CTRLNO completed:^(id data, NSError *error) {
+        if (error == nil) {
+            SLBookingInfo *bookingInfo = data;
+            SLMenuItemInfo *toolCollectItem = [weakSelf.toolItemInfos objectAtIndex:1];
+            if (bookingInfo.canReserve) {
+                if (bookingInfo.reserve) {
+                    if (bookingInfo.totalCount) {
+                        toolCollectItem.title = [NSString stringWithFormat:@"预约(当前人数:%lld)",bookingInfo.totalCount];
+                    } else {
+                        toolCollectItem.title = @"预约";
+                    }
+                    toolCollectItem.menuItemSelectedHandler = ^{
+                        [weakSelf booking];
+                    };
+                } else {
+                    toolCollectItem.title = [NSString stringWithFormat:@"取消预约(当前排位:%lld)",bookingInfo.resvSequence];
+                    toolCollectItem.menuItemSelectedHandler = ^{
+                        [weakSelf cancelBooking];
+                    };
+                }
+            } else {
+                toolCollectItem.title = @"无需预约，可直接借阅";
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.toolView updateToolView];
+            });
+        }
         [KVNProgress dismiss];
     }];
 }
+
 - (void)addLibraryCollectVC
 {
     self.libraryCollectedViewController = [[SLLibraryCollectedViewController alloc] init];
@@ -299,6 +337,38 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
     }
     return YES;
 }
+
+#pragma mark - Action
+- (void)booking
+{
+    BlockWeakSelf(weakSelf, self);
+    [KVNProgress showWithStatus:@"正在加载..." onView:self.view];
+    [[SLBookDetailDataController sharedObject] bookingBook:self.bookInfo.CTRLNO completed:^(id data, NSError *error) {
+        [KVNProgress dismiss];
+        if ([data boolValue]) {
+            [SLProgressHUD showHUDWithText:@"预约成功" inView:weakSelf.view delayTime:2];
+            [weakSelf queryBookingInfo];
+        } else {
+            [SLProgressHUD showHUDWithText:@"预约失败,请重试" inView:weakSelf.view delayTime:2];
+        }
+    }];
+}
+
+- (void)cancelBooking
+{
+    BlockWeakSelf(weakSelf, self);
+    [KVNProgress showWithStatus:@"正在加载..." onView:self.view];
+    [[SLBookDetailDataController sharedObject] cancelBooking:[SLBookDetailDataController sharedObject].bookingInfo.resvNo completed:^(id data, NSError *error) {
+        [KVNProgress dismiss];
+        if ([data boolValue]) {
+            [SLProgressHUD showHUDWithText:@"取消预约成功" inView:weakSelf.view delayTime:2];
+            [weakSelf queryBookingInfo];
+        } else {
+            [SLProgressHUD showHUDWithText:@"取消预约失败,请重试" inView:weakSelf.view delayTime:2];
+        }
+    }];
+}
+
 #pragma mark - Notification
 - (void)onReceiveScoreInfo:(NSNotification *)notification
 {

@@ -20,5 +20,6 @@ typedef void(^SLDataQueryCompleteBlock)(id data , NSError *error);
           shouldIncrement:(BOOL)shouldIncrement;
 
 - (void)loadMoreBookLists;
+- (void)queryVirtualLibraryInfo:(SLDataQueryCompleteBlock)block;
 @property (nonatomic, strong) NSMutableArray *bookItemList;
 @end
