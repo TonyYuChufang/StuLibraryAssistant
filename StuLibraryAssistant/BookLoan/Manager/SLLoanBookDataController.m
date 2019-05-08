@@ -133,6 +133,12 @@
 
 - (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok
 {
+    if (![[SLLoginDataController sharedObject] isLogined]) {
+        if (blcok) {
+            blcok(@YES,nil);
+        }
+        return;
+    }
     [[SLLoginDataController sharedObject] checkLoginStatusWithBlock:^(id data, NSError *error) {
         if ([data boolValue]) {
             if (blcok) {

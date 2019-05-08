@@ -229,7 +229,6 @@ N_Def(kQueryUserInfoSuccessNotification);
 
 - (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)block
 {
-    [[SLNetwokrManager sharedObject] setRequestHeaderWithDict:@{@"Cookie":self.sessionId}];
     NSDictionary *param = @{
                             @"SERVICE_ID":@[@(0),@(0),@(8)],
                             };
