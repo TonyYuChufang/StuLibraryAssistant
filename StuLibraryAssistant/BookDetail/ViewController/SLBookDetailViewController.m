@@ -386,17 +386,19 @@ typedef NS_ENUM(NSUInteger, SLDetailSegmentControlSelectIndex) {
 
 - (void)onReceiveDetailInfo:(NSNotification *)notification
 {
-    SLBookDetailViewModel *detailVM = [SLBookDetailViewModel bookDetailViewModelWithDetailModel:[SLBookDetailDataController sharedObject].detailInfo];
-    [self.detailInfoView updateDetailViewWithViewModel:detailVM];
-    SLMenuItemInfo *collectItem = [self.segmentControlItemInfos objectAtIndex:0];
-    SLMenuItemInfo *scoreItem = [self.segmentControlItemInfos objectAtIndex:2];
-    SLMenuItemInfo *toolCollectItem = [self.toolItemInfos objectAtIndex:0];
-    collectItem.title = detailVM.bookCollectedTitle;
-    scoreItem.title = detailVM.bookScoreTitle;
-    toolCollectItem.title = detailVM.isCollected ? @"取消收藏" : @"收藏";
-    self.bookInfo.COLLECTED = detailVM.isCollected;
-    [self.segmentControl updateSegmentControl];
-    [self.toolView updateToolView];
+    if (notification.userInfo[@"success"]) {
+        SLBookDetailViewModel *detailVM = [SLBookDetailViewModel bookDetailViewModelWithDetailModel:[SLBookDetailDataController sharedObject].detailInfo];
+        [self.detailInfoView updateDetailViewWithViewModel:detailVM];
+        SLMenuItemInfo *collectItem = [self.segmentControlItemInfos objectAtIndex:0];
+        SLMenuItemInfo *scoreItem = [self.segmentControlItemInfos objectAtIndex:2];
+        SLMenuItemInfo *toolCollectItem = [self.toolItemInfos objectAtIndex:0];
+        collectItem.title = detailVM.bookCollectedTitle;
+        scoreItem.title = detailVM.bookScoreTitle;
+        toolCollectItem.title = detailVM.isCollected ? @"取消收藏" : @"收藏";
+        self.bookInfo.COLLECTED = detailVM.isCollected;
+        [self.segmentControl updateSegmentControl];
+        [self.toolView updateToolView];
+    }
 }
 #pragma mark - Action
 - (void)segmentControlDidSelect:(SLDetailSegmentControlSelectIndex)selectedIndex

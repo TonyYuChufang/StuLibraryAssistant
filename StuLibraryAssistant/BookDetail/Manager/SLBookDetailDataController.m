@@ -63,12 +63,20 @@ N_Def(kCancelCollectBookCompleteNotification);
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
         if (error == nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            SLBookDetailModel *detailModel = [SLBookDetailModel yy_modelWithJSON:json[@"data"][@"list"][0]];
-            self.detailInfo = detailModel;
-            if (block) {
-                block(detailModel,nil);
+            if ([json[@"success"] boolValue]) {
+                SLBookDetailModel *detailModel = [SLBookDetailModel yy_modelWithJSON:json[@"data"][@"list"][0]];
+                self.detailInfo = detailModel;
+                if (block) {
+                    block(detailModel,nil);
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookDetailCompleteNotification object:nil userInfo:@{@"success":@YES,@"msg":@"查询成功"}];
+            } else {
+                if (block) {
+                    block(@NO,nil);
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookDetailCompleteNotification object:nil userInfo:@{@"success":@NO,@"msg":@"服务器出了点问题"}];
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:kQueryBookDetailCompleteNotification object:nil];
+            
         } else {
             if (block) {
                 block(nil,error);

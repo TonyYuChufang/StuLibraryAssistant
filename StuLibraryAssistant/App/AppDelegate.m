@@ -90,6 +90,8 @@
                 }];
             }
         }];
+    } else {
+        [[SLMainSearchDataController sharedObject] requestOpacSessionIDWithBlock:nil];
     }
 }
 @end
