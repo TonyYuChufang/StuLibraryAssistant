@@ -15,7 +15,8 @@ typedef NS_ENUM(NSUInteger, SLEmptyViewType)
     SLEmptyViewTypeInitialBookList,
     SLEmptyViewTypeNoScore,
     SLEmptyViewTypeNoLoanBook,
-    SLEmptyViewTypeNoCollectBook
+    SLEmptyViewTypeNoCollectBook,
+    SLEmptyViewTypeNoNewBook
 };
 
 @interface UIScrollView (EmptyView)

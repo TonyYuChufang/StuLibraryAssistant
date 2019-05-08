@@ -10,6 +10,7 @@
 #import "CollectionFlowLayout.h"
 #import "SLNewBookCell.h"
 #import "SLStyleManager+Theme.h"
+#import "UIScrollView+EmptyView.h"
 
 static CGFloat cellWidth = 300;
 static CGFloat itemSpacing = 10;
@@ -69,6 +70,10 @@ static CGFloat ButtonHeight = 80;
     self.itemNumber = viewModels.count;
     self.pageControl.numberOfPages = viewModels.count;
     [self.collectionView reloadData];
+    if (viewModels.count == 0) {
+        [self.collectionView sl_showEmptyViewWithType:SLEmptyViewTypeNoNewBook];
+        self.rightBtn.alpha = 0;
+    }
 }
 
 #pragma mark - getter & setter

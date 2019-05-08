@@ -96,6 +96,10 @@ static NSString *kEmptyViewScrollEnableKey = @"kEmptyViewScrollEnableKey";
             imageView.image = [UIImage imageNamed:@"icon_emptyList_book"];
             self.scrollEnabled = YES;
             break;
+        case SLEmptyViewTypeNoNewBook:
+            descLabel.text = @"本周没有新书";
+            descLabel.textColor = [UIColor whiteColor];
+            imageView.image = [UIImage imageNamed:@"icon_emptyList_book"];
         default:
             break;
     }

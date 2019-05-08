@@ -45,9 +45,11 @@
     [[SLNetwokrManager sharedObject] postWithUrl:@"http://opac.lib.stu.edu.cn/libinterview" param:param completeBlock:^(id responseObject, NSError *error) {
         if (error == nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-            for (NSDictionary *dict in json[@"data"][@"list"]) {
-                SLBookListItem *newbook = [SLBookListItem yy_modelWithJSON:dict];
-                [weakSelf.books addObject:newbook];
+            if ([json[@"success"] boolValue]) {
+                for (NSDictionary *dict in json[@"data"][@"list"]) {
+                    SLBookListItem *newbook = [SLBookListItem yy_modelWithJSON:dict];
+                    [weakSelf.books addObject:newbook];
+                }
             }
             if (block) {
                 block(weakSelf.books,nil);
