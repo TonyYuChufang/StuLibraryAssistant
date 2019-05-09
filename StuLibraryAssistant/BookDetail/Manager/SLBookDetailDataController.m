@@ -7,6 +7,7 @@
 //
 
 #import "SLBookDetailDataController.h"
+#import "SLMainSearchDataController.h"
 #import "SLLoginDataController.h"
 #import "SLBookDetailModel.h"
 #import <YYModel/YYModel.h>
@@ -507,6 +508,7 @@ N_Def(kCancelCollectBookCompleteNotification);
 - (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok
 {
     if (![[SLLoginDataController sharedObject] isLogined]) {
+        [[SLMainSearchDataController sharedObject] requestOpacSessionIDWithBlock:nil];
         if (blcok) {
             blcok(@YES,nil);
         }

@@ -7,6 +7,7 @@
 //
 
 #import "SLLoanBookDataController.h"
+#import "SLMainSearchDataController.h"
 #import "SLLoginDataController.h"
 #import "SLLoanBook.h"
 #import <YYModel/YYModel.h>
@@ -134,6 +135,7 @@
 - (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok
 {
     if (![[SLLoginDataController sharedObject] isLogined]) {
+        [[SLMainSearchDataController sharedObject] requestOpacSessionIDWithBlock:nil];
         if (blcok) {
             blcok(@YES,nil);
         }

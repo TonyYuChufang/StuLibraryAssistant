@@ -7,6 +7,7 @@
 //
 
 #import "SLCollectBookDataController.h"
+#import "SLMainSearchDataController.h"
 #import "SLLoginDataController.h"
 #import "SLCollectedBook.h"
 #import "SLNetwokrManager.h"
@@ -83,6 +84,7 @@
 - (void)checkLoginStatusWithBlock:(SLDataQueryCompleteBlock)blcok
 {
     if (![[SLLoginDataController sharedObject] isLogined]) {
+        [[SLMainSearchDataController sharedObject] requestOpacSessionIDWithBlock:nil];
         if (blcok) {
             blcok(@YES,nil);
         }
