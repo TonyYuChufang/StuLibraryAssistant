@@ -341,6 +341,9 @@ N_Def(kQueryUserInfoSuccessNotification);
     NSString *password = [[SLUserDefault sharedObject] objectForKey:kPasswordKey];
     if (username && password) {
         [self loginWithUserName:username password:password completed:block];
+    } else {
+        NSError *error = [NSError errorWithDomain:@"没登陆过" code:501 userInfo:nil];
+        block(@(NO),error);
     }
 }
 

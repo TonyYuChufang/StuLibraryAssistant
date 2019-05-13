@@ -59,7 +59,6 @@ static CGFloat ButtonHeight = 80;
 {
     [self addSubview:self.titleLabel];
     [self addSubview:self.collectionView];
-    [self addSubview:self.pageControl];
     [self addSubview:self.leftBtn];
     [self addSubview:self.rightBtn];
 }

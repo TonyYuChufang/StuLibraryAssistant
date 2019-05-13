@@ -522,7 +522,7 @@ N_Def(kCancelCollectBookCompleteNotification);
         } else {
             [[SLLoginDataController sharedObject] requestMyStuLoginParamWithBlock:^(id data, NSError *error) {
                 if (error == nil) {
-                    [[SLLoginDataController sharedObject] loginWithUserName:[[SLUserDefault sharedObject] objectForKey:kUsernameKey] password:[[SLUserDefault sharedObject] objectForKey:kPasswordKey] completed:^(id data, NSError *error) {
+                    [[SLLoginDataController sharedObject] loginWithLocalUserComplete:^(id data, NSError *error) {
                         if (blcok) {
                             blcok(data,error);
                         }
